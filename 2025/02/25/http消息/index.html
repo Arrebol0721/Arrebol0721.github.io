@@ -19,22 +19,27 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.22.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 
-    <meta property="og:type" content="website">
-<meta property="og:title" content="Always Blog">
-<meta property="og:url" content="http://example.com/index.html">
+    <meta name="description" content="HTTP消息HTTP请求起始行起始行包含三个元素：    一个HTTP方法，一个动词GET，PUT，POST，或者一个名词HEAD，OPTIONS，描述要执行的动作。例如，GET 表示要获取资源，POST 表示向服务器推送数据（创建或修改资源，或者产生要返回的临时文件）。 请求目标（request target），通常是一个 URL，或者是协议、端口和域名的绝对路径，通常以请求的环境为特征。请求的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="http消息">
+<meta property="og:url" content="http://example.com/2025/02/25/http%E6%B6%88%E6%81%AF/index.html">
 <meta property="og:site_name" content="Always Blog">
+<meta property="og:description" content="HTTP消息HTTP请求起始行起始行包含三个元素：    一个HTTP方法，一个动词GET，PUT，POST，或者一个名词HEAD，OPTIONS，描述要执行的动作。例如，GET 表示要获取资源，POST 表示向服务器推送数据（创建或修改资源，或者产生要返回的临时文件）。 请求目标（request target），通常是一个 URL，或者是协议、端口和域名的绝对路径，通常以请求的环境为特征。请求的">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-02-25T10:06:15.000Z">
+<meta property="article:modified_time" content="2025-02-25T11:27:31.149Z">
 <meta property="article:author" content="时光不会倒流y">
+<meta property="article:tag" content="Web技术">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="http://example.com/">
+<link rel="canonical" href="http://example.com/2025/02/25/http%E6%B6%88%E6%81%AF/">
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":true,"isPost":false,"lang":"zh-CN","comments":"","permalink":"","path":"index.html","title":""}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2025/02/25/http%E6%B6%88%E6%81%AF/","path":"2025/02/25/http消息/","title":"http消息"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>Always Blog</title>
+<title>http消息 | Always Blog</title>
   
 
 
@@ -67,7 +72,7 @@
 
     <a href="/" class="brand" rel="start">
       <i class="logo-line"></i>
-      <h1 class="site-title">Always Blog</h1>
+      <p class="site-title">Always Blog</p>
       <i class="logo-line"></i>
     </a>
   </div>
@@ -93,7 +98,7 @@
   
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -106,6 +111,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#HTTP%E6%B6%88%E6%81%AF"><span class="nav-number">1.</span> <span class="nav-text">HTTP消息</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP%E8%AF%B7%E6%B1%82"><span class="nav-number">1.1.</span> <span class="nav-text">HTTP请求</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B5%B7%E5%A7%8B%E8%A1%8C"><span class="nav-number">1.1.1.</span> <span class="nav-text">起始行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%87%E5%A4%B4%EF%BC%88Header%EF%BC%89"><span class="nav-number">1.1.2.</span> <span class="nav-text">标头（Header）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BB%E4%BD%93%EF%BC%88body%EF%BC%89"><span class="nav-number">1.1.3.</span> <span class="nav-text">主体（body）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP%E5%93%8D%E5%BA%94"><span class="nav-number">1.2.</span> <span class="nav-text">HTTP响应</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%8A%B6%E6%80%81%E8%A1%8C"><span class="nav-number">1.2.1.</span> <span class="nav-text">状态行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%87%E5%A4%B4%EF%BC%88header%EF%BC%89"><span class="nav-number">1.2.2.</span> <span class="nav-text">标头（header）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BB%E4%BD%93%EF%BC%88body%EF%BC%89-1"><span class="nav-number">1.2.3.</span> <span class="nav-text">主体（body）</span></a></li></ol></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -139,97 +145,17 @@
 
     </div>
 
-    <div class="main-inner index posts-expand">
+    <div class="main-inner post posts-expand">
 
-    
+
+  
 
 
 <div class="post-block">
   
   
 
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2025/02/25/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="时光不会倒流y">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Always Blog">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Always Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2025/02/25/hello-world/" class="post-title-link" itemprop="url">Hello World</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2025-02-25 19:54:41" itemprop="dateCreated datePublished" datetime="2025-02-25T19:54:41+08:00">2025-02-25</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2025/02/25/http%E6%B6%88%E6%81%AF/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -243,13 +169,13 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Always Blog">
+      <meta itemprop="name" content="http消息 | Always Blog">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2025/02/25/http%E6%B6%88%E6%81%AF/" class="post-title-link" itemprop="url">http消息</a>
-        </h2>
+        <h1 class="post-title" itemprop="name headline">
+          http消息
+        </h1>
 
         <div class="post-meta-container">
           <div class="post-meta">
@@ -272,8 +198,7 @@
     
     
     
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="HTTP消息"><a href="#HTTP消息" class="headerlink" title="HTTP消息"></a>HTTP消息</h1><h2 id="HTTP请求"><a href="#HTTP请求" class="headerlink" title="HTTP请求"></a>HTTP请求</h2><h3 id="起始行"><a href="#起始行" class="headerlink" title="起始行"></a>起始行</h3><p>起始行包含三个元素：  </p>
+    <div class="post-body" itemprop="articleBody"><h1 id="HTTP消息"><a href="#HTTP消息" class="headerlink" title="HTTP消息"></a>HTTP消息</h1><h2 id="HTTP请求"><a href="#HTTP请求" class="headerlink" title="HTTP请求"></a>HTTP请求</h2><h3 id="起始行"><a href="#起始行" class="headerlink" title="起始行"></a>起始行</h3><p>起始行包含三个元素：  </p>
 <ol>
 <li>一个HTTP方法，一个动词GET，PUT，POST，或者一个名词HEAD，OPTIONS，描述要执行的动作。例如，GET 表示要获取资源，POST 表示向服务器推送数据（创建或修改资源，或者产生要返回的临时文件）。</li>
 <li>请求目标（request target），通常是一个 URL，或者是协议、端口和域名的绝对路径，通常以请求的环境为特征。请求的格式因不同的 HTTP 方法而异。它可以是：</li>
@@ -300,7 +225,6 @@
 <p>一个成功的网页响应  </p>
 <figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">HTTP/1.1</span> <span class="number">200</span> OK</span><br><span class="line"><span class="attribute">Content-Type</span><span class="punctuation">: </span>text/html; charset=utf-8</span><br><span class="line"><span class="attribute">Content-Length</span><span class="punctuation">: </span>55743</span><br><span class="line"><span class="attribute">Connection</span><span class="punctuation">: </span>keep-alive</span><br><span class="line"><span class="attribute">Cache-Control</span><span class="punctuation">: </span>s-maxage=300, public, max-age=0</span><br><span class="line"><span class="attribute">Content-Language</span><span class="punctuation">: </span>en-US</span><br><span class="line"><span class="attribute">Date</span><span class="punctuation">: </span>Thu, 06 Dec 2018 17:37:18 GMT</span><br><span class="line"><span class="attribute">ETag</span><span class="punctuation">: </span>&quot;2e77ad1dc6ab0b53a2996dfd4653c1c3&quot;</span><br><span class="line"><span class="attribute">Server</span><span class="punctuation">: </span>meinheld/0.6.1</span><br><span class="line"><span class="attribute">Strict-Transport-Security</span><span class="punctuation">: </span>max-age=63072000</span><br><span class="line"><span class="attribute">X-Content-Type-Options</span><span class="punctuation">: </span>nosniff</span><br><span class="line"><span class="attribute">X-Frame-Options</span><span class="punctuation">: </span>DENY</span><br><span class="line"><span class="attribute">X-XSS-Protection</span><span class="punctuation">: </span>1; mode=block</span><br><span class="line"><span class="attribute">Vary</span><span class="punctuation">: </span>Accept-Encoding,Cookie</span><br><span class="line"><span class="attribute">Age</span><span class="punctuation">: </span>7</span><br><span class="line"></span><br><span class="line"><span class="language-xml"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">  <span class="tag">&lt;<span class="name">title</span>&gt;</span>A simple webpage<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">  <span class="tag">&lt;<span class="name">h1</span>&gt;</span>Simple HTML webpage<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">  <span class="tag">&lt;<span class="name">p</span>&gt;</span>Hello, world!<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
 
-      
     </div>
 
     
@@ -308,102 +232,28 @@
     
 
     <footer class="post-footer">
-        <div class="post-eof"></div>
-      
+          <div class="post-tags">
+              <a href="/tags/Web%E6%8A%80%E6%9C%AF/" rel="tag"># Web技术</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/02/25/%E6%AF%8F%E6%97%A51%E9%A2%98-%E8%AE%BE%E8%AE%A1%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D%E5%99%A8/" rel="prev" title="每日1题-设计内存分配器">
+                  <i class="fa fa-angle-left"></i> 每日1题-设计内存分配器
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2025/02/25/hello-world/" rel="next" title="Hello World">
+                  Hello World <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
     </footer>
   </article>
 </div>
 
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2025/02/25/%E6%AF%8F%E6%97%A51%E9%A2%98-%E8%AE%BE%E8%AE%A1%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D%E5%99%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="时光不会倒流y">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Always Blog">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Always Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2025/02/25/%E6%AF%8F%E6%97%A51%E9%A2%98-%E8%AE%BE%E8%AE%A1%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D%E5%99%A8/" class="post-title-link" itemprop="url">每日1题-设计内存分配器</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2025-02-25 13:23:54 / 修改时间：19:27:22" itemprop="dateCreated datePublished" datetime="2025-02-25T13:23:54+08:00">2025-02-25</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>给你一个整数 n ，表示下标从 0 开始的内存数组的大小。所有内存单元开始都是空闲的。</p>
-<p>请你设计一个具备以下功能的内存分配器：</p>
-<ul>
-<li>分配 一块大小为 size 的连续空闲内存单元并赋mID 。  </li>
-<li>释放 给定 mID 对应的所有内存单元。</li>
-</ul>
-<p><strong>注意：</strong></p>
-<ul>
-<li>多个块可以被分配到同一个 mID 。  </li>
-<li>你必须释放 mID 对应的所有内存单元，即便这些内存单元被分配在不同的块中。</li>
-</ul>
-<p><strong>实现 Allocator 类：</strong></p>
-<ul>
-<li><code>Allocator(int n)</code> 使用一个大小为 n 的内存数组初始化 Allocator 对象。  </li>
-<li><code>int allocate(int size, int mID)</code> 找出大小为 size 个连续空闲内存单元且位于最左侧的块，分配并赋 mID 。返回块的第一个下标。如果不存在这样的块，返回 -1 。  </li>
-<li><code>int freeMemory(int mID)</code> 释放 mID 对应的所有内存单元。返回释放的内存单元数目。</li>
-</ul>
-<h3 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Allocator</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    vector&lt;<span class="type">int</span>&gt; memory;</span><br><span class="line">    <span class="built_in">Allocator</span>(<span class="type">int</span> n) :<span class="built_in">memory</span>(n)&#123;</span><br><span class="line">       </span><br><span class="line">    &#125;  </span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">allocate</span><span class="params">(<span class="type">int</span> size, <span class="type">int</span> mID)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> free=<span class="number">0</span>;<span class="comment">//使用free记录空闲块的数量</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;memory.<span class="built_in">size</span>();i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(memory[i]&gt;<span class="number">0</span>)&#123;</span><br><span class="line">                free=<span class="number">0</span>;</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            free++;</span><br><span class="line">            <span class="keyword">if</span>(free==size)&#123;</span><br><span class="line">                <span class="built_in">fill</span>(memory.<span class="built_in">begin</span>()+(i-size<span class="number">+1</span>),memory.<span class="built_in">begin</span>()+(i<span class="number">+1</span>),mID);</span><br><span class="line">                <span class="keyword">return</span> i-size<span class="number">+1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;   </span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">freeMemory</span><span class="params">(<span class="type">int</span> mID)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> ans=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;memory.<span class="built_in">size</span>();i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(memory[i]==mID)&#123;</span><br><span class="line">                ans++;</span><br><span class="line">                memory[i]=<span class="number">0</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h3 id="Link"><a href="#Link" class="headerlink" title="Link"></a>Link</h3><ul>
-<li><strong>成员初始化列表在构造函数执行前为成员变量赋值，避免类成员的二次构造，提高效率</strong></li>
-<li><strong>fill函数为C++标准库algorithm中函数，使用右开区间迭代器填充value值</strong></li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
 
 
 

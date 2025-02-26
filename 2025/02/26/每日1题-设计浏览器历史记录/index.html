@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.22.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="题目描述你有一个只支持单个标签页的浏览器 ，最开始你浏览的网页是 homepage ，你可以访问其他的网站 url ，也可以在浏览历史中后退 steps 步或前进 steps 步。请你实现BrowserHistory类：    BrowserHistory(string homepage) ，用 homepage 初始化浏览器类。    void visit(string url)从当前页跳转访问">
+<meta property="og:type" content="article">
+<meta property="og:title" content="每日1题-设计浏览器历史记录">
+<meta property="og:url" content="http://example.com/2025/02/26/%E6%AF%8F%E6%97%A51%E9%A2%98-%E8%AE%BE%E8%AE%A1%E6%B5%8F%E8%A7%88%E5%99%A8%E5%8E%86%E5%8F%B2%E8%AE%B0%E5%BD%95/index.html">
+<meta property="og:site_name" content="Always Blog">
+<meta property="og:description" content="题目描述你有一个只支持单个标签页的浏览器 ，最开始你浏览的网页是 homepage ，你可以访问其他的网站 url ，也可以在浏览历史中后退 steps 步或前进 steps 步。请你实现BrowserHistory类：    BrowserHistory(string homepage) ，用 homepage 初始化浏览器类。    void visit(string url)从当前页跳转访问">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-02-26T04:42:55.000Z">
+<meta property="article:modified_time" content="2025-02-26T05:29:22.302Z">
+<meta property="article:author" content="时光不会倒流y">
+<meta property="article:tag" content="算法">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2025/02/26/%E6%AF%8F%E6%97%A51%E9%A2%98-%E8%AE%BE%E8%AE%A1%E6%B5%8F%E8%A7%88%E5%99%A8%E5%8E%86%E5%8F%B2%E8%AE%B0%E5%BD%95/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2025/02/26/%E6%AF%8F%E6%97%A51%E9%A2%98-%E8%AE%BE%E8%AE%A1%E6%B5%8F%E8%A7%88%E5%99%A8%E5%8E%86%E5%8F%B2%E8%AE%B0%E5%BD%95/","path":"2025/02/26/每日1题-设计浏览器历史记录/","title":"每日1题-设计浏览器历史记录"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>每日1题-设计浏览器历史记录 | Always Blog</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Always Blog</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE%E6%8F%8F%E8%BF%B0"><span class="nav-number">1.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%98%E8%A7%A3"><span class="nav-number">2.</span> <span class="nav-text">题解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Link"><span class="nav-number">3.</span> <span class="nav-text">Link</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Link-1"><span class="nav-number">4.</span> <span class="nav-text">Link</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">时光不会倒流y</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">4</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/02/26/%E6%AF%8F%E6%97%A51%E9%A2%98-%E8%AE%BE%E8%AE%A1%E6%B5%8F%E8%A7%88%E5%99%A8%E5%8E%86%E5%8F%B2%E8%AE%B0%E5%BD%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="时光不会倒流y">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Always Blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="每日1题-设计浏览器历史记录 | Always Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          每日1题-设计浏览器历史记录
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2025-02-26 12:42:55 / 修改时间：13:29:22" itemprop="dateCreated datePublished" datetime="2025-02-26T12:42:55+08:00">2025-02-26</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>你有一个只支持单个标签页的浏览器 ，最开始你浏览的网页是 homepage ，你可以访问其他的网站 url ，也可以在浏览历史中后退 steps 步或前进 steps 步。<br>请你实现BrowserHistory类：  </p>
+<ul>
+<li><p><code>BrowserHistory(string homepage)</code> ，用 homepage 初始化浏览器类。  </p>
+</li>
+<li><p><code>void visit(string url)</code>从当前页跳转访问 url 对应的页面  。执行此操作会把浏览历史前进的记录全部删除。  </p>
+</li>
+<li><p><code>string back(int steps)</code> 在浏览历史中后退 steps 步。如果你只能在浏览历史中后退至多 x 步且 steps &gt; x ，那么你只后退 x 步。请返回后退 至多 steps 步以后的 url 。  </p>
+</li>
+<li><p><code>string forward(int steps)</code> 在浏览历史中前进 steps 步。如果你只能在浏览历史中前进至多 x 步且 steps &gt; x ，那么你只前进 x 步。请返回前进 至多 steps步以后的 url 。</p>
+</li>
+</ul>
+<h3 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h3><p><strong>C++代码</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">BrowserHistory</span> &#123;</span><br><span class="line">    vector&lt;string&gt; history;</span><br><span class="line">    <span class="type">int</span> cur=<span class="number">0</span>;<span class="comment">//记录当前位置</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">BrowserHistory</span>(string homepage) :history&#123;homepage&#125;&#123; <span class="comment">//初始化列表     </span></span><br><span class="line">    &#125;  </span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">visit</span><span class="params">(string url)</span> </span>&#123;</span><br><span class="line">        cur++;<span class="comment">//例如当前位于1号页面，++后为2</span></span><br><span class="line">        history.<span class="built_in">resize</span>(cur);<span class="comment">//去除前进记录，只保留2个页面0和1</span></span><br><span class="line">        history.<span class="built_in">push_back</span>(url);<span class="comment">//再访问新的页面，cur刚好指向2</span></span><br><span class="line">    &#125;   </span><br><span class="line">    <span class="function">string <span class="title">back</span><span class="params">(<span class="type">int</span> steps)</span> </span>&#123;</span><br><span class="line">        cur=<span class="built_in">max</span>(cur-steps,<span class="number">0</span>);<span class="comment">//回退页面，如果回退到负数页面说明超限，就回退到0号页面</span></span><br><span class="line">        <span class="keyword">return</span> history[cur];</span><br><span class="line">    &#125;  </span><br><span class="line">    <span class="function">string <span class="title">forward</span><span class="params">(<span class="type">int</span> steps)</span> </span>&#123;</span><br><span class="line">        cur=<span class="built_in">min</span>(cur+steps,(<span class="type">int</span>)history.<span class="built_in">size</span>()<span class="number">-1</span>);<span class="comment">//前进页面，不能超过（页面长度-1）</span></span><br><span class="line">        <span class="keyword">return</span> history[cur];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="Link"><a href="#Link" class="headerlink" title="Link"></a>Link</h3><ul>
+<li>初始化列表防止二次构造vector数组</li>
+<li>将 history.size() 转换为 int 类型的主要目的是为了避免无符号整数和有符号整数之间的类型不匹配问题。</li>
+</ul>
+<p><strong>Java代码</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">BrowserHistory</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> List&lt;String&gt; history = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> <span class="variable">cur</span> <span class="operator">=</span> <span class="number">0</span>; <span class="comment">// 当前页面是 history[cur]</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">BrowserHistory</span><span class="params">(String homepage)</span> &#123;</span><br><span class="line">        history.add(homepage);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">visit</span><span class="params">(String url)</span> &#123;</span><br><span class="line">        cur++;</span><br><span class="line">        history.subList(cur, history.size()).clear(); <span class="comment">// 把浏览历史前进的记录全部删除</span></span><br><span class="line">        history.add(url); <span class="comment">// 从当前页跳转访问 url 对应的页面</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">back</span><span class="params">(<span class="type">int</span> steps)</span> &#123;</span><br><span class="line">        cur = Math.max(cur - steps, <span class="number">0</span>); <span class="comment">// 后退 steps 步</span></span><br><span class="line">        <span class="keyword">return</span> history.get(cur);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">forward</span><span class="params">(<span class="type">int</span> steps)</span> &#123;</span><br><span class="line">        cur = Math.min(cur + steps, history.size() - <span class="number">1</span>); <span class="comment">// 前进 steps 步</span></span><br><span class="line">        <span class="keyword">return</span> history.get(cur);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Link-1"><a href="#Link-1" class="headerlink" title="Link"></a>Link</h3><ul>
+<li>sublist返回原列表的视图，对其调用clear相当于修改原列表</li>
+<li>final修饰history引用本身，不可以重新指向其他对象，但是内容可以改变</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E7%AE%97%E6%B3%95/" rel="tag"># 算法</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/02/25/hello-world/" rel="prev" title="Hello World">
+                  <i class="fa fa-angle-left"></i> Hello World
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">时光不会倒流y</span>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

@@ -19,22 +19,33 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.22.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 
-    <meta property="og:type" content="website">
-<meta property="og:title" content="Always Blog">
-<meta property="og:url" content="http://example.com/archives/index.html">
+    <meta name="description" content="vector string unordered_map map set">
+<meta property="og:type" content="article">
+<meta property="og:title" content="STL常用数据结构">
+<meta property="og:url" content="http://example.com/2025/02/27/STL%E5%B8%B8%E7%94%A8%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/index.html">
 <meta property="og:site_name" content="Always Blog">
+<meta property="og:description" content="vector string unordered_map map set">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/images/vector.png">
+<meta property="og:image" content="http://example.com/images/string.png">
+<meta property="og:image" content="http://example.com/images/unordered_map.png">
+<meta property="og:image" content="http://example.com/images/map.png">
+<meta property="og:image" content="http://example.com/images/set.png">
+<meta property="article:published_time" content="2025-02-27T12:08:21.000Z">
+<meta property="article:modified_time" content="2025-02-27T12:51:09.195Z">
 <meta property="article:author" content="时光不会倒流y">
+<meta property="article:tag" content="C++">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/vector.png">
 
 
-<link rel="canonical" href="http://example.com/archives/">
+<link rel="canonical" href="http://example.com/2025/02/27/STL%E5%B8%B8%E7%94%A8%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"zh-CN","comments":"","permalink":"","path":"archives/index.html","title":""}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2025/02/27/STL%E5%B8%B8%E7%94%A8%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/","path":"2025/02/27/STL常用数据结构/","title":"STL常用数据结构"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>归档 | Always Blog</title>
+<title>STL常用数据结构 | Always Blog</title>
   
 
 
@@ -67,7 +78,7 @@
 
     <a href="/" class="brand" rel="start">
       <i class="logo-line"></i>
-      <h1 class="site-title">Always Blog</h1>
+      <p class="site-title">Always Blog</p>
       <i class="logo-line"></i>
     </a>
   </div>
@@ -93,7 +104,7 @@
   
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -106,6 +117,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#vector"><span class="nav-number">1.</span> <span class="nav-text">vector</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#string"><span class="nav-number">2.</span> <span class="nav-text">string</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#unordered-map"><span class="nav-number">3.</span> <span class="nav-text">unordered_map</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#map"><span class="nav-number">4.</span> <span class="nav-text">map</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#set"><span class="nav-number">5.</span> <span class="nav-text">set</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -140,189 +152,95 @@
 
     </div>
 
-    <div class="main-inner archive posts-collapse">
+    <div class="main-inner post posts-expand">
 
 
   
-  
-  
-  <div class="post-block">
-    <div class="post-content">
-      <div class="collection-title">
-        <span class="collection-header">嗯..! 目前共计 8 篇日志。 继续努力。</span>
-      </div>
 
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/02/27/STL%E5%B8%B8%E7%94%A8%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="时光不会倒流y">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Always Blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="STL常用数据结构 | Always Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          STL常用数据结构
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
       
-    <div class="collection-year">
-      <span class="collection-header">2025<span class="collection-year-count">8</span></span>
+
+      <time title="创建时间：2025-02-27 20:08:21 / 修改时间：20:51:09" itemprop="dateCreated datePublished" datetime="2025-02-27T20:08:21+08:00">2025-02-27</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h3 id="vector"><a href="#vector" class="headerlink" title="vector"></a>vector</h3><p><img src="/images/vector.png" alt="vector"></p>
+<h3 id="string"><a href="#string" class="headerlink" title="string"></a>string</h3><p><img src="/images/string.png" alt="string"></p>
+<h3 id="unordered-map"><a href="#unordered-map" class="headerlink" title="unordered_map"></a>unordered_map</h3><p><img src="/images/unordered_map.png" alt="hash"></p>
+<h3 id="map"><a href="#map" class="headerlink" title="map"></a>map</h3><p><img src="/images/map.png" alt="map"></p>
+<h3 id="set"><a href="#set" class="headerlink" title="set"></a>set</h3><p><img src="/images/set.png" alt="set"></p>
+
     </div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2025-02-27T20:08:21+08:00"
-              content="2025-02-27">
-          02-27
-        </time>
-      </div>
+    
+    
+    
 
-      <div class="post-title">
-          <a class="post-title-link" href="/2025/02/27/STL%E5%B8%B8%E7%94%A8%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" itemprop="url">
-            <span itemprop="name">STL常用数据结构</span>
-          </a>
-      </div>
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/C/" rel="tag"># C++</a>
+          </div>
 
-      
-    </header>
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/02/27/%E6%AF%8F%E6%97%A51%E9%A2%98-%E8%AE%BE%E8%AE%A1%E4%B8%80%E4%B8%AA%E6%96%87%E6%9C%AC%E7%BC%96%E8%BE%91%E5%99%A8/" rel="prev" title="每日1题-设计一个文本编辑器">
+                  <i class="fa fa-angle-left"></i> 每日1题-设计一个文本编辑器
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
   </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2025-02-27T18:44:26+08:00"
-              content="2025-02-27">
-          02-27
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2025/02/27/%E6%AF%8F%E6%97%A51%E9%A2%98-%E8%AE%BE%E8%AE%A1%E4%B8%80%E4%B8%AA%E6%96%87%E6%9C%AC%E7%BC%96%E8%BE%91%E5%99%A8/" itemprop="url">
-            <span itemprop="name">每日1题-设计一个文本编辑器</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2025-02-26T18:19:11+08:00"
-              content="2025-02-26">
-          02-26
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2025/02/26/%E5%A4%9A%E8%A1%A8%E6%9F%A5%E8%AF%A2/" itemprop="url">
-            <span itemprop="name">多表查询</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2025-02-26T16:10:26+08:00"
-              content="2025-02-26">
-          02-26
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2025/02/26/%E5%B8%B8%E7%94%A8%E7%BD%91%E7%AB%99%E5%90%88%E9%9B%86/" itemprop="url">
-            <span itemprop="name">官方文档合集</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2025-02-26T12:42:55+08:00"
-              content="2025-02-26">
-          02-26
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2025/02/26/%E6%AF%8F%E6%97%A51%E9%A2%98-%E8%AE%BE%E8%AE%A1%E6%B5%8F%E8%A7%88%E5%99%A8%E5%8E%86%E5%8F%B2%E8%AE%B0%E5%BD%95/" itemprop="url">
-            <span itemprop="name">每日1题-设计浏览器历史记录</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2025-02-25T19:54:41+08:00"
-              content="2025-02-25">
-          02-25
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2025/02/25/hello-world/" itemprop="url">
-            <span itemprop="name">Hello World</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2025-02-25T18:06:15+08:00"
-              content="2025-02-25">
-          02-25
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2025/02/25/http%E6%B6%88%E6%81%AF/" itemprop="url">
-            <span itemprop="name">http消息</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2025-02-25T13:23:54+08:00"
-              content="2025-02-25">
-          02-25
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2025/02/25/%E6%AF%8F%E6%97%A51%E9%A2%98-%E8%AE%BE%E8%AE%A1%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D%E5%99%A8/" itemprop="url">
-            <span itemprop="name">每日1题-设计内存分配器</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
+</div>
 
 
-    </div>
-  </div>
-  
-  
-  
+
+
+
 
 </div>
   </main>

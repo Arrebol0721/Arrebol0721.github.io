@@ -118,7 +118,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">19</span>
+          <span class="site-state-item-count">20</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -141,6 +141,78 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/03/07/%E6%AF%8F%E6%97%A51%E9%A2%98-%E7%BB%9F%E8%AE%A1%E7%BE%8E%E4%B8%BD%E5%AD%90%E9%9B%86%E6%95%B0%E7%9B%AE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="时光不会倒流y">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Always Blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Always Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2025/03/07/%E6%AF%8F%E6%97%A51%E9%A2%98-%E7%BB%9F%E8%AE%A1%E7%BE%8E%E4%B8%BD%E5%AD%90%E9%9B%86%E6%95%B0%E7%9B%AE/" class="post-title-link" itemprop="url">每日1题-统计美丽子集数目</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2025-03-07 17:11:46 / 修改时间：17:47:55" itemprop="dateCreated datePublished" datetime="2025-03-07T17:11:46+08:00">2025-03-07</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>给你一个由正整数组成的数组 nums 和一个正整数 k 。<br>如果 nums 的子集中，任意两个整数的绝对差均不等于 k ，则认为该子数组是一个<strong>美丽</strong>子集。<br>返回数组 nums 中 非空 且 美丽 的子集数目。<br>nums 的子集定义为：可以经由 nums 删除某些元素（也可能不删除）得到的一个数组。只有在删除元素时选择的索引不同的情况下，两个子集才会被视作是不同的子集。</p>
+<h3 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h3><p>子集回溯判断选还是不选，将所有分支遍历。<br>遍历时会先不选所有元素得出一个空集合；<br>然后会选择最后一个元素得出一个单个元素的集合；<br>然后会从倒数第二个开始选，再判断倒数第一个元素与倒数第二个元素是否冲突得出集合。<br>然后会从倒数第三个元素开始选……</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="type">int</span> ans=<span class="number">-1</span>;<span class="comment">//定义符合条件的子集数量，因为一直不选会产生一个空集，所以定义为-1，忽略掉空集</span></span><br><span class="line">    unordered_map&lt;<span class="type">int</span>,<span class="type">int</span>&gt; cnt;<span class="comment">//使用哈希表来查找之前存储过哪些数字。</span></span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">beautifulSubsets</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums,<span class="type">int</span> k)</span></span>&#123;</span><br><span class="line">        <span class="built_in">dfs</span>(nums,k,<span class="number">0</span>);</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">dfs</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums,<span class="type">int</span> k,<span class="type">int</span> i)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(i==nums.<span class="built_in">size</span>())&#123;</span><br><span class="line">            ans++;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">dfs</span>(nums,k,i<span class="number">+1</span>);<span class="comment">//直接不选当前元素</span></span><br><span class="line">        <span class="type">int</span> x=nums[i];<span class="comment">//将当前元素赋值给临时值x</span></span><br><span class="line">        <span class="keyword">if</span>(cnt[x-k]==<span class="number">0</span>&amp;&amp;cnt[x+k]==<span class="number">0</span>)&#123;<span class="comment">//如果之前的哈希表里没有元素与当前元素冲突</span></span><br><span class="line">            cnt[x]++;<span class="comment">//就可以选择当前元素</span></span><br><span class="line">            <span class="built_in">dfs</span>(nums,k,i<span class="number">+1</span>);<span class="comment">//然后看下一个元素。</span></span><br><span class="line">            cnt[x]--;<span class="comment">//撤销选择</span></span><br><span class="line">        &#125;      </span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -596,7 +668,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2025/03/04/%E6%AF%8F%E6%97%A51%E9%A2%98-%E5%88%86%E5%89%B2%E5%AD%97%E7%AC%A6%E4%B8%B23/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/03/04/%E6%AF%8F%E6%97%A51%E9%A2%98-%E5%88%86%E5%89%B2%E5%9B%9E%E6%96%87%E4%B8%B23/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -614,7 +686,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2025/03/04/%E6%AF%8F%E6%97%A51%E9%A2%98-%E5%88%86%E5%89%B2%E5%AD%97%E7%AC%A6%E4%B8%B23/" class="post-title-link" itemprop="url">每日1题-分割字符串3</a>
+          <a href="/2025/03/04/%E6%AF%8F%E6%97%A51%E9%A2%98-%E5%88%86%E5%89%B2%E5%9B%9E%E6%96%87%E4%B8%B23/" class="post-title-link" itemprop="url">每日1题-分割回文串3</a>
         </h2>
 
         <div class="post-meta-container">
@@ -624,9 +696,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2025-03-04 19:24:18 / 修改时间：20:09:47" itemprop="dateCreated datePublished" datetime="2025-03-04T19:24:18+08:00">2025-03-04</time>
+      <time title="创建时间：2025-03-04 19:24:18" itemprop="dateCreated datePublished" datetime="2025-03-04T19:24:18+08:00">2025-03-04</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-03-07 17:47:02" itemprop="dateModified" datetime="2025-03-07T17:47:02+08:00">2025-03-07</time>
     </span>
 
   
@@ -962,83 +1040,6 @@
 <h3 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">minCut</span><span class="params">(string s)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> n = s.<span class="built_in">size</span>();</span><br><span class="line">        <span class="comment">// is_palindrome[l][r] 表示 s[l] 到 s[r] 是否为回文串</span></span><br><span class="line">        <span class="function">vector <span class="title">is_palindrome</span><span class="params">(n, vector&lt;<span class="type">int</span>&gt;(n, <span class="literal">true</span>))</span></span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> l = n - <span class="number">2</span>; l &gt;= <span class="number">0</span>; l--) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> r = l + <span class="number">1</span>; r &lt; n; r++) &#123;</span><br><span class="line">                is_palindrome[l][r] = s[l] == s[r] &amp;&amp; is_palindrome[l + <span class="number">1</span>][r - <span class="number">1</span>];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">f</span><span class="params">(n)</span></span>;<span class="comment">//表示[0,r]之间切割回文串最少次数</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> r = <span class="number">0</span>; r &lt; n; r++) &#123;<span class="comment">//每次循环得到f[r]</span></span><br><span class="line">            <span class="keyword">if</span> (is_palindrome[<span class="number">0</span>][r]) &#123; <span class="comment">// 已是回文串，无需分割，f[r]默认值为零</span></span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="type">int</span> res = INT_MAX;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> l = <span class="number">1</span>; l &lt;= r; l++) &#123; <span class="comment">// 在[1,r]之间枚举l</span></span><br><span class="line">                <span class="keyword">if</span> (is_palindrome[l][r]) &#123;<span class="comment">//如果[l,r]是回文串</span></span><br><span class="line">                    res = <span class="built_in">min</span>(res, f[l - <span class="number">1</span>] + <span class="number">1</span>); <span class="comment">// 在 l-1 和 l 之间切一刀</span></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            f[r] = res;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> f[n - <span class="number">1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <h3 id="关联题目-回文子串"><a href="#关联题目-回文子串" class="headerlink" title="关联题目-回文子串"></a>关联题目-回文子串</h3><p>给你一个字符串 s ，请你统计并返回这个字符串中<strong>回文子串</strong>的数目。</p>
 <h3 id="题解-1"><a href="#题解-1" class="headerlink" title="题解"></a>题解</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">countSubstrings</span><span class="params">(string s)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> n = s.<span class="built_in">size</span>();</span><br><span class="line">        <span class="comment">// is_palindrome[l][r] 表示 s[l] 到 s[r] 是否为回文串</span></span><br><span class="line">        <span class="function">vector <span class="title">is_palindrome</span><span class="params">(n, vector&lt;<span class="type">int</span>&gt;(n, <span class="literal">true</span>))</span></span>;<span class="comment">//这样写也可以，C++存在0，1和bool的隐式转换</span></span><br><span class="line">        <span class="type">int</span> ans=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> l = n - <span class="number">2</span>; l &gt;= <span class="number">0</span>; l--) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> r = l + <span class="number">1</span>; r &lt; n; r++) &#123;</span><br><span class="line">                is_palindrome[l][r] = s[l] == s[r] &amp;&amp; is_palindrome[l + <span class="number">1</span>][r - <span class="number">1</span>];</span><br><span class="line">                <span class="keyword">if</span>(is_palindrome[l][r]==<span class="literal">true</span>)&#123;</span><br><span class="line">                    ans++;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans+n;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2025/03/01/%E6%AF%8F%E6%97%A51%E9%A2%98-%E5%88%86%E5%89%B2%E5%9B%9E%E6%96%87%E4%B8%B21/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="时光不会倒流y">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Always Blog">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Always Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2025/03/01/%E6%AF%8F%E6%97%A51%E9%A2%98-%E5%88%86%E5%89%B2%E5%9B%9E%E6%96%87%E4%B8%B21/" class="post-title-link" itemprop="url">每日1题-分割回文串1</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2025-03-01 10:27:34" itemprop="dateCreated datePublished" datetime="2025-03-01T10:27:34+08:00">2025-03-01</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-03-05 13:46:25" itemprop="dateModified" datetime="2025-03-05T13:46:25+08:00">2025-03-05</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>给你一个字符串 s，请你将 s 分割成一些子串，使每个子串都是回文串。返回 s 所有可能的分割方案。  </p>
-<h3 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    vector&lt;vector&lt;string&gt;&gt; result;</span><br><span class="line">    vector&lt;string&gt; path;<span class="comment">//因为题目要求返回所有分割方案。所以使用path存储方案</span></span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">is</span><span class="params">(string s)</span></span>&#123;<span class="comment">//判断回文串，单个字符也算作回文串</span></span><br><span class="line">        <span class="type">int</span> i=<span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> j=s.<span class="built_in">size</span>()<span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">while</span>(i&lt;j)&#123;</span><br><span class="line">            <span class="keyword">if</span>(s[i]!=s[j])&#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            i++;</span><br><span class="line">            j--;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">dfs</span><span class="params">(string s,<span class="type">int</span> startindex)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(startindex==s.<span class="built_in">size</span>())&#123;<span class="comment">//当分割点到达字符串长度。也就是分割完时将方案放入结果集中</span></span><br><span class="line">            result.<span class="built_in">push_back</span>(path);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=startindex;i&lt;s.<span class="built_in">size</span>();i++)&#123;</span><br><span class="line">            string str=s.<span class="built_in">substr</span>(startindex,i-startindex<span class="number">+1</span>);</span><br><span class="line">            <span class="keyword">if</span>(<span class="built_in">is</span>(str))&#123;</span><br><span class="line">                path.<span class="built_in">push_back</span>(str);</span><br><span class="line">                <span class="built_in">dfs</span>(s,i<span class="number">+1</span>);</span><br><span class="line">                path.<span class="built_in">pop_back</span>();<span class="comment">//进行当前轮的下一个for循环时要恢复现场           </span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    vector&lt;vector&lt;string&gt;&gt; <span class="built_in">partition</span>(string s) &#123;</span><br><span class="line">        <span class="built_in">dfs</span>(s,<span class="number">0</span>);</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
       
     </div>

@@ -17,29 +17,30 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.22.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.22.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 
     <meta name="description" content="接口接口的概念接口不是类，而是对希望符合这个接口的类的一组需求。例如，Arrays的sort方法可以对对象数组进行排序，但是对象所属的类必须实现Comparable接口：   1234public interface Comparable&#123;    int compareTo(Object other);&#125; 任何实现Comparable接口的类都需要包含compareTo方法，接">
 <meta property="og:type" content="article">
-<meta property="og:title" content="《Java核心技术》笔记4">
+<meta property="og:title" content="《Java核心技术》笔记4-接口">
 <meta property="og:url" content="http://example.com/2025/03/04/%E3%80%8AJava%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E3%80%8B%E7%AC%94%E8%AE%B04/index.html">
 <meta property="og:site_name" content="Always Blog">
 <meta property="og:description" content="接口接口的概念接口不是类，而是对希望符合这个接口的类的一组需求。例如，Arrays的sort方法可以对对象数组进行排序，但是对象所属的类必须实现Comparable接口：   1234public interface Comparable&#123;    int compareTo(Object other);&#125; 任何实现Comparable接口的类都需要包含compareTo方法，接">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-03-04T12:10:27.000Z">
-<meta property="article:modified_time" content="2025-03-05T04:29:04.531Z">
+<meta property="article:modified_time" content="2025-03-10T06:28:55.300Z">
 <meta property="article:author" content="时光不会倒流y">
 <meta property="article:tag" content="Java">
+<meta property="article:tag" content="书籍">
 <meta name="twitter:card" content="summary">
 
 
 <link rel="canonical" href="http://example.com/2025/03/04/%E3%80%8AJava%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E3%80%8B%E7%AC%94%E8%AE%B04/">
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2025/03/04/%E3%80%8AJava%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E3%80%8B%E7%AC%94%E8%AE%B04/","path":"2025/03/04/《Java核心技术》笔记4/","title":"《Java核心技术》笔记4"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2025/03/04/%E3%80%8AJava%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E3%80%8B%E7%AC%94%E8%AE%B04/","path":"2025/03/04/《Java核心技术》笔记4/","title":"《Java核心技术》笔记4-接口"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>《Java核心技术》笔记4 | Always Blog</title>
+<title>《Java核心技术》笔记4-接口 | Always Blog</title>
   
 
 
@@ -124,13 +125,13 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">20</span>
+          <span class="site-state-item-count">25</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-count">16</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -170,12 +171,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="《Java核心技术》笔记4 | Always Blog">
+      <meta itemprop="name" content="《Java核心技术》笔记4-接口 | Always Blog">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          《Java核心技术》笔记4
+          《Java核心技术》笔记4-接口
         </h1>
 
         <div class="post-meta-container">
@@ -193,7 +194,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-03-05 12:29:04" itemprop="dateModified" datetime="2025-03-05T12:29:04+08:00">2025-03-05</time>
+      <time title="修改时间：2025-03-10 14:28:55" itemprop="dateModified" datetime="2025-03-10T14:28:55+08:00">2025-03-10</time>
     </span>
 
   
@@ -215,9 +216,9 @@
 <ol start="2">
 <li>对接口中的所有方法提供定义</li>
 </ol>
-<h3 id="接口的使用"><a href="#接口的使用" class="headerlink" title="接口的使用"></a>接口的使用</h3><p>通过接口调用方法，实现多态</p>
+<h3 id="接口的使用"><a href="#接口的使用" class="headerlink" title="接口的使用"></a>接口的使用</h3><p>无法实例接口，但是可以定义接口变量，接口变量必须引用实现了这个接口的对象。<br>可以使用instanceof检查一个对象是否实现了某个接口。<br>接口也可以扩展，从通用性较高的接口扩展到专用性较高的接口，Java的标准库对此有应用。<br>通过接口调用方法，实现多态。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Comparable first=<span class="keyword">new</span> <span class="title class_">Employee</span>();</span><br><span class="line">Comparable second=<span class="keyword">new</span> <span class="title class_">Boss</span>();</span><br></pre></td></tr></table></figure>
-<h3 id="接口和抽象类"><a href="#接口和抽象类" class="headerlink" title="接口和抽象类"></a>接口和抽象类</h3><p>每个类只能扩展一个类，不能实现多重继承。<br>但是每个类可以实现多个接口</p>
+<h3 id="接口和抽象类"><a href="#接口和抽象类" class="headerlink" title="接口和抽象类"></a>接口和抽象类</h3><p>C++允许一个类有多个超类，称为多重继承。<br>但是Java为了避免多重继承的复杂性，规定每个类只能扩展一个类，不能实现多重继承。<br>但是每个类可以实现多个接口。  </p>
 <h3 id="接口的应用"><a href="#接口的应用" class="headerlink" title="接口的应用"></a>接口的应用</h3><p>JDBC中的 Connection、Statement 就是接口，定义了数据库操作的规范。<br>接口与<strong>回调设计模式</strong>，在这种模式中，你可以指定某个事件发生时应该采取的动作：<br>比如要实现定时器功能。java.swing包中的timer类就很有用，timer类要知道调用哪个方法，并且要求传递的对象所属的类实现了一下接口。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">ActionListener</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">actionPerformed</span><span class="params">(ActionEvent event)</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>构造以下类并实现接口。</p>
@@ -235,6 +236,7 @@
     <footer class="post-footer">
           <div class="post-tags">
               <a href="/tags/Java/" rel="tag"># Java</a>
+              <a href="/tags/%E4%B9%A6%E7%B1%8D/" rel="tag"># 书籍</a>
           </div>
 
         
@@ -299,7 +301,6 @@
   <script size="300" alpha="0.6" zIndex="-1" src="https://cdnjs.cloudflare.com/ajax/libs/ribbon.js/1.0.2/ribbon.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.6.0/pjax.min.js" integrity="sha256-vxLn1tSKWD4dqbMRyv940UYw4sXgMtYcK6reefzZrao=" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.1.0/medium-zoom.min.js" integrity="sha256-ZgMyDAIYDYGxbcpJcfUnYwNevG/xi9OHKaR/8GK+jWc=" crossorigin="anonymous"></script>
 <script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script><script src="/js/pjax.js"></script>
 
   

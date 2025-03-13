@@ -118,13 +118,13 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">28</span>
+          <span class="site-state-item-count">32</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-count">18</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -141,6 +141,438 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/03/02/%E3%80%8AJava%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E3%80%8B%E7%AC%94%E8%AE%B02/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="时光不会倒流y">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Always Blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Always Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2025/03/02/%E3%80%8AJava%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E3%80%8B%E7%AC%94%E8%AE%B02/" class="post-title-link" itemprop="url">《Java核心技术》笔记2-类</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-03-02 13:56:48" itemprop="dateCreated datePublished" datetime="2025-03-02T13:56:48+08:00">2025-03-02</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-03-09 22:38:34" itemprop="dateModified" datetime="2025-03-09T22:38:34+08:00">2025-03-09</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="对象与类"><a href="#对象与类" class="headerlink" title="对象与类"></a>对象与类</h2><h3 id="java类与C"><a href="#java类与C" class="headerlink" title="java类与C++"></a>java类与C++</h3><p>java中的对象变量</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Date birthday;<span class="comment">//java</span></span><br></pre></td></tr></table></figure>
+<p>等同于</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Date* birthday;<span class="comment">//C++</span></span><br></pre></td></tr></table></figure>
+<p>java的null引用对应于C++的NULL指针</p>
+<h3 id="多个源文件的使用"><a href="#多个源文件的使用" class="headerlink" title="多个源文件的使用"></a>多个源文件的使用</h3><p>将Employee类存放在Employee.java中，将EmployeeTest类存放在EmployeeTest.java中，如果EmployeeTest类用到了Employee类，有两种编译文件的方法：</p>
+<ul>
+<li>使用通配符<code>javac Employee*.java</code>，编译所有匹配文件</li>
+<li><code>javac EmployeeTest.java</code>这种方式没有显式编译Employee.java，但是它会搜索Employee.java，对其进行编译；</li>
+</ul>
+<h3 id="Java构造函数"><a href="#Java构造函数" class="headerlink" title="Java构造函数"></a>Java构造函数</h3><p>总是伴随new操作符使用,例如<code>Employee number007(&quot;james&quot;,23)</code>这种写法在C++中可以，在Java中不行</p>
+<h3 id="this"><a href="#this" class="headerlink" title="this"></a>this</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">raiseSalary</span><span class="params">(<span class="type">double</span> byPercent)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">double</span> <span class="variable">raise</span> <span class="operator">=</span> salary * byPercent / <span class="number">100</span>;</span><br><span class="line">    salary += raise;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这个方法有一个隐式参数salary，可以在其前面加this<br>C++中，通常在类外面定义方法，在内部定义方法将自动成为内联方法，但是在Java中，所有方法必须在类内定义，是否为内联方法由Java虚拟机负责</p>
+<h3 id="基于类的访问权限"><a href="#基于类的访问权限" class="headerlink" title="基于类的访问权限"></a>基于类的访问权限</h3><p>方法可以调用<strong>所属类的所有对象</strong>的私有数据<br>私有方法的重点在于类的设计者确保其不会在别处使用，可以随意删除它，而公共的就不可以简单删除掉</p>
+<h3 id="final关键字"><a href="#final关键字" class="headerlink" title="final关键字"></a>final关键字</h3><ul>
+<li>用在引用类型上只是表示存储在变量的对象引用不会再指向另一个不同的对象，不过这个对象可以更改。  </li>
+<li>用在基本类型，该变量内容不可变</li>
+</ul>
+<h3 id="静态"><a href="#静态" class="headerlink" title="静态"></a>静态</h3><ul>
+<li>静态字段，即使没有对象，该字段也存在，例如Math类中的PI，可以用Math.PI访问这个常量，还有System.out。</li>
+<li>静态方法，不在对象上执行的方法，不可以访问实例字段，但是可以访问静态字段</li>
+<li>静态的历史问题，起初C语言使用静态来表示退出一个块后依然存在的局部变量，后来有了第二种含义，表示不能从其他文件访问的全局变量和函数。C++为了不引入新的关键字，第三次重用这个关键字，表示属于类而不属于任何类对象的变量和函数，这个含义与Java中这个关键字含义相同</li>
+</ul>
+<h3 id="方法参数"><a href="#方法参数" class="headerlink" title="方法参数"></a>方法参数</h3><p>Java总是采用按值传递，C++中既有按值传递也有按引用传递（&amp;）<br>java方法对参数的操作：  </p>
+<ul>
+<li>方法不能修改基本数据类型的参数</li>
+<li>方法可以改变对象参数的状态</li>
+<li>方法不能让一个对象参数引用一个新的对象</li>
+</ul>
+<h3 id="对象构造"><a href="#对象构造" class="headerlink" title="对象构造"></a>对象构造</h3><ul>
+<li>重载</li>
+<li>默认字段初始化，布尔类型为false，引用为null，数值类型为0</li>
+<li>没有编写构造函数时，会提供一个默认构造，这个构造将所有字段设置为默认值，如果提供了有参构造，默认构造就不会提供</li>
+<li>显式字段初始化，在类定义中直接为字段赋值</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Employee</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">private</span> string name=<span class="string">&quot;&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//或者</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Employee</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> id=assignid();</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="type">int</span> nextID;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="type">int</span> <span class="title function_">assignid</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="type">int</span> r=nextID;</span><br><span class="line">        nextID++;</span><br><span class="line">        <span class="keyword">return</span> r;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>可以用this调用另一个构造方法</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="title function_">Employee</span><span class="params">(<span class="type">double</span> s)</span>&#123;</span><br><span class="line">    <span class="comment">//调用了Employee（String，double）</span></span><br><span class="line">    <span class="built_in">this</span>(<span class="string">&quot;Employee#&quot;</span>+nextID,s);</span><br><span class="line">    nextID++;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="类的导入"><a href="#类的导入" class="headerlink" title="类的导入"></a>类的导入</h3><ul>
+<li>一般使用<code>import java.time.LocalDate</code>导入</li>
+<li>可以在使用类的时候使用完全限定名，例如<code>java.time.LocalDate today=java.time.LocalDate.now()</code></li>
+<li>默认导入了<code>java.lang.*</code>，只能使用*号导入一个包中所有类</li>
+</ul>
+<h3 id="静态导入"><a href="#静态导入" class="headerlink" title="静态导入"></a>静态导入</h3><p><code>import static java.lang.System.out</code><br><code>import static java.lang.System.*</code><br>导入后不必加类名前缀</p>
+<h3 id="在包中增加类"><a href="#在包中增加类" class="headerlink" title="在包中增加类"></a>在包中增加类</h3><ul>
+<li>使用package关键字，例如<code>package com.horst.corejava;</code></li>
+<li>将源文件放在与完整包名匹配的子目录中，否则编译运行容易出错</li>
+</ul>
+<h3 id="包访问"><a href="#包访问" class="headerlink" title="包访问"></a>包访问</h3><p>public允许任何类使用，private允许定义他们的类使用，没有指定public或private，可以被同一个包中所有方法使用</p>
+<h3 id="类路径"><a href="#类路径" class="headerlink" title="类路径"></a>类路径</h3><p>JAR文件包含多个压缩形式的类文件和子目录。<br>类路径包含基目录，JAR文件，当前目录（.）</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/03/02/%E6%AF%8F%E6%97%A51%E9%A2%98-%E5%88%86%E5%89%B2%E5%9B%9E%E6%96%87%E4%B8%B22/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="时光不会倒流y">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Always Blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Always Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2025/03/02/%E6%AF%8F%E6%97%A51%E9%A2%98-%E5%88%86%E5%89%B2%E5%9B%9E%E6%96%87%E4%B8%B22/" class="post-title-link" itemprop="url">每日1题-分割回文串2</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2025-03-02 12:39:38 / 修改时间：13:52:39" itemprop="dateCreated datePublished" datetime="2025-03-02T12:39:38+08:00">2025-03-02</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>给你一个字符串 s，请你将 s 分割成一些子串，使每个子串都是回文串。<br>返回符合要求的<strong>最少分割次数</strong>。  </p>
+<h3 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">minCut</span><span class="params">(string s)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> n = s.<span class="built_in">size</span>();</span><br><span class="line">        <span class="comment">// is_palindrome[l][r] 表示 s[l] 到 s[r] 是否为回文串</span></span><br><span class="line">        <span class="function">vector <span class="title">is_palindrome</span><span class="params">(n, vector&lt;<span class="type">int</span>&gt;(n, <span class="literal">true</span>))</span></span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> l = n - <span class="number">2</span>; l &gt;= <span class="number">0</span>; l--) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> r = l + <span class="number">1</span>; r &lt; n; r++) &#123;</span><br><span class="line">                is_palindrome[l][r] = s[l] == s[r] &amp;&amp; is_palindrome[l + <span class="number">1</span>][r - <span class="number">1</span>];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">f</span><span class="params">(n)</span></span>;<span class="comment">//表示[0,r]之间切割回文串最少次数</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> r = <span class="number">0</span>; r &lt; n; r++) &#123;<span class="comment">//每次循环得到f[r]</span></span><br><span class="line">            <span class="keyword">if</span> (is_palindrome[<span class="number">0</span>][r]) &#123; <span class="comment">// 已是回文串，无需分割，f[r]默认值为零</span></span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="type">int</span> res = INT_MAX;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> l = <span class="number">1</span>; l &lt;= r; l++) &#123; <span class="comment">// 在[1,r]之间枚举l</span></span><br><span class="line">                <span class="keyword">if</span> (is_palindrome[l][r]) &#123;<span class="comment">//如果[l,r]是回文串</span></span><br><span class="line">                    res = <span class="built_in">min</span>(res, f[l - <span class="number">1</span>] + <span class="number">1</span>); <span class="comment">// 在 l-1 和 l 之间切一刀</span></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            f[r] = res;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> f[n - <span class="number">1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="关联题目-回文子串"><a href="#关联题目-回文子串" class="headerlink" title="关联题目-回文子串"></a>关联题目-回文子串</h3><p>给你一个字符串 s ，请你统计并返回这个字符串中<strong>回文子串</strong>的数目。</p>
+<h3 id="题解-1"><a href="#题解-1" class="headerlink" title="题解"></a>题解</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">countSubstrings</span><span class="params">(string s)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> n = s.<span class="built_in">size</span>();</span><br><span class="line">        <span class="comment">// is_palindrome[l][r] 表示 s[l] 到 s[r] 是否为回文串</span></span><br><span class="line">        <span class="function">vector <span class="title">is_palindrome</span><span class="params">(n, vector&lt;<span class="type">int</span>&gt;(n, <span class="literal">true</span>))</span></span>;<span class="comment">//这样写也可以，C++存在0，1和bool的隐式转换</span></span><br><span class="line">        <span class="type">int</span> ans=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> l = n - <span class="number">2</span>; l &gt;= <span class="number">0</span>; l--) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> r = l + <span class="number">1</span>; r &lt; n; r++) &#123;</span><br><span class="line">                is_palindrome[l][r] = s[l] == s[r] &amp;&amp; is_palindrome[l + <span class="number">1</span>][r - <span class="number">1</span>];</span><br><span class="line">                <span class="keyword">if</span>(is_palindrome[l][r]==<span class="literal">true</span>)&#123;</span><br><span class="line">                    ans++;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans+n;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/03/01/%E6%AF%8F%E6%97%A51%E9%A2%98-%E5%88%86%E5%89%B2%E5%9B%9E%E6%96%87%E4%B8%B21/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="时光不会倒流y">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Always Blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Always Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2025/03/01/%E6%AF%8F%E6%97%A51%E9%A2%98-%E5%88%86%E5%89%B2%E5%9B%9E%E6%96%87%E4%B8%B21/" class="post-title-link" itemprop="url">每日1题-分割回文串1</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-03-01 10:27:34" itemprop="dateCreated datePublished" datetime="2025-03-01T10:27:34+08:00">2025-03-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-03-05 13:46:25" itemprop="dateModified" datetime="2025-03-05T13:46:25+08:00">2025-03-05</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>给你一个字符串 s，请你将 s 分割成一些子串，使每个子串都是回文串。返回 s 所有可能的分割方案。  </p>
+<h3 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    vector&lt;vector&lt;string&gt;&gt; result;</span><br><span class="line">    vector&lt;string&gt; path;<span class="comment">//因为题目要求返回所有分割方案。所以使用path存储方案</span></span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">is</span><span class="params">(string s)</span></span>&#123;<span class="comment">//判断回文串，单个字符也算作回文串</span></span><br><span class="line">        <span class="type">int</span> i=<span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> j=s.<span class="built_in">size</span>()<span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">while</span>(i&lt;j)&#123;</span><br><span class="line">            <span class="keyword">if</span>(s[i]!=s[j])&#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            i++;</span><br><span class="line">            j--;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">dfs</span><span class="params">(string s,<span class="type">int</span> startindex)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(startindex==s.<span class="built_in">size</span>())&#123;<span class="comment">//当分割点到达字符串长度。也就是分割完时将方案放入结果集中</span></span><br><span class="line">            result.<span class="built_in">push_back</span>(path);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=startindex;i&lt;s.<span class="built_in">size</span>();i++)&#123;</span><br><span class="line">            string str=s.<span class="built_in">substr</span>(startindex,i-startindex<span class="number">+1</span>);</span><br><span class="line">            <span class="keyword">if</span>(<span class="built_in">is</span>(str))&#123;</span><br><span class="line">                path.<span class="built_in">push_back</span>(str);</span><br><span class="line">                <span class="built_in">dfs</span>(s,i<span class="number">+1</span>);</span><br><span class="line">                path.<span class="built_in">pop_back</span>();<span class="comment">//进行当前轮的下一个for循环时要恢复现场           </span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    vector&lt;vector&lt;string&gt;&gt; <span class="built_in">partition</span>(string s) &#123;</span><br><span class="line">        <span class="built_in">dfs</span>(s,<span class="number">0</span>);</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/02/27/%E3%80%8AJava%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E3%80%8B%E7%AC%94%E8%AE%B01/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="时光不会倒流y">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Always Blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Always Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2025/02/27/%E3%80%8AJava%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E3%80%8B%E7%AC%94%E8%AE%B01/" class="post-title-link" itemprop="url">《Java核心技术》笔记1-概述</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-02-27 23:15:23" itemprop="dateCreated datePublished" datetime="2025-02-27T23:15:23+08:00">2025-02-27</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-03-09 22:38:23" itemprop="dateModified" datetime="2025-03-09T22:38:23+08:00">2025-03-09</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <style>
+  .card{
+    display: flex;
+    align-items:center;
+    border: 1px solid #ddd;
+    padding:5px 5px 5px 5px;
+    border-radius: 10px;
+  }
+  .book{
+    width:110px;
+    margin:20px 10px 20px 10px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .book:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+</style>
+<div class="card">
+  <img src="/images/java.jpg" alt="Java核心技术" class="book">
+  <span>由于我已经提前接触了C++，所以笔记重点在Java和C++的异同点上。<br>笔记1概述Java语言的特色；<br>笔记2记录面向对象——封装；<br>笔记3记录面向对象的另一个重要概念——继承；<br>笔记4总结Java的接口</span>
+</div>
+
+<h2 id="Java核心"><a href="#Java核心" class="headerlink" title="Java核心"></a>Java核心</h2><ul>
+<li>简单性：改进C++，剔除部分包括，头文件，指针，操作符重载，虚基类，结构？联合？</li>
+<li>面向对象：与C++主要不同在于多重继承，取而代之是接口</li>
+<li>分布式：Java有一个例程库，处理HTTP和FTP之类的TCP&#x2F;IP协议</li>
+<li>健壮性：强调早期问题检测，后期动态运行检测代码问题</li>
+<li>安全性：防范运行时堆栈溢出，破坏进程空间之外的内存，未经授权读写文件</li>
+<li>体系结构中立：生成一个体系结构中立的目标文件格式，只要有Java运行时系统，实现跨平台运行</li>
+<li>可移植性：基本数据类型的大小以及有关运算都有明确说明，例如int固定32位，不像C++</li>
+<li>解释型：Java解释器可以在任何移植了解释器的机器上直接运行Java字节码</li>
+<li>高性能：字节码可以在运行时动态转换成对应运行这应用的特定CPU的机器码。</li>
+<li>多线程：处理器发展带来并发性。</li>
+<li>动态性：为运行的程序增加代码，库中可以自由添加新方法和实例变量，而对客户端没有影响</li>
+</ul>
+<p>后续阅读可以多结合这11点</p>
+<h2 id="Java程序设计环境"><a href="#Java程序设计环境" class="headerlink" title="Java程序设计环境"></a>Java程序设计环境</h2><h3 id="Java开发工具包术语"><a href="#Java开发工具包术语" class="headerlink" title="Java开发工具包术语"></a>Java开发工具包术语</h3><ul>
+<li>JDK(Java Development Kit)编写Java程序使用的软件</li>
+<li>JRE(Java Runtime Environment)运行Java程序的用户使用的软件</li>
+<li>SE 标准版</li>
+<li>EE 企业版</li>
+<li>ME 微型版</li>
+</ul>
+<h2 id="Java基本程序设计结构"><a href="#Java基本程序设计结构" class="headerlink" title="Java基本程序设计结构"></a>Java基本程序设计结构</h2><h3 id="基本应用程序"><a href="#基本应用程序" class="headerlink" title="基本应用程序"></a>基本应用程序</h3><p>从一个基本的代码开始分析</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">FirstSample</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span></span><br><span class="line">    &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Hello World&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol>
+<li>首先Java区分大小写</li>
+<li>规范，类名首字母大写，文件名与类名同名，并以.java作为扩展</li>
+<li>main方法必须为public</li>
+<li>Java中所有函数都是某个类的方法，main必须是静态的</li>
+</ol>
+<h3 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h3><p>与C++一致</p>
+<h3 id="基本数据类型"><a href="#基本数据类型" class="headerlink" title="基本数据类型"></a>基本数据类型</h3><p>8中基本类型，4种整数，2种浮点数，1种字符类型char和一种boolean类型  </p>
+<ul>
+<li>整数包括int（4字节），short（2字节），long（8字节），byte（1字节），没有无符号类型</li>
+<li>浮点数有float（4字节）和double（8字节）类型</li>
+<li>char类型（16位），单引号，Unicode历史问题。</li>
+<li>boolean类型，区分C++，0不能代替false，非零不能代替true。</li>
+</ul>
+<h3 id="变量与常量"><a href="#变量与常量" class="headerlink" title="变量与常量"></a>变量与常量</h3><ul>
+<li>声明变量后必须初始化才能使用</li>
+<li>常量使用final关键字，只能被赋值一次，不能再更改；类常量使用static final；如果使用public，其他类也可以使用</li>
+</ul>
+<h3 id="Java的字符串不可变"><a href="#Java的字符串不可变" class="headerlink" title="Java的字符串不可变"></a>Java的字符串不可变</h3><p>不过可以修改字符串变量，让它指向另一个字符串，例如：  </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">greeting=greeting.substring(<span class="number">0</span>,<span class="number">3</span>)+<span class="string">&quot;p!&quot;</span>;</span><br></pre></td></tr></table></figure>
+<p>substring的第一个参数是选中的第一个字符位置，第二个参数是未选中的第一个字符位置；<br>不可变字符串有一个优点：编译器让字符串共享，将字符串存放在公共的存储池中，字符串变量指向存储池中相应的位置；</p>
+<h3 id="检测字符串是否相等"><a href="#检测字符串是否相等" class="headerlink" title="检测字符串是否相等"></a>检测字符串是否相等</h3><p>要用equals方法检测两个字符串是否相等  </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">s.equals(t);</span><br></pre></td></tr></table></figure>
+<p>&#x3D;&#x3D;运算符检测两个字符串相等只能确定两个字符串是否在同一位置上，完全有可能将内容相同的字符串放在不同位置上；<br>C++的string类重载了&#x3D;&#x3D;运算符以便检测字符串相等；</p>
+<h3 id="空串和null串"><a href="#空串和null串" class="headerlink" title="空串和null串"></a>空串和null串</h3><p>空串是长度为0的字符串，如果用代码检查</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(str.length()==<span class="number">0</span>)<span class="comment">//或者</span></span><br><span class="line"><span class="keyword">if</span>(str.equals(<span class="string">&quot;&quot;</span>))</span><br></pre></td></tr></table></figure>
+<p>要检查字符串既不是空串也不是null串</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(str!=<span class="literal">null</span>&amp;&amp;str.length()==<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+<p>注意检查null值一定在前，如果在null值上调用方法会出现错误。</p>
+<h3 id="构建字符串"><a href="#构建字符串" class="headerlink" title="构建字符串"></a>构建字符串</h3><p>如果使用String对象，效率较低，可以使用StringBuilder类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">StringBuilder builder=<span class="keyword">new</span> <span class="title class_">StringNuilder</span>();</span><br><span class="line">builder.append(ch);</span><br><span class="line">builder.append(str);</span><br><span class="line">String competedString=builder.toString();</span><br></pre></td></tr></table></figure>
+<h3 id="读取输入"><a href="#读取输入" class="headerlink" title="读取输入"></a>读取输入</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.*;</span><br><span class="line">Scanner in=<span class="keyword">new</span> <span class="title class_">Scanner</span>(System.in);</span><br><span class="line">String name=in.nextLine();</span><br><span class="line">String firstName=in.next();</span><br><span class="line"><span class="type">int</span> age=in.nextInt();</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -642,206 +1074,8 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2025/02/25/http%E6%B6%88%E6%81%AF/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="时光不会倒流y">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Always Blog">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Always Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2025/02/25/http%E6%B6%88%E6%81%AF/" class="post-title-link" itemprop="url">http消息</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2025-02-25 18:06:15" itemprop="dateCreated datePublished" datetime="2025-02-25T18:06:15+08:00">2025-02-25</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-02-26 14:51:50" itemprop="dateModified" datetime="2025-02-26T14:51:50+08:00">2025-02-26</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="HTTP消息"><a href="#HTTP消息" class="headerlink" title="HTTP消息"></a>HTTP消息</h1><h2 id="HTTP请求"><a href="#HTTP请求" class="headerlink" title="HTTP请求"></a>HTTP请求</h2><h3 id="起始行"><a href="#起始行" class="headerlink" title="起始行"></a>起始行</h3><p>起始行包含三个元素：  </p>
-<ol>
-<li>一个HTTP方法，一个动词GET，PUT，POST，或者一个名词HEAD，OPTIONS，描述要执行的动作。例如，GET 表示要获取资源，POST 表示向服务器推送数据（创建或修改资源，或者产生要返回的临时文件）。</li>
-<li>请求目标（request target），通常是一个 URL，或者是协议、端口和域名的绝对路径，通常以请求的环境为特征。请求的格式因不同的 HTTP 方法而异。它可以是：</li>
-</ol>
-<ul>
-<li>一个绝对路径，末尾跟上一个 ‘?’ 和查询字符串。这是最常见的形式，称为原始形式（origin form），被 GET、POST、HEAD 和 OPTIONS 方法所使用。<br>POST &#x2F; HTTP&#x2F;1.1<br>GET &#x2F;background.png HTTP&#x2F;1.0<br>HEAD &#x2F;test.html?query&#x3D;alibaba HTTP&#x2F;1.1<br>OPTIONS &#x2F;anypage.html HTTP&#x2F;1.0  </li>
-<li>一个完整的 URL，被称为绝对形式（absolute form），主要在使用 GET 方法连接到代理时使用。<br>GET <a target="_blank" rel="noopener" href="http://developer.mozilla.org/zh-CN/docs/Web/HTTP/Messages">http://developer.mozilla.org/zh-CN/docs/Web/HTTP/Messages</a> HTTP&#x2F;1.1</li>
-</ul>
-<ol start="3">
-<li>HTTP版本</li>
-</ol>
-<h3 id="标头（Header）"><a href="#标头（Header）" class="headerlink" title="标头（Header）"></a>标头（Header）</h3><p>来自请求的 HTTP 标头遵循和 HTTP 标头相同的基本结构：不区分大小写的字符串，紧跟着的冒号（’:’）和一个结构取决于标头的值。整个标头（包括值）由一行组成，这一行可以相当长。<br>可以查看<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers">MDN社区</a>的标头介绍</p>
-<h3 id="主体（body）"><a href="#主体（body）" class="headerlink" title="主体（body）"></a>主体（body）</h3><p>请求的最后一部分是它的主体。不是所有的请求都有一个主体：例如获取资源的请求，像 GET、HEAD、DELETE 和 OPTIONS，通常它们不需要主体。有些请求将数据发送到服务器以便更新数据：常见的情况是 POST 请求（包含 HTML 表单数据）。<br>主体由两个标头定义<code>Content-Type</code>和<code>Content-Length</code><br>举一个发送表单的请求示例  </p>
-<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">POST</span> <span class="string">/contact_form.php</span> <span class="meta">HTTP/1.1</span></span><br><span class="line"><span class="attribute">Host</span><span class="punctuation">: </span>developer.mozilla.org</span><br><span class="line"><span class="attribute">Content-Length</span><span class="punctuation">: </span>64</span><br><span class="line"><span class="attribute">Content-Type</span><span class="punctuation">: </span>application/x-www-form-urlencoded</span><br><span class="line"></span><br><span class="line"><span class="language-llvm">name<span class="operator">=</span>Joe<span class="variable">%20</span>User&amp;request<span class="operator">=</span>Send<span class="variable">%20</span>me<span class="variable">%20</span><span class="keyword">one</span><span class="variable">%20</span>of<span class="variable">%20</span>your<span class="variable">%20</span>catalogue</span></span><br></pre></td></tr></table></figure>
-<h2 id="HTTP响应"><a href="#HTTP响应" class="headerlink" title="HTTP响应"></a>HTTP响应</h2><h3 id="状态行"><a href="#状态行" class="headerlink" title="状态行"></a>状态行</h3><p>HTTP 响应的起始行被称作状态行（status line），包含以下信息：  </p>
-<ol>
-<li>协议版本，通常为HTTP&#x2F;1.1  </li>
-<li>状态码，表明请求是成功还是失败。常见的状态码是200，404，302。  </li>
-<li>状态文本，一句简短的描述</li>
-</ol>
-<p>一个典型的状态行看起来像这样：HTTP&#x2F;1.1 404 Not Found。  </p>
-<h3 id="标头（header）"><a href="#标头（header）" class="headerlink" title="标头（header）"></a>标头（header）</h3><p>响应的 HTTP 标头遵循和任何其他标头相同的结构：不区分大小写的字符串，紧跟着的冒号（’:’）和一个结构取决于标头类型的值。整个标头（包括其值）表现为单行形式。  </p>
-<h3 id="主体（body）-1"><a href="#主体（body）-1" class="headerlink" title="主体（body）"></a>主体（body）</h3><p>响应的最后一部分是主体。不是所有的响应都有主体：具有状态码（如 201 或 204）的响应，通常不会有主体。<br>响应的主体和请求的主体大致相同，常见的格式有Json，Xml，www-form-urlencoded。</p>
-<p>一个成功的网页响应  </p>
-<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">HTTP/1.1</span> <span class="number">200</span> OK</span><br><span class="line"><span class="attribute">Content-Type</span><span class="punctuation">: </span>text/html; charset=utf-8</span><br><span class="line"><span class="attribute">Content-Length</span><span class="punctuation">: </span>55743</span><br><span class="line"><span class="attribute">Connection</span><span class="punctuation">: </span>keep-alive</span><br><span class="line"><span class="attribute">Cache-Control</span><span class="punctuation">: </span>s-maxage=300, public, max-age=0</span><br><span class="line"><span class="attribute">Content-Language</span><span class="punctuation">: </span>en-US</span><br><span class="line"><span class="attribute">Date</span><span class="punctuation">: </span>Thu, 06 Dec 2018 17:37:18 GMT</span><br><span class="line"><span class="attribute">ETag</span><span class="punctuation">: </span>&quot;2e77ad1dc6ab0b53a2996dfd4653c1c3&quot;</span><br><span class="line"><span class="attribute">Server</span><span class="punctuation">: </span>meinheld/0.6.1</span><br><span class="line"><span class="attribute">Strict-Transport-Security</span><span class="punctuation">: </span>max-age=63072000</span><br><span class="line"><span class="attribute">X-Content-Type-Options</span><span class="punctuation">: </span>nosniff</span><br><span class="line"><span class="attribute">X-Frame-Options</span><span class="punctuation">: </span>DENY</span><br><span class="line"><span class="attribute">X-XSS-Protection</span><span class="punctuation">: </span>1; mode=block</span><br><span class="line"><span class="attribute">Vary</span><span class="punctuation">: </span>Accept-Encoding,Cookie</span><br><span class="line"><span class="attribute">Age</span><span class="punctuation">: </span>7</span><br><span class="line"></span><br><span class="line"><span class="language-xml"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">  <span class="tag">&lt;<span class="name">title</span>&gt;</span>A simple webpage<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">  <span class="tag">&lt;<span class="name">h1</span>&gt;</span>Simple HTML webpage<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">  <span class="tag">&lt;<span class="name">p</span>&gt;</span>Hello, world!<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2025/02/25/%E6%AF%8F%E6%97%A51%E9%A2%98-%E8%AE%BE%E8%AE%A1%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D%E5%99%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="时光不会倒流y">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Always Blog">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Always Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2025/02/25/%E6%AF%8F%E6%97%A51%E9%A2%98-%E8%AE%BE%E8%AE%A1%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D%E5%99%A8/" class="post-title-link" itemprop="url">每日1题-设计内存分配器</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2025-02-25 13:23:54" itemprop="dateCreated datePublished" datetime="2025-02-25T13:23:54+08:00">2025-02-25</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-02-26 14:51:41" itemprop="dateModified" datetime="2025-02-26T14:51:41+08:00">2025-02-26</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>给你一个整数 n ，表示下标从 0 开始的内存数组的大小。所有内存单元开始都是空闲的。</p>
-<p>请你设计一个具备以下功能的内存分配器：</p>
-<ul>
-<li>分配 一块大小为 size 的连续空闲内存单元并赋mID 。  </li>
-<li>释放 给定 mID 对应的所有内存单元。</li>
-</ul>
-<p><strong>注意：</strong></p>
-<ul>
-<li>多个块可以被分配到同一个 mID 。  </li>
-<li>你必须释放 mID 对应的所有内存单元，即便这些内存单元被分配在不同的块中。</li>
-</ul>
-<p><strong>实现 Allocator 类：</strong></p>
-<ul>
-<li><code>Allocator(int n)</code> 使用一个大小为 n 的内存数组初始化 Allocator 对象。  </li>
-<li><code>int allocate(int size, int mID)</code> 找出大小为 size 个连续空闲内存单元且位于最左侧的块，分配并赋 mID 。返回块的第一个下标。如果不存在这样的块，返回 -1 。  </li>
-<li><code>int freeMemory(int mID)</code> 释放 mID 对应的所有内存单元。返回释放的内存单元数目。</li>
-</ul>
-<h3 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Allocator</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    vector&lt;<span class="type">int</span>&gt; memory;</span><br><span class="line">    <span class="built_in">Allocator</span>(<span class="type">int</span> n) :<span class="built_in">memory</span>(n)&#123;</span><br><span class="line">       </span><br><span class="line">    &#125;  </span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">allocate</span><span class="params">(<span class="type">int</span> size, <span class="type">int</span> mID)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> free=<span class="number">0</span>;<span class="comment">//使用free记录空闲块的数量</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;memory.<span class="built_in">size</span>();i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(memory[i]&gt;<span class="number">0</span>)&#123;</span><br><span class="line">                free=<span class="number">0</span>;</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            free++;</span><br><span class="line">            <span class="keyword">if</span>(free==size)&#123;</span><br><span class="line">                <span class="built_in">fill</span>(memory.<span class="built_in">begin</span>()+(i-size<span class="number">+1</span>),memory.<span class="built_in">begin</span>()+(i<span class="number">+1</span>),mID);</span><br><span class="line">                <span class="keyword">return</span> i-size<span class="number">+1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;   </span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">freeMemory</span><span class="params">(<span class="type">int</span> mID)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> ans=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;memory.<span class="built_in">size</span>();i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(memory[i]==mID)&#123;</span><br><span class="line">                ans++;</span><br><span class="line">                memory[i]=<span class="number">0</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h3 id="Link"><a href="#Link" class="headerlink" title="Link"></a>Link</h3><ul>
-<li><strong>成员初始化列表在构造函数执行前为成员变量赋值，避免类成员的二次构造，提高效率</strong></li>
-<li><strong>fill函数为C++标准库algorithm中函数，使用右开区间迭代器填充value值</strong></li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
-    <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
+    <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/4/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 </div>

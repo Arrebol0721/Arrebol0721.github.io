@@ -118,7 +118,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">35</span>
+          <span class="site-state-item-count">36</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -141,6 +141,93 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/03/11/Python%E7%9A%84%E6%A8%A1%E5%9D%97%E5%92%8C%E5%8C%85/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="时光不会倒流y">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Always Blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Always Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2025/03/11/Python%E7%9A%84%E6%A8%A1%E5%9D%97%E5%92%8C%E5%8C%85/" class="post-title-link" itemprop="url">Python的模块和包</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2025-03-11 18:50:43 / 修改时间：20:05:21" itemprop="dateCreated datePublished" datetime="2025-03-11T18:50:43+08:00">2025-03-11</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>今天面试问了一个python的模块和包是什么？<br>我直接就是一个把Java的package套过来告诉面试官，但是Python里面没有package关键词。<br>现在反手一个事后诸葛亮，平常光顾着import了，没有系统了解名词的含义。  </p>
+<h3 id="模块"><a href="#模块" class="headerlink" title="模块"></a>模块</h3><p>Python规定一个py文件就是一个模块，引入另一个模块通过import关键词。  </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> request</span><br></pre></td></tr></table></figure>
+<p>引入之后request就变成了模块里的一个变量，这个变量指向的是一个模块对象，在python中，模块也是一个对象。<br>也可以通过from引入模块中的类或者变量。  </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> selenium.webdriver.common.by <span class="keyword">import</span> By</span><br></pre></td></tr></table></figure>
+<p>还可以通过as关键词给包规定别名。</p>
+<h3 id="包"><a href="#包" class="headerlink" title="包"></a>包</h3><p>当模块文件增多的时候，我们还需要把这些模块文件根据不同功能分到不同目录中，这些放模块文件的目录，Python将它们称之为包。<br>标准库其实就是一组模块，也就是包。<br>包一般包含一个<code>__init.py</code>的文件。<br>可以通过.的形式访问包里的模块。 </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> stock.food.beef</span><br><span class="line"><span class="comment"># 注意导入的是 stock.food.beef，调用的时候一定要加上所有的包路径前缀</span></span><br><span class="line">stock.food.beef.stockleft()</span><br></pre></td></tr></table></figure>
+<p>可以通过from import的形式省去前缀。  </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> stock.food.beef <span class="keyword">import</span> stockleft</span><br><span class="line">stockleft()</span><br></pre></td></tr></table></figure>
+<h3 id="那么python怎么查找模块呢？"><a href="#那么python怎么查找模块呢？" class="headerlink" title="那么python怎么查找模块呢？"></a>那么python怎么查找模块呢？</h3><p>python会先查找内置模块，所谓内置模块，就是Python解释器里面的一部分，例如sys,time,math。<br>如果内置模块没有，会去sys.path.  </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">for</span> path <span class="keyword">in</span> sys.path:</span><br><span class="line">    <span class="built_in">print</span> (path)</span><br></pre></td></tr></table></figure>
+
+<p>打印出这样一些内容就是它的搜索路径。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">D:\PyCharm\PythonPytest\.venv\Scripts\python.exe D:\PyCharm\PythonPytest\cfg\cfg_1.py </span><br><span class="line">D:\PyCharm\PythonPytest\cfg</span><br><span class="line">D:\PyCharm\PythonPytest</span><br><span class="line">D:\PyCharm\PythonPytest\.venv\Scripts\python313.zip</span><br><span class="line">C:\Users\时光不会倒流y\AppData\Local\Programs\Python\Python313\DLLs</span><br><span class="line">C:\Users\时光不会倒流y\AppData\Local\Programs\Python\Python313\Lib</span><br><span class="line">C:\Users\时光不会倒流y\AppData\Local\Programs\Python\Python313</span><br><span class="line">D:\PyCharm\PythonPytest\.venv</span><br><span class="line">D:\PyCharm\PythonPytest\.venv\Lib\site-packages</span><br></pre></td></tr></table></figure>
+<p>当然，解释器会把当前工作目录作为搜寻路径加入path中。<br>我们也可以去修改PYTHONPATH环境变量。<br>举例。<br>如果我们有一个python 模块文件名为 m1，放在目录 d:\project\libs\p1\p2 下面<br>我们要在代码中这样写  </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> p1.p2.m1</span><br></pre></td></tr></table></figure>
+<p>应该在环境变量里增加  </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set PYTHONPATH=d:\project\libs</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -958,95 +1045,6 @@
 <li>代码覆盖</li>
 </ul>
 <h3 id="后续"><a href="#后续" class="headerlink" title="后续"></a>后续</h3><p>还有配置测试，兼容性测试，易用性测试，外国语言测试，安全性测试等大类。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2025/03/05/%E7%AE%80%E5%8D%95Shell%E8%84%9A%E6%9C%AC%E6%A1%88%E4%BE%8B/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="时光不会倒流y">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Always Blog">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Always Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2025/03/05/%E7%AE%80%E5%8D%95Shell%E8%84%9A%E6%9C%AC%E6%A1%88%E4%BE%8B/" class="post-title-link" itemprop="url">简单Shell脚本案例</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2025-03-05 12:49:03" itemprop="dateCreated datePublished" datetime="2025-03-05T12:49:03+08:00">2025-03-05</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-03-14 16:43:45" itemprop="dateModified" datetime="2025-03-14T16:43:45+08:00">2025-03-14</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>在Django部署中采用了这样的脚本：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">!/bin/bash</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">默认使用bash解释器执行</span></span><br><span class="line">DIR=&quot;$( cd &quot;$( dirname &quot;$0&quot; )&quot; &amp;&amp; pwd )&quot;</span><br><span class="line">echo $DIR</span><br><span class="line"></span><br><span class="line">cd $DIR</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash"><span class="built_in">ulimit</span> -n 50000</span></span><br><span class="line">nohup gunicorn --config=bysms/gunicorn_conf.py bysms.wsgi &amp;&gt; /dev/null &amp;</span><br></pre></td></tr></table></figure>
-<h3 id="命令替换语法"><a href="#命令替换语法" class="headerlink" title="命令替换语法"></a>命令替换语法</h3><p>使用 $() 或者 &#96;&#96; 。 </p>
-<h3 id="特殊变量"><a href="#特殊变量" class="headerlink" title="特殊变量"></a>特殊变量</h3><p><code>$0</code>:当前脚本名称</p>
-<h3 id="Linux命令"><a href="#Linux命令" class="headerlink" title="Linux命令"></a>Linux命令</h3><p><code>nohup</code>：让当前命令在后台运行，确保命令不受终端关闭影响<br><code>&amp;</code>：释放终端，允许用户继续输入其他命令<br><code>pwd</code>：打印当前绝对路径<br><code>dirname</code>：从文件路径中提取目录部分  </p>
-<h3 id="环境变量"><a href="#环境变量" class="headerlink" title="环境变量"></a>环境变量</h3><p><code>export</code>命令定义的环境变量只在当前会话中有效.<br>当然，可以去bash的配置文件添加永久的环境变量。  </p>
-<h3 id="权限"><a href="#权限" class="headerlink" title="权限"></a>权限</h3><p>确保脚本有执行权限</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod +x start.sh</span><br></pre></td></tr></table></figure>
-<p>添加权限后，脚本可以直接运行</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./start.sh</span><br></pre></td></tr></table></figure>
-<p>还可以通过bash命令运行</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bash start.sh</span><br></pre></td></tr></table></figure>
-<h3 id="条件判断"><a href="#条件判断" class="headerlink" title="条件判断"></a>条件判断</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">while true</span><br><span class="line">do</span><br><span class="line">echo “请输入一个1-10之间的数字”</span><br><span class="line">read guess</span><br><span class="line">if [[ $guess -eq $number ]];then</span><br><span class="line">    echo &quot;猜对了!是否继续？（y/n）：&quot;</span><br><span class="line">    read chioce</span><br><span class="line">    if[[ $chioce == &quot;y&quot; ]] ||[[ $chioce == &quot;Y&quot; ]];then</span><br><span class="line">        continue</span><br><span class="line">    else</span><br><span class="line">        break</span><br><span class="line">    fi</span><br><span class="line">elif [[ $guess -lt $number ]];then</span><br><span class="line">    echo &quot;小了&quot;</span><br><span class="line">else</span><br><span class="line">    echo &quot;大了&quot;</span><br><span class="line">fi</span><br><span class="line">done</span><br></pre></td></tr></table></figure>
-<p>shell是弱类型语言，需要使用不同运算符比较数字和字符串。<br>[[]]中间的语句两边必须加空格，否则视为语法错误。  </p>
 
       
     </div>

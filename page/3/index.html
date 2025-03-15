@@ -118,7 +118,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">35</span>
+          <span class="site-state-item-count">36</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -141,6 +141,95 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/03/05/%E7%AE%80%E5%8D%95Shell%E8%84%9A%E6%9C%AC%E6%A1%88%E4%BE%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="时光不会倒流y">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Always Blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Always Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2025/03/05/%E7%AE%80%E5%8D%95Shell%E8%84%9A%E6%9C%AC%E6%A1%88%E4%BE%8B/" class="post-title-link" itemprop="url">简单Shell脚本案例</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-03-05 12:49:03" itemprop="dateCreated datePublished" datetime="2025-03-05T12:49:03+08:00">2025-03-05</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-03-14 16:43:45" itemprop="dateModified" datetime="2025-03-14T16:43:45+08:00">2025-03-14</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>在Django部署中采用了这样的脚本：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">!/bin/bash</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">默认使用bash解释器执行</span></span><br><span class="line">DIR=&quot;$( cd &quot;$( dirname &quot;$0&quot; )&quot; &amp;&amp; pwd )&quot;</span><br><span class="line">echo $DIR</span><br><span class="line"></span><br><span class="line">cd $DIR</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash"><span class="built_in">ulimit</span> -n 50000</span></span><br><span class="line">nohup gunicorn --config=bysms/gunicorn_conf.py bysms.wsgi &amp;&gt; /dev/null &amp;</span><br></pre></td></tr></table></figure>
+<h3 id="命令替换语法"><a href="#命令替换语法" class="headerlink" title="命令替换语法"></a>命令替换语法</h3><p>使用 $() 或者 &#96;&#96; 。 </p>
+<h3 id="特殊变量"><a href="#特殊变量" class="headerlink" title="特殊变量"></a>特殊变量</h3><p><code>$0</code>:当前脚本名称</p>
+<h3 id="Linux命令"><a href="#Linux命令" class="headerlink" title="Linux命令"></a>Linux命令</h3><p><code>nohup</code>：让当前命令在后台运行，确保命令不受终端关闭影响<br><code>&amp;</code>：释放终端，允许用户继续输入其他命令<br><code>pwd</code>：打印当前绝对路径<br><code>dirname</code>：从文件路径中提取目录部分  </p>
+<h3 id="环境变量"><a href="#环境变量" class="headerlink" title="环境变量"></a>环境变量</h3><p><code>export</code>命令定义的环境变量只在当前会话中有效.<br>当然，可以去bash的配置文件添加永久的环境变量。  </p>
+<h3 id="权限"><a href="#权限" class="headerlink" title="权限"></a>权限</h3><p>确保脚本有执行权限</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod +x start.sh</span><br></pre></td></tr></table></figure>
+<p>添加权限后，脚本可以直接运行</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./start.sh</span><br></pre></td></tr></table></figure>
+<p>还可以通过bash命令运行</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bash start.sh</span><br></pre></td></tr></table></figure>
+<h3 id="条件判断"><a href="#条件判断" class="headerlink" title="条件判断"></a>条件判断</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">while true</span><br><span class="line">do</span><br><span class="line">echo “请输入一个1-10之间的数字”</span><br><span class="line">read guess</span><br><span class="line">if [[ $guess -eq $number ]];then</span><br><span class="line">    echo &quot;猜对了!是否继续？（y/n）：&quot;</span><br><span class="line">    read chioce</span><br><span class="line">    if[[ $chioce == &quot;y&quot; ]] ||[[ $chioce == &quot;Y&quot; ]];then</span><br><span class="line">        continue</span><br><span class="line">    else</span><br><span class="line">        break</span><br><span class="line">    fi</span><br><span class="line">elif [[ $guess -lt $number ]];then</span><br><span class="line">    echo &quot;小了&quot;</span><br><span class="line">else</span><br><span class="line">    echo &quot;大了&quot;</span><br><span class="line">fi</span><br><span class="line">done</span><br></pre></td></tr></table></figure>
+<p>shell是弱类型语言，需要使用不同运算符比较数字和字符串。<br>[[]]中间的语句两边必须加空格，否则视为语法错误。  </p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1015,98 +1104,6 @@
 </ul>
 <h3 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h3><p>创建两个栈，光标左右移动相当于两个栈的栈顶数据互相移动，插入删除相当于在左边那个栈上入栈出栈。</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">TextEditor</span> &#123;</span><br><span class="line">    string left, right; <span class="comment">// 光标左侧、右侧字符</span></span><br><span class="line"></span><br><span class="line">    <span class="function">string <span class="title">text</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 光标左边至多 10 个字符</span></span><br><span class="line">        <span class="keyword">return</span> left.<span class="built_in">substr</span>(<span class="built_in">max</span>((<span class="type">int</span>) left.<span class="built_in">size</span>() - <span class="number">10</span>, <span class="number">0</span>));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//std::string substr(size_t pos = 0, size_t len = npos) const;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">addText</span><span class="params">(string text)</span> </span>&#123;</span><br><span class="line">        left += text; <span class="comment">// 入栈</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">deleteText</span><span class="params">(<span class="type">int</span> k)</span> </span>&#123;</span><br><span class="line">        k = <span class="built_in">min</span>(k, (<span class="type">int</span>) left.<span class="built_in">length</span>());</span><br><span class="line">        <span class="comment">//最大可以删除左栈的长度</span></span><br><span class="line">        left.<span class="built_in">resize</span>(left.<span class="built_in">length</span>() - k); </span><br><span class="line">        <span class="comment">//用resize函数删除</span></span><br><span class="line">        <span class="keyword">return</span> k;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function">string <span class="title">cursorLeft</span><span class="params">(<span class="type">int</span> k)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">while</span> (k &amp;&amp; !left.<span class="built_in">empty</span>()) &#123;<span class="comment">//如果k不为零且左栈不空</span></span><br><span class="line">            right += left.<span class="built_in">back</span>();<span class="comment">//右栈获取左栈末尾字符 </span></span><br><span class="line">            left.<span class="built_in">pop_back</span>();<span class="comment">//左栈弹出</span></span><br><span class="line">            k--;<span class="comment">//移动光标，一共移动k次</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">text</span>();<span class="comment">//返回移动后光标左边10个字符</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function">string <span class="title">cursorRight</span><span class="params">(<span class="type">int</span> k)</span> </span>&#123;<span class="comment">//同理</span></span><br><span class="line">        <span class="keyword">while</span> (k &amp;&amp; !right.<span class="built_in">empty</span>()) &#123;</span><br><span class="line">            left += right.<span class="built_in">back</span>(); </span><br><span class="line">            right.<span class="built_in">pop_back</span>();</span><br><span class="line">            k--;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">text</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2025/02/26/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E5%A4%9A%E8%A1%A8%E6%9F%A5%E8%AF%A2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="时光不会倒流y">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Always Blog">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Always Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2025/02/26/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E5%A4%9A%E8%A1%A8%E6%9F%A5%E8%AF%A2/" class="post-title-link" itemprop="url">数据库的多表查询</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2025-02-26 18:19:11" itemprop="dateCreated datePublished" datetime="2025-02-26T18:19:11+08:00">2025-02-26</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-03-14 16:45:26" itemprop="dateModified" datetime="2025-03-14T16:45:26+08:00">2025-03-14</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="内连接"><a href="#内连接" class="headerlink" title="内连接"></a>内连接</h3><p>查询两个表的交集，形式有两种：  </p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> tab1.name,tab2.score <span class="keyword">from</span> tab1,tab2 <span class="keyword">where</span> tab1.id<span class="operator">=</span>tab2.id;</span><br></pre></td></tr></table></figure>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> tab1.name,tab2.score <span class="keyword">from</span> tab1 <span class="keyword">inner</span> <span class="keyword">join</span> tab2 <span class="keyword">on</span> tab1.id<span class="operator">=</span>tab2.id;</span><br></pre></td></tr></table></figure>
-<h3 id="左连接"><a href="#左连接" class="headerlink" title="左连接"></a>左连接</h3><p>左表所有记录加交集,如果右表没有匹配部分，显示为NULL：  </p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> tab1.name,tab2.score <span class="keyword">from</span> tab1 <span class="keyword">left</span> <span class="keyword">join</span> tab2 <span class="keyword">on</span> tab1.id<span class="operator">=</span>tab2.id;</span><br></pre></td></tr></table></figure>
-<h3 id="右连接"><a href="#右连接" class="headerlink" title="右连接"></a>右连接</h3><p>右表所有数据和交集，如果左表没有匹配部分，显示为NULL：  </p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> tab1.name,tab2.score <span class="keyword">from</span> tab1 <span class="keyword">right</span> <span class="keyword">join</span> tab2 <span class="keyword">on</span> tab1.id<span class="operator">=</span>tab2.id;</span><br></pre></td></tr></table></figure>
-<h3 id="全外连接"><a href="#全外连接" class="headerlink" title="全外连接"></a>全外连接</h3><p>返回左表右表所有记录，如果某一边没有匹配记录，显示为NULL：  </p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> tab1.name,tab2.score <span class="keyword">from</span> tab1 <span class="keyword">full</span> <span class="keyword">outer</span> <span class="keyword">join</span> tab2 <span class="keyword">on</span> tab1.id<span class="operator">=</span>tab2.id;</span><br></pre></td></tr></table></figure>
-<h3 id="自连接"><a href="#自连接" class="headerlink" title="自连接"></a>自连接</h3><p>与自身连接,必须起别名，通常处理层次结构数据，如员工和经理：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">column</span> <span class="keyword">from</span> tab1 <span class="keyword">as</span> a <span class="keyword">join</span> tab2 <span class="keyword">as</span> b <span class="keyword">on</span> a.managerid<span class="operator">=</span>b.employeeid;</span><br></pre></td></tr></table></figure>
-<h3 id="子查询"><a href="#子查询" class="headerlink" title="子查询"></a>子查询</h3><p>在一个查询中嵌套另一个查询，子查询的位置可以不同(select，from，where后面)，根据子查询的结果(标量子查询，行子查询，列子查询，表子查询)又有不同：  </p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">column</span> <span class="keyword">from</span> tab1 <span class="keyword">where</span> score<span class="operator">&gt;</span>(<span class="keyword">select</span> <span class="built_in">AVG</span>(score) <span class="keyword">from</span> tab2);</span><br></pre></td></tr></table></figure>
-<h3 id="联合查询"><a href="#联合查询" class="headerlink" title="联合查询"></a>联合查询</h3><p>将多个查询的结果合并为一个结果,union会去重，union all不会去重,同时要求每个查询的列数和数据类型一致，因为是上下合并：  </p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">column</span> <span class="keyword">from</span> tab1 <span class="keyword">union</span> <span class="keyword">select</span> <span class="keyword">column</span> <span class="keyword">from</span> tab2;</span><br><span class="line"><span class="keyword">select</span> <span class="keyword">column</span> <span class="keyword">from</span> tab1 <span class="keyword">union</span> <span class="keyword">all</span> <span class="keyword">select</span> <span class="keyword">column</span> <span class="keyword">from</span> tab2;</span><br></pre></td></tr></table></figure>
-<h3 id="交叉查询"><a href="#交叉查询" class="headerlink" title="交叉查询"></a>交叉查询</h3><p>左表每一行与右表每一行两两组合，形成笛卡尔积：  </p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">column</span> <span class="keyword">from</span> tab1 <span class="keyword">cross</span> <span class="keyword">join</span> tab2;</span><br></pre></td></tr></table></figure>
 
       
     </div>

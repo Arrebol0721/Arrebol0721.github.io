@@ -118,7 +118,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">35</span>
+          <span class="site-state-item-count">36</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -141,6 +141,82 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/03/15/%E6%9C%BA%E8%80%83%E9%A2%98%E7%9B%AE-%E8%A7%A3%E5%AF%86%E7%8A%AF%E7%BD%AA%E6%97%B6%E9%97%B4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="时光不会倒流y">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Always Blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Always Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2025/03/15/%E6%9C%BA%E8%80%83%E9%A2%98%E7%9B%AE-%E8%A7%A3%E5%AF%86%E7%8A%AF%E7%BD%AA%E6%97%B6%E9%97%B4/" class="post-title-link" itemprop="url">机考题目-解密犯罪时间</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2025-03-15 19:41:26 / 修改时间：20:10:09" itemprop="dateCreated datePublished" datetime="2025-03-15T19:41:26+08:00">2025-03-15</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>小王在进行游戏大闯关，有一个关卡需要输入一个密码才能通过，密码获得的条件如下：<br>在一个密码本中，每一页都有一个由 26 个小写字母组成的若干位密码，每一页的密码不同，需要从这个密码本中寻找这样一个<strong>最长</strong>的密码，从它的末尾开始依次去掉一位得到的新密码也在密码本中存在。<br>请输出符合要求的密码，如果有多个符合要求的密码，则返回字典序最大的密码。<br>若没有符合要求的密码，则返回空字符串 </p>
+<h3 id="输入描述"><a href="#输入描述" class="headerlink" title="输入描述"></a>输入描述</h3><p>密码本由一个字符串数组组成，不同元素之间使用空格隔开，每一个元素代表密码本每一页的密码。  </p>
+<h3 id="输出描述"><a href="#输出描述" class="headerlink" title="输出描述"></a>输出描述</h3><p>一个字符串。</p>
+<h3 id="用例输入"><a href="#用例输入" class="headerlink" title="用例输入"></a>用例输入</h3><p>h he hel hell hello</p>
+<h3 id="用例输出"><a href="#用例输出" class="headerlink" title="用例输出"></a>用例输出</h3><p>hello</p>
+<h3 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h3><p>采用哈希集合加快查找。对数组元素排序，先按照长度排序，再按照字典序排序。<br>然后对每个元素查找它的所有符合条件的子字符串是否在数组中。例如hello的符合条件的子串有hell，hel，he，h。<br>找到的第一个字符串就是答案。  </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sstream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;unordered_set&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function">string <span class="title">findPassword</span><span class="params">(<span class="type">const</span> vector&lt;string&gt;&amp; passwords)</span> </span>&#123;</span><br><span class="line">    <span class="function">unordered_set&lt;string&gt; <span class="title">passwordSet</span><span class="params">(passwords.begin(), passwords.end())</span></span>;</span><br><span class="line">    vector&lt;string&gt; sortedPasswords = passwords;</span><br><span class="line">    <span class="built_in">sort</span>(sortedPasswords.<span class="built_in">begin</span>(), sortedPasswords.<span class="built_in">end</span>(), [](<span class="type">const</span> string&amp; a, <span class="type">const</span> string&amp; b) &#123;</span><br><span class="line">        <span class="keyword">return</span> a.<span class="built_in">size</span>() != b.<span class="built_in">size</span>() ? a.<span class="built_in">size</span>() &gt; b.<span class="built_in">size</span>() : a &gt; b;</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">const</span> string&amp; password : sortedPasswords) &#123;</span><br><span class="line">        <span class="type">bool</span> valid = <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">size_t</span> i = <span class="number">1</span>; i &lt;= password.<span class="built_in">size</span>(); ++i) &#123;</span><br><span class="line">            <span class="keyword">if</span> (passwordSet.<span class="built_in">find</span>(password.<span class="built_in">substr</span>(<span class="number">0</span>, i)) == passwordSet.<span class="built_in">end</span>()) &#123;</span><br><span class="line">                valid = <span class="literal">false</span>;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (valid) &#123;</span><br><span class="line">            <span class="keyword">return</span> password;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    string line;</span><br><span class="line">    <span class="built_in">getline</span>(cin, line);</span><br><span class="line">    <span class="function">stringstream <span class="title">ss</span><span class="params">(line)</span></span>;</span><br><span class="line">    string temp;</span><br><span class="line">    vector&lt;string&gt; passwords;</span><br><span class="line">    <span class="keyword">while</span> (ss &gt;&gt; temp) &#123;</span><br><span class="line">        passwords.<span class="built_in">push_back</span>(temp);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    string result = <span class="built_in">findPassword</span>(passwords);</span><br><span class="line">    cout &lt;&lt; result &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -852,93 +928,6 @@
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">divisorSubstrings</span><span class="params">(<span class="type">int</span> num, <span class="type">int</span> k)</span> </span>&#123;</span><br><span class="line">        string s = <span class="built_in">to_string</span>(num);</span><br><span class="line">        <span class="type">int</span> ans = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = k; i &lt;= s.<span class="built_in">size</span>(); i++) &#123;</span><br><span class="line">            <span class="type">int</span> x = <span class="built_in">stoi</span>(s.<span class="built_in">substr</span>(i - k, k)); <span class="comment">// 长为 k 的子串</span></span><br><span class="line">            <span class="keyword">if</span> (x &gt; <span class="number">0</span> &amp;&amp; num % x == <span class="number">0</span>) &#123; <span class="comment">// 子串能整除 num</span></span><br><span class="line">                ans++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">divisorSubstrings</span>(<span class="params">self, num: <span class="built_in">int</span>, k: <span class="built_in">int</span></span>) -&gt; <span class="built_in">int</span>:</span><br><span class="line">        s = <span class="built_in">str</span>(num)</span><br><span class="line">        ans = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(k, <span class="built_in">len</span>(s) + <span class="number">1</span>):</span><br><span class="line">            x = <span class="built_in">int</span>(s[i - k: i])  <span class="comment"># 长为 k 的子串</span></span><br><span class="line">            <span class="keyword">if</span> x &gt; <span class="number">0</span> <span class="keyword">and</span> num % x == <span class="number">0</span>:  <span class="comment"># 子串能整除 num </span></span><br><span class="line">                ans += <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> ans</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2025/03/11/Python%E7%9A%84%E6%A8%A1%E5%9D%97%E5%92%8C%E5%8C%85/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="时光不会倒流y">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Always Blog">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Always Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2025/03/11/Python%E7%9A%84%E6%A8%A1%E5%9D%97%E5%92%8C%E5%8C%85/" class="post-title-link" itemprop="url">Python的模块和包</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2025-03-11 18:50:43 / 修改时间：20:05:21" itemprop="dateCreated datePublished" datetime="2025-03-11T18:50:43+08:00">2025-03-11</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>今天面试问了一个python的模块和包是什么？<br>我直接就是一个把Java的package套过来告诉面试官，但是Python里面没有package关键词。<br>现在反手一个事后诸葛亮，平常光顾着import了，没有系统了解名词的含义。  </p>
-<h3 id="模块"><a href="#模块" class="headerlink" title="模块"></a>模块</h3><p>Python规定一个py文件就是一个模块，引入另一个模块通过import关键词。  </p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> request</span><br></pre></td></tr></table></figure>
-<p>引入之后request就变成了模块里的一个变量，这个变量指向的是一个模块对象，在python中，模块也是一个对象。<br>也可以通过from引入模块中的类或者变量。  </p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> selenium.webdriver.common.by <span class="keyword">import</span> By</span><br></pre></td></tr></table></figure>
-<p>还可以通过as关键词给包规定别名。</p>
-<h3 id="包"><a href="#包" class="headerlink" title="包"></a>包</h3><p>当模块文件增多的时候，我们还需要把这些模块文件根据不同功能分到不同目录中，这些放模块文件的目录，Python将它们称之为包。<br>标准库其实就是一组模块，也就是包。<br>包一般包含一个<code>__init.py</code>的文件。<br>可以通过.的形式访问包里的模块。 </p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> stock.food.beef</span><br><span class="line"><span class="comment"># 注意导入的是 stock.food.beef，调用的时候一定要加上所有的包路径前缀</span></span><br><span class="line">stock.food.beef.stockleft()</span><br></pre></td></tr></table></figure>
-<p>可以通过from import的形式省去前缀。  </p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> stock.food.beef <span class="keyword">import</span> stockleft</span><br><span class="line">stockleft()</span><br></pre></td></tr></table></figure>
-<h3 id="那么python怎么查找模块呢？"><a href="#那么python怎么查找模块呢？" class="headerlink" title="那么python怎么查找模块呢？"></a>那么python怎么查找模块呢？</h3><p>python会先查找内置模块，所谓内置模块，就是Python解释器里面的一部分，例如sys,time,math。<br>如果内置模块没有，会去sys.path.  </p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">for</span> path <span class="keyword">in</span> sys.path:</span><br><span class="line">    <span class="built_in">print</span> (path)</span><br></pre></td></tr></table></figure>
-
-<p>打印出这样一些内容就是它的搜索路径。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">D:\PyCharm\PythonPytest\.venv\Scripts\python.exe D:\PyCharm\PythonPytest\cfg\cfg_1.py </span><br><span class="line">D:\PyCharm\PythonPytest\cfg</span><br><span class="line">D:\PyCharm\PythonPytest</span><br><span class="line">D:\PyCharm\PythonPytest\.venv\Scripts\python313.zip</span><br><span class="line">C:\Users\时光不会倒流y\AppData\Local\Programs\Python\Python313\DLLs</span><br><span class="line">C:\Users\时光不会倒流y\AppData\Local\Programs\Python\Python313\Lib</span><br><span class="line">C:\Users\时光不会倒流y\AppData\Local\Programs\Python\Python313</span><br><span class="line">D:\PyCharm\PythonPytest\.venv</span><br><span class="line">D:\PyCharm\PythonPytest\.venv\Lib\site-packages</span><br></pre></td></tr></table></figure>
-<p>当然，解释器会把当前工作目录作为搜寻路径加入path中。<br>我们也可以去修改PYTHONPATH环境变量。<br>举例。<br>如果我们有一个python 模块文件名为 m1，放在目录 d:\project\libs\p1\p2 下面<br>我们要在代码中这样写  </p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> p1.p2.m1</span><br></pre></td></tr></table></figure>
-<p>应该在环境变量里增加  </p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set PYTHONPATH=d:\project\libs</span><br></pre></td></tr></table></figure>
       
     </div>
 

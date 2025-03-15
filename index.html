@@ -118,7 +118,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">32</span>
+          <span class="site-state-item-count">35</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -141,6 +141,254 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/03/15/%E6%9C%BA%E8%80%83%E9%A2%98%E7%9B%AE-TLV%E7%BC%96%E7%A0%81/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="时光不会倒流y">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Always Blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Always Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2025/03/15/%E6%9C%BA%E8%80%83%E9%A2%98%E7%9B%AE-TLV%E7%BC%96%E7%A0%81/" class="post-title-link" itemprop="url">机考题目-TLV编码</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2025-03-15 14:21:03 / 修改时间：15:06:28" itemprop="dateCreated datePublished" datetime="2025-03-15T14:21:03+08:00">2025-03-15</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>TLV 编码是按 Tag Length Value 格式进行编码的。<br>一段码流中的<strong>信元</strong>用 tag 标识，tag 在码流中唯一不重复，length 表示信元 value 的长度，value 表示信元的值，码流以某信元的 tag 开头，tag 固定占一个字节，length 固定占两个字节，字节序为小端序。<br>现给定 TLV 格式编码的码流以及需要解码的信元 tag，请输出该信元的 value。<br>输入码流的 16 进制字符中，不包括小写字母；且要求输出的 16 进制字符串中也不要包含小写字母；码流字符串的最大长度不超过 50000 个字节。  </p>
+<h3 id="输入描述"><a href="#输入描述" class="headerlink" title="输入描述"></a>输入描述</h3><p>第一行为第一个字符串，表示待解码信元的 tag；<br>第二行为一个字符串，表示待解码的 16 进制码流；每个字节之间用空格分割。  </p>
+<h3 id="输出描述"><a href="#输出描述" class="headerlink" title="输出描述"></a>输出描述</h3><p>输出一个字符串，表示待解码信元以 16 进制表示的 value。  </p>
+<h3 id="用例输入"><a href="#用例输入" class="headerlink" title="用例输入"></a>用例输入</h3><p>31<br>32 01 00 AE 90 02 00 01 02 30 03 00 AB 32 31 31 02 00 32 33 33 01 00 CC  </p>
+<h3 id="用例输出"><a href="#用例输出" class="headerlink" title="用例输出"></a>用例输出</h3><p>32 33</p>
+<h3 id="用例分析"><a href="#用例分析" class="headerlink" title="用例分析"></a>用例分析</h3><p>首先题意是这样的，第一行输入一个tag标识表示要输出对应信元的value值。<br>第二行输入一串字节流，表示待解码的码流。注意length的字节序为<strong>小端序</strong>。<br>例如用例要求找到31对应信元的value值。<br>第一段信元的tag为32，长度为01 00，换算后为1，表示后面的value值为AE；<br>第二段信元的tag为90，长度为02 00，换算后为2，表示后面的value值为01 02；<br>第三段信元的tag为30，长度为03 00，表示后面的value值为AB 32 31；<br>第四段信元的tag为31，长度为02 00，表示后面的value值为32 33；  </p>
+<h3 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h3><p>解答这道题我大量应用了c++的流库sstream，将字符串转换成流处理。<br>包括分割字符串，将字符串以16进制转换成整数。  </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sstream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    string a;</span><br><span class="line">    cin &gt;&gt; a;</span><br><span class="line">    cin.<span class="built_in">ignore</span>();<span class="comment">//忽略换行符</span></span><br><span class="line"></span><br><span class="line">    string line;</span><br><span class="line">    <span class="built_in">getline</span>(cin, line);<span class="comment">//通过getline读取一行数据到line里面</span></span><br><span class="line"></span><br><span class="line">    <span class="function">stringstream <span class="title">ss</span><span class="params">(line)</span></span>;<span class="comment">//将line转换为流ss</span></span><br><span class="line">    string temp;</span><br><span class="line">    vector&lt;string&gt; v;</span><br><span class="line">    <span class="keyword">while</span> (ss &gt;&gt; temp) &#123;</span><br><span class="line">        v.<span class="built_in">push_back</span>(temp);</span><br><span class="line">    &#125;<span class="comment">//将ss分割后放入数组中</span></span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> p = <span class="number">0</span>;<span class="comment">//定义指针</span></span><br><span class="line">    <span class="keyword">while</span> (p != v.<span class="built_in">size</span>()) &#123;</span><br><span class="line">        string tag = v[p];</span><br><span class="line">        string strlen1 = v[p + <span class="number">1</span>];</span><br><span class="line">        string strlen2 = v[p + <span class="number">2</span>];</span><br><span class="line">        <span class="function">stringstream <span class="title">is1</span><span class="params">(strlen1)</span></span>;</span><br><span class="line">        <span class="function">stringstream <span class="title">is2</span><span class="params">(strlen2)</span></span>;   </span><br><span class="line">        <span class="type">int</span> len1; </span><br><span class="line">        <span class="type">int</span> len2;</span><br><span class="line">        is1 &gt;&gt; hex &gt;&gt; len1;<span class="comment">//通过hex流将字符串以16进制转换成整数</span></span><br><span class="line">        is2 &gt;&gt; hex &gt;&gt; len2;</span><br><span class="line">        <span class="type">int</span> length = len1 + (len2 &lt;&lt; <span class="number">8</span>);<span class="comment">//小端序</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> (tag == a) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; length; i++) &#123;</span><br><span class="line">                cout &lt;&lt; v[p<span class="number">+3</span>+i] &lt;&lt; <span class="string">&#x27; &#x27;</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        p += <span class="number">2</span> + length + <span class="number">1</span>;<span class="comment">//移动到下一个tag的位置</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/03/14/C++%E6%9C%89%E5%85%B3%E7%B1%BB%E7%9A%84%E9%9D%A2%E8%AF%95%E9%A2%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="时光不会倒流y">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Always Blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Always Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2025/03/14/C++%E6%9C%89%E5%85%B3%E7%B1%BB%E7%9A%84%E9%9D%A2%E8%AF%95%E9%A2%98/" class="post-title-link" itemprop="url">C++有关类的面试题</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2025-03-14 17:46:08 / 修改时间：20:13:55" itemprop="dateCreated datePublished" datetime="2025-03-14T17:46:08+08:00">2025-03-14</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="拷贝构造函数"><a href="#拷贝构造函数" class="headerlink" title="拷贝构造函数"></a>拷贝构造函数</h3><p><strong>拷贝构造的定义</strong>：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">MyClass</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="type">int</span> value;</span><br><span class="line">    <span class="comment">// 普通构造函数</span></span><br><span class="line">    <span class="built_in">MyClass</span>(<span class="type">int</span> v) : <span class="built_in">value</span>(v) &#123;&#125;</span><br><span class="line">    <span class="comment">// 拷贝构造函数</span></span><br><span class="line">    <span class="built_in">MyClass</span>(<span class="type">const</span> MyClass &amp;obj) &#123;</span><br><span class="line">        value = obj.value;       </span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p><strong>拷贝构造函数的调用</strong>：  </p>
+<ol>
+<li>用一个对象初始化另一个对象</li>
+</ol>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">MyClass <span class="title">a</span><span class="params">(<span class="number">1</span>)</span></span>;</span><br><span class="line">MyClass b = a;<span class="comment">//调用拷贝构造</span></span><br><span class="line"><span class="function">MyClass <span class="title">c</span><span class="params">(a)</span></span>; <span class="comment">//调用拷贝构造</span></span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>函数参数按值传递对象</li>
+</ol>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">func</span><span class="params">(MyClass obj)</span> </span>&#123;</span><br><span class="line">    cout &lt;&lt; obj.value &lt;&lt; endl;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="function">MyClass <span class="title">obj1</span><span class="params">(<span class="number">10</span>)</span></span>;</span><br><span class="line">    <span class="built_in">func</span>(obj1);  <span class="comment">// 调用拷贝构造函数</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>函数返回对象时</li>
+</ol>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">MyClass <span class="title">createObject</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="function">MyClass <span class="title">obj</span><span class="params">(<span class="number">10</span>)</span></span>;</span><br><span class="line">    <span class="keyword">return</span> obj;  <span class="comment">// 调用拷贝构造函数</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    MyClass obj = <span class="built_in">createObject</span>();  <span class="comment">// 调用拷贝构造函数</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>默认拷贝构造</strong>：<br>如果没有定义，系统会自动生成默认拷贝构造函数，默认拷贝构造会逐个复制成员变量（浅拷贝）。<br><strong>浅拷贝和深拷贝</strong><br>实现深拷贝的案例</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">DeepCopy</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="type">int</span> *ptr;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">DeepCopy</span>(<span class="type">int</span> v) &#123;</span><br><span class="line">        ptr = <span class="keyword">new</span> <span class="built_in">int</span>(v);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 自定义拷贝构造函数（深拷贝）</span></span><br><span class="line">    <span class="built_in">DeepCopy</span>(<span class="type">const</span> DeepCopy &amp;obj) &#123;</span><br><span class="line">        ptr = <span class="keyword">new</span> <span class="built_in">int</span>(*obj.ptr);  <span class="comment">// 分配新内存并复制值</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    ~<span class="built_in">DeepCopy</span>() &#123;</span><br><span class="line">        <span class="keyword">delete</span> ptr;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="function">DeepCopy <span class="title">obj1</span><span class="params">(<span class="number">10</span>)</span></span>;</span><br><span class="line">    DeepCopy obj2 = obj1;  <span class="comment">// 深拷贝</span></span><br><span class="line"></span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;obj1.ptr: &quot;</span> &lt;&lt; *obj<span class="number">1.</span>ptr &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;obj2.ptr: &quot;</span> &lt;&lt; *obj<span class="number">2.</span>ptr &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// obj1 和 obj2 的 ptr 指向不同的内存</span></span><br><span class="line">    <span class="comment">// 程序结束时，不会重复释放内存</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>拷贝构造函数只会复制成员变量而不会复制成员函数。<br>成员函数是类的共享部分，存储在代码区，所有对象共享成员函数。   </p>
+<h3 id="那成员函数跟静态函数有什么区别"><a href="#那成员函数跟静态函数有什么区别" class="headerlink" title="那成员函数跟静态函数有什么区别"></a>那成员函数跟静态函数有什么区别</h3><p>在访问权限上，调用方式和this指针上有区别。  </p>
+<ul>
+<li>this指针：成员函数隐含this指针，静态成员函数没有this指针  </li>
+<li>访问权限：成员函数可以访问所有成员，静态成员函数只能访问静态成员  </li>
+<li>调用方式：成员函数通过对象调用，静态成员函数通过类名和::调用</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/03/14/%E6%AF%8F%E6%97%A51%E9%A2%98-%E6%A3%80%E6%9F%A5%E5%B9%B3%E8%A1%A1%E5%AD%97%E7%AC%A6%E4%B8%B2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="时光不会倒流y">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Always Blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Always Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2025/03/14/%E6%AF%8F%E6%97%A51%E9%A2%98-%E6%A3%80%E6%9F%A5%E5%B9%B3%E8%A1%A1%E5%AD%97%E7%AC%A6%E4%B8%B2/" class="post-title-link" itemprop="url">每日1题-检查平衡字符串</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2025-03-14 12:37:17 / 修改时间：12:54:46" itemprop="dateCreated datePublished" datetime="2025-03-14T12:37:17+08:00">2025-03-14</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>给你一个仅由数字 0 - 9 组成的字符串 num。如果偶数下标处的数字之和等于奇数下标处的数字之和，则认为该数字字符串是一个平衡字符串。<br>如果 num 是一个平衡字符串，则返回 true；否则，返回 false。  </p>
+<h3 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h3><p>最简单的题目</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">isBalanced</span><span class="params">(string num)</span></span>&#123;</span><br><span class="line">        <span class="type">int</span> s=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;num.<span class="built_in">length</span>();i++)&#123;</span><br><span class="line">            <span class="type">int</span> c=num[i]-<span class="string">&#x27;0&#x27;</span>;</span><br><span class="line">            s+=i%<span class="number">2</span>?c:-c;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> s==<span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">isBalanced</span>(<span class="params">self,num:<span class="built_in">str</span></span>)-&gt;<span class="built_in">bool</span>:</span><br><span class="line">        s=<span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i,c <span class="built_in">int</span> <span class="built_in">enumerate</span>(<span class="built_in">map</span>(<span class="built_in">int</span>,num)):</span><br><span class="line">            s+=c <span class="keyword">if</span> i%<span class="number">2</span> <span class="keyword">else</span> -c</span><br><span class="line">        <span class="keyword">return</span> s==<span class="number">0</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>map函数返回python中的迭代器，可以转换为列表，也可以直接使用，但是直接使用的话只能遍历一次，因为python中的迭代器是一次性使用，而且是惰性的。</li>
+<li>enumerate返回一个枚举对象，其中每个元素是一个元组(index,value).</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -180,7 +428,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2025-03-13 19:01:18 / 修改时间：20:41:32" itemprop="dateCreated datePublished" datetime="2025-03-13T19:01:18+08:00">2025-03-13</time>
+      <time title="创建时间：2025-03-13 19:01:18 / 修改时间：20:44:04" itemprop="dateCreated datePublished" datetime="2025-03-13T19:01:18+08:00">2025-03-13</time>
     </span>
 
   
@@ -197,7 +445,7 @@
 <h3 id="人月神话"><a href="#人月神话" class="headerlink" title="人月神话"></a>人月神话</h3><p>这本书的名字是一种项目开发的误区，把（1人&#x2F;月）当成一个简单的衡量单位，1个人工作2个月和2个人工作一个月是等效的，可以换算的。例如预估12人&#x2F;月的开发项目，原本有3个人，只需要开发4个月就能完成，但是中间发现无法按时完成，准备增加人手的时候，简单的把后面进来的人按照（人&#x2F;月）来换算而没有考虑人员之间的沟通，会导致项目更加落后。当然还有任务的分配，新人员的培训，新的系统测试等等因素。不断加人只会导致项目像焦油坑一样淹死大型动物，很形象的比喻。<br>那么最好的解决办法是什么？不添加任何人手，让现有的人手加班，同时保持高效率加班。<br>这样客观来看的话，加班就很合理了。</p>
 <h3 id="沟通的负担"><a href="#沟通的负担" class="headerlink" title="沟通的负担"></a>沟通的负担</h3><p>影响项目进度的最大因素是人员之间的沟通，确实，人越多结构越复杂，沟通的量会指数级增长。<br>三种沟通途径：私下沟通，会议，文档。<br>由此说明了文档的重要性，良好，实时更新的文档和文档结构确实可以很有效的减少沟通时间成本。<br>团队的组织结构也是为了较少必要的交流和沟通。   </p>
 <h3 id="安排"><a href="#安排" class="headerlink" title="安排"></a>安排</h3><p>书中将软件任务的进度是这样安排的：<br>1&#x2F;3 计划<br>1&#x2F;6 编码<br>1&#x2F;4 构件测试和早期系统测试<br>1&#x2F;4 系统测试。所有的构建已完成<br>这样的安排狠狠强调了计划和测试的重要性。<br>由于先后开发顺序的影响，系统测试和单元测试与项目进度牵扯的最深，而且它的时间还受到bug数量和难以捕捉的程度。  </p>
-<h3 id="贯彻执行与测试"><a href="#贯彻执行与测试" class="headerlink" title="贯彻执行与测试"></a>贯彻执行与测试</h3><p>为了保证贯彻执行这一原则，测试小组很有必要，因为测试总会发现一些没有贯彻执行，设计决策没有准确实现或者理解正确的地方。</p>
+<h3 id="贯彻执行与测试"><a href="#贯彻执行与测试" class="headerlink" title="贯彻执行与测试"></a>贯彻执行与测试</h3><p>为了保证贯彻执行这一原则，测试小组很有必要，因为测试总会发现一些没有贯彻执行，设计决策没有准确实现或者理解正确的地方。  </p>
 <h3 id="概念完整性"><a href="#概念完整性" class="headerlink" title="概念完整性"></a>概念完整性</h3><p>概念完整性是系统设计中最重要的概念。<br>这个应该是由于软件开发的概念功能多样，导致功能和理解上的复杂程度的比值才是系统设计的最终测试标准。<br>为了促进开发和测试的明确性。  </p>
 
       
@@ -253,9 +501,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2025-03-13 16:20:46 / 修改时间：18:59:02" itemprop="dateCreated datePublished" datetime="2025-03-13T16:20:46+08:00">2025-03-13</time>
+      <time title="创建时间：2025-03-13 16:20:46" itemprop="dateCreated datePublished" datetime="2025-03-13T16:20:46+08:00">2025-03-13</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-03-15 13:13:39" itemprop="dateModified" datetime="2025-03-15T13:13:39+08:00">2025-03-15</time>
     </span>
 
   
@@ -685,279 +939,6 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> p1.p2.m1</span><br></pre></td></tr></table></figure>
 <p>应该在环境变量里增加  </p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set PYTHONPATH=d:\project\libs</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2025/03/10/%E3%80%8AJava%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E3%80%8B%E7%AC%94%E8%AE%B06/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="时光不会倒流y">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Always Blog">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Always Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2025/03/10/%E3%80%8AJava%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E3%80%8B%E7%AC%94%E8%AE%B06/" class="post-title-link" itemprop="url">《Java核心技术》笔记6-泛型和集合</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2025-03-10 11:58:39 / 修改时间：15:14:48" itemprop="dateCreated datePublished" datetime="2025-03-10T11:58:39+08:00">2025-03-10</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h2><h3 id="类型参数的好处"><a href="#类型参数的好处" class="headerlink" title="类型参数的好处"></a>类型参数的好处</h3><p>在泛型之前，ArrayList维护一个Object引用的数组。 </p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ArrayList</span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Object[] elementDate;</span><br><span class="line">    <span class="keyword">public</span> Object <span class="title function_">get</span><span class="params">(<span class="type">int</span> i)</span>&#123;&#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">add</span> <span class="params">(Object o)</span>&#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>获取值时需要强制类型转换，也没有错误检查。  </p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">String filename=(String) files.get(<span class="number">0</span>);</span><br><span class="line">files.add(<span class="keyword">new</span> <span class="title class_">File</span>(<span class="string">&quot;...&quot;</span>));</span><br></pre></td></tr></table></figure>
-<p>为了解决以上问题，泛型带来了易读性和安全性。  </p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> filess=<span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;String&gt;();</span><br><span class="line">String filename=files.get(<span class="number">0</span>);</span><br><span class="line">files.add(<span class="keyword">new</span> <span class="title class_">File</span>(<span class="string">&quot;...&quot;</span>));<span class="comment">//无法通过编译</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="泛型本质"><a href="#泛型本质" class="headerlink" title="泛型本质"></a>泛型本质</h3><p>本质是一种语法糖，编译器最后会擦除类型参数，替换为限定类型，如果没有限定类型就会替换为Object，然后编译器会插入强制类型转换，由于类型擦除，我们不能用基本类型实例化类型参数。  </p>
-<blockquote>
-<p>Java泛型与C++模板有很大本质区别，C++会为每个模板的实例化产生不同的类型，模板代码膨胀。Java采用的是类型擦除。  </p>
-</blockquote>
-<h2 id="集合"><a href="#集合" class="headerlink" title="集合"></a>集合</h2><h3 id="集合接口与实现分离"><a href="#集合接口与实现分离" class="headerlink" title="集合接口与实现分离"></a>集合接口与实现分离</h3><p>例如队列就有两种实现方式，一种是循环数组，一种是链表，接口指出队列的一些通用操作，例如尾部添加元素，队列头部删除元素。<br>分离实现的好处是，需要更改队列的实现时只需要在构造集合对象时更改具体使用的类。<br>Java类库中，集合类的基本接口是Collection接口，实现了一些基础方法例如add。<br>集合类还有一个迭代器接口，通过反复调用接口中的next方法逐个访问结合中元素，与C++的迭代器有一定区别，C++的迭代器根据数组索引建立模型，而Java的迭代器的查找操作和位置紧密耦合。查找一个元素的唯一方法时调用next，迭代器的位置会随之变化。删除元素之前也需要调用next方法越过这个元素。</p>
-<h3 id="集合的接口"><a href="#集合的接口" class="headerlink" title="集合的接口"></a>集合的接口</h3><p>集合提供了大量接口，基础的有Collection和Map。还有List，Set，Queue，Map，迭代器等等。  </p>
-<h3 id="List列表"><a href="#List列表" class="headerlink" title="List列表"></a>List列表</h3><ul>
-<li>ArrayList数组列表</li>
-<li>LinkList链表，双相链表，使用链表的唯一理由是尽可能减少在列表中间插入和删除元素的开销。</li>
-</ul>
-<h3 id="Set集合"><a href="#Set集合" class="headerlink" title="Set集合"></a>Set集合</h3><p>不支持重复元素，不支持下标访问。  </p>
-<ul>
-<li>散列集HashSet</li>
-<li>树集TreeSet，采用红黑树，实现有序集合</li>
-</ul>
-<h3 id="Queue队列和Deque双端队列"><a href="#Queue队列和Deque双端队列" class="headerlink" title="Queue队列和Deque双端队列"></a>Queue队列和Deque双端队列</h3><ul>
-<li>Deque接口，ArrayDeque和LinkedList类都实现了这个接口</li>
-</ul>
-<h3 id="优先队列"><a href="#优先队列" class="headerlink" title="优先队列"></a>优先队列</h3><p>允许高效删除最小元素的一个集合</p>
-<ul>
-<li>PriorityQueue</li>
-</ul>
-<h3 id="映射"><a href="#映射" class="headerlink" title="映射"></a>映射</h3><p>键值对。</p>
-<ul>
-<li>HashMap</li>
-<li>TreeMap键有序的一个映射。</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2025/03/09/%E3%80%8AJava%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E3%80%8B%E7%AC%94%E8%AE%B05/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="时光不会倒流y">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Always Blog">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Always Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2025/03/09/%E3%80%8AJava%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E3%80%8B%E7%AC%94%E8%AE%B05/" class="post-title-link" itemprop="url">《Java核心技术》笔记5-异常</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2025-03-09 19:48:36 / 修改时间：22:50:09" itemprop="dateCreated datePublished" datetime="2025-03-09T19:48:36+08:00">2025-03-09</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="异常"><a href="#异常" class="headerlink" title="异常"></a>异常</h2><h3 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h3><p>Java的异常都继承自Throwable。下一层分为两类，Error和Exception。Exception又分为两类，RuntimeException和I&#x2F;OException。<br>非检查型异常：  </p>
-<ul>
-<li>Error类错误描述Java运行时系统内部错误和资源耗尽错误。应用程序不应该抛出这种异常。</li>
-<li>RuntimeException类错误，由编程错误导致的异常，其包括错误的类型转换，数组访问越界，访问null指针。</li>
-</ul>
-<p>检查型异常：  </p>
-<ul>
-<li>所有其他异常，例如I&#x2F;O错误，试图打开一个不存在的文件，试图超越文件末尾读取数据。<blockquote>
-<p>C++中exception类下有两个子类，一是logic_error和runtime_error。但是logic_error相当于Java中RuntimeException，表示程序中的逻辑错误，runtime_error相当于Java中非RuntimeException类型的异常，表示由于不可预测的原因引发的检查型异常。</p>
-</blockquote>
-</li>
-</ul>
-<h3 id="声明检查型异常"><a href="#声明检查型异常" class="headerlink" title="声明检查型异常"></a>声明检查型异常</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="title function_">FileInputStream</span><span class="params">(String name)</span> <span class="keyword">throws</span> FileNotFoundException</span><br></pre></td></tr></table></figure>
-<p>总之，检查型异常需要声明，而非检查型异常从一开始就需要避免。  </p>
-<blockquote>
-<p>C++异常与Java异常有很大不同，C++的throw在运行时执行，而Java在编译时执行。Java要求必须给一个方法声明所有可能的检查型异常。</p>
-</blockquote>
-<h3 id="如何抛出异常"><a href="#如何抛出异常" class="headerlink" title="如何抛出异常"></a>如何抛出异常</h3><p>声明异常之后需要在方法内部抛出异常，只需要使用<code>throw new EOFexception()</code>,new后面是声明的异常。相当于  </p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> e=<span class="keyword">new</span> <span class="title class_">EOFException</span>();</span><br><span class="line"><span class="keyword">throw</span> e;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>在Java中，只能抛出Throwable子类的对象，而C++可以抛出任何类型的值</p>
-</blockquote>
-<h3 id="捕获异常"><a href="#捕获异常" class="headerlink" title="捕获异常"></a>捕获异常</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span>&#123;</span><br><span class="line">    code;</span><br><span class="line">    more code;</span><br><span class="line">    more code;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">catch</span>(ExceptionType e)&#123;</span><br><span class="line">    handler <span class="keyword">for</span> <span class="built_in">this</span> type</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>如果try语句中出现了catch中的异常，那么会跳过try语句中剩余代码，直接执行catch中代码；<br>如果没有出现异常，会跳过catch子句。<br>Java也支持捕获多个异常，只需要增加catch子句就行。<br>Java支持一个新的关键词，finally，允许不管是否有异常被捕获，finally子句中的代码都会执行。  </p>
-<blockquote>
-<p>在Java中，没有catch(…)这样的代码存在，因为所有异常派生于Throwable这个类。  </p>
-</blockquote>
-<p><strong>捕获和抛出异常的原则</strong>是尽量捕获你知道如何处理的异常；继续传递那些不知道如何处理的异常，同时添加到throws列表里。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2025/03/09/%E6%AF%8F%E6%97%A51%E9%A2%98-%E6%AF%8F%E4%B8%80%E4%B8%AA%E6%9F%A5%E8%AF%A2%E7%9A%84%E6%9C%80%E5%A4%A7%E7%BE%8E%E4%B8%BD%E5%80%BC/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="时光不会倒流y">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Always Blog">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Always Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2025/03/09/%E6%AF%8F%E6%97%A51%E9%A2%98-%E6%AF%8F%E4%B8%80%E4%B8%AA%E6%9F%A5%E8%AF%A2%E7%9A%84%E6%9C%80%E5%A4%A7%E7%BE%8E%E4%B8%BD%E5%80%BC/" class="post-title-link" itemprop="url">每日1题-每一个查询的最大美丽值</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2025-03-09 15:14:45 / 修改时间：15:38:51" itemprop="dateCreated datePublished" datetime="2025-03-09T15:14:45+08:00">2025-03-09</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>给你一个二维整数数组 items ，其中 items[i] &#x3D; [pricei, beautyi] 分别表示每一个物品的价格和美丽值 。<br>同时给你一个下标从 0 开始的整数数组 queries 。对于每个查询 queries[j] ，你想求出价格小于等于 queries[j] 的物品中，最大的美丽值是多少。如果不存在符合条件的物品，那么查询的结果为 0 。<br>请你返回一个长度与 queries 相同的数组 answer，其中 answer[j]是第 j 个查询的答案。  </p>
-<h3 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h3><p>最简单直观的做法就是对于每次查询，遍历得到最大美丽值。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">maximumBeauty</span><span class="params">(vector&lt;vector&lt;<span class="type">int</span>&gt;&gt;&amp; items, vector&lt;<span class="type">int</span>&gt;&amp; queries)</span> </span>&#123;</span><br><span class="line">        vector&lt;<span class="type">int</span>&gt; ans;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;queries.<span class="built_in">size</span>();i++)&#123;</span><br><span class="line">            <span class="type">int</span> temp=<span class="number">0</span>;</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">0</span>;j&lt;items.<span class="built_in">size</span>();j++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(items[j][<span class="number">0</span>]&lt;=queries[i])&#123;</span><br><span class="line">                    <span class="keyword">if</span>(items[j][<span class="number">1</span>]&gt;temp)&#123;</span><br><span class="line">                        temp=items[j][<span class="number">1</span>];</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            ans.<span class="built_in">push_back</span>(temp);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>这种做法会超时。所以需要优化时间复杂度。<br>对二维数组的价格进行排序，对查询进行排序。对于每个查询，定义一个指针i指向物品数组，每次移动指针都更新当前的最大美丽值。<br>每次移动指针直到当前价格小于查询值。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">maximumBeauty</span><span class="params">(vector&lt;vector&lt;<span class="type">int</span>&gt;&gt;&amp; items, vector&lt;<span class="type">int</span>&gt;&amp; queries)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">sort</span>(items.<span class="built_in">begin</span>(),items.<span class="built_in">end</span>());</span><br><span class="line">        <span class="type">int</span> n=items.<span class="built_in">size</span>();</span><br><span class="line">        <span class="type">int</span> m=queries.<span class="built_in">size</span>();</span><br><span class="line">        <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">index</span><span class="params">(m)</span></span>;</span><br><span class="line">        <span class="built_in">iota</span>(index.<span class="built_in">begin</span>(),index.<span class="built_in">end</span>(),<span class="number">0</span>);<span class="comment">//iota函数会给index数组从0升序赋值</span></span><br><span class="line">        <span class="built_in">sort</span>(index.<span class="built_in">begin</span>(),index.<span class="built_in">end</span>(),[&amp;](<span class="type">int</span> i,<span class="type">int</span> j)&#123;<span class="comment">//使用Lambda表达式自定义排序函数</span></span><br><span class="line">            <span class="keyword">return</span> queries[i]&lt;queries[j];</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="type">int</span> mx=<span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> i=<span class="number">0</span>;</span><br><span class="line">        <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">ans</span><span class="params">(m)</span></span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j:index)&#123;</span><br><span class="line">            <span class="keyword">while</span>(i&lt;n&amp;&amp;items[i][<span class="number">0</span>]&lt;=queries[j])&#123;</span><br><span class="line">                mx=<span class="built_in">max</span>(mx,items[i][<span class="number">1</span>]);</span><br><span class="line">                i++;</span><br><span class="line">            &#125;</span><br><span class="line">            ans[j]=mx;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
       
     </div>
 

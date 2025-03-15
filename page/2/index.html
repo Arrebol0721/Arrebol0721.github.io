@@ -118,7 +118,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">32</span>
+          <span class="site-state-item-count">35</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -141,6 +141,279 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/03/10/%E3%80%8AJava%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E3%80%8B%E7%AC%94%E8%AE%B06/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="时光不会倒流y">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Always Blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Always Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2025/03/10/%E3%80%8AJava%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E3%80%8B%E7%AC%94%E8%AE%B06/" class="post-title-link" itemprop="url">《Java核心技术》笔记6-泛型和集合</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2025-03-10 11:58:39 / 修改时间：15:14:48" itemprop="dateCreated datePublished" datetime="2025-03-10T11:58:39+08:00">2025-03-10</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h2><h3 id="类型参数的好处"><a href="#类型参数的好处" class="headerlink" title="类型参数的好处"></a>类型参数的好处</h3><p>在泛型之前，ArrayList维护一个Object引用的数组。 </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ArrayList</span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Object[] elementDate;</span><br><span class="line">    <span class="keyword">public</span> Object <span class="title function_">get</span><span class="params">(<span class="type">int</span> i)</span>&#123;&#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">add</span> <span class="params">(Object o)</span>&#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>获取值时需要强制类型转换，也没有错误检查。  </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">String filename=(String) files.get(<span class="number">0</span>);</span><br><span class="line">files.add(<span class="keyword">new</span> <span class="title class_">File</span>(<span class="string">&quot;...&quot;</span>));</span><br></pre></td></tr></table></figure>
+<p>为了解决以上问题，泛型带来了易读性和安全性。  </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> filess=<span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;String&gt;();</span><br><span class="line">String filename=files.get(<span class="number">0</span>);</span><br><span class="line">files.add(<span class="keyword">new</span> <span class="title class_">File</span>(<span class="string">&quot;...&quot;</span>));<span class="comment">//无法通过编译</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="泛型本质"><a href="#泛型本质" class="headerlink" title="泛型本质"></a>泛型本质</h3><p>本质是一种语法糖，编译器最后会擦除类型参数，替换为限定类型，如果没有限定类型就会替换为Object，然后编译器会插入强制类型转换，由于类型擦除，我们不能用基本类型实例化类型参数。  </p>
+<blockquote>
+<p>Java泛型与C++模板有很大本质区别，C++会为每个模板的实例化产生不同的类型，模板代码膨胀。Java采用的是类型擦除。  </p>
+</blockquote>
+<h2 id="集合"><a href="#集合" class="headerlink" title="集合"></a>集合</h2><h3 id="集合接口与实现分离"><a href="#集合接口与实现分离" class="headerlink" title="集合接口与实现分离"></a>集合接口与实现分离</h3><p>例如队列就有两种实现方式，一种是循环数组，一种是链表，接口指出队列的一些通用操作，例如尾部添加元素，队列头部删除元素。<br>分离实现的好处是，需要更改队列的实现时只需要在构造集合对象时更改具体使用的类。<br>Java类库中，集合类的基本接口是Collection接口，实现了一些基础方法例如add。<br>集合类还有一个迭代器接口，通过反复调用接口中的next方法逐个访问结合中元素，与C++的迭代器有一定区别，C++的迭代器根据数组索引建立模型，而Java的迭代器的查找操作和位置紧密耦合。查找一个元素的唯一方法时调用next，迭代器的位置会随之变化。删除元素之前也需要调用next方法越过这个元素。</p>
+<h3 id="集合的接口"><a href="#集合的接口" class="headerlink" title="集合的接口"></a>集合的接口</h3><p>集合提供了大量接口，基础的有Collection和Map。还有List，Set，Queue，Map，迭代器等等。  </p>
+<h3 id="List列表"><a href="#List列表" class="headerlink" title="List列表"></a>List列表</h3><ul>
+<li>ArrayList数组列表</li>
+<li>LinkList链表，双相链表，使用链表的唯一理由是尽可能减少在列表中间插入和删除元素的开销。</li>
+</ul>
+<h3 id="Set集合"><a href="#Set集合" class="headerlink" title="Set集合"></a>Set集合</h3><p>不支持重复元素，不支持下标访问。  </p>
+<ul>
+<li>散列集HashSet</li>
+<li>树集TreeSet，采用红黑树，实现有序集合</li>
+</ul>
+<h3 id="Queue队列和Deque双端队列"><a href="#Queue队列和Deque双端队列" class="headerlink" title="Queue队列和Deque双端队列"></a>Queue队列和Deque双端队列</h3><ul>
+<li>Deque接口，ArrayDeque和LinkedList类都实现了这个接口</li>
+</ul>
+<h3 id="优先队列"><a href="#优先队列" class="headerlink" title="优先队列"></a>优先队列</h3><p>允许高效删除最小元素的一个集合</p>
+<ul>
+<li>PriorityQueue</li>
+</ul>
+<h3 id="映射"><a href="#映射" class="headerlink" title="映射"></a>映射</h3><p>键值对。</p>
+<ul>
+<li>HashMap</li>
+<li>TreeMap键有序的一个映射。</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/03/09/%E3%80%8AJava%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E3%80%8B%E7%AC%94%E8%AE%B05/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="时光不会倒流y">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Always Blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Always Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2025/03/09/%E3%80%8AJava%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E3%80%8B%E7%AC%94%E8%AE%B05/" class="post-title-link" itemprop="url">《Java核心技术》笔记5-异常</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2025-03-09 19:48:36 / 修改时间：22:50:09" itemprop="dateCreated datePublished" datetime="2025-03-09T19:48:36+08:00">2025-03-09</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="异常"><a href="#异常" class="headerlink" title="异常"></a>异常</h2><h3 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h3><p>Java的异常都继承自Throwable。下一层分为两类，Error和Exception。Exception又分为两类，RuntimeException和I&#x2F;OException。<br>非检查型异常：  </p>
+<ul>
+<li>Error类错误描述Java运行时系统内部错误和资源耗尽错误。应用程序不应该抛出这种异常。</li>
+<li>RuntimeException类错误，由编程错误导致的异常，其包括错误的类型转换，数组访问越界，访问null指针。</li>
+</ul>
+<p>检查型异常：  </p>
+<ul>
+<li>所有其他异常，例如I&#x2F;O错误，试图打开一个不存在的文件，试图超越文件末尾读取数据。<blockquote>
+<p>C++中exception类下有两个子类，一是logic_error和runtime_error。但是logic_error相当于Java中RuntimeException，表示程序中的逻辑错误，runtime_error相当于Java中非RuntimeException类型的异常，表示由于不可预测的原因引发的检查型异常。</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="声明检查型异常"><a href="#声明检查型异常" class="headerlink" title="声明检查型异常"></a>声明检查型异常</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="title function_">FileInputStream</span><span class="params">(String name)</span> <span class="keyword">throws</span> FileNotFoundException</span><br></pre></td></tr></table></figure>
+<p>总之，检查型异常需要声明，而非检查型异常从一开始就需要避免。  </p>
+<blockquote>
+<p>C++异常与Java异常有很大不同，C++的throw在运行时执行，而Java在编译时执行。Java要求必须给一个方法声明所有可能的检查型异常。</p>
+</blockquote>
+<h3 id="如何抛出异常"><a href="#如何抛出异常" class="headerlink" title="如何抛出异常"></a>如何抛出异常</h3><p>声明异常之后需要在方法内部抛出异常，只需要使用<code>throw new EOFexception()</code>,new后面是声明的异常。相当于  </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> e=<span class="keyword">new</span> <span class="title class_">EOFException</span>();</span><br><span class="line"><span class="keyword">throw</span> e;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>在Java中，只能抛出Throwable子类的对象，而C++可以抛出任何类型的值</p>
+</blockquote>
+<h3 id="捕获异常"><a href="#捕获异常" class="headerlink" title="捕获异常"></a>捕获异常</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span>&#123;</span><br><span class="line">    code;</span><br><span class="line">    more code;</span><br><span class="line">    more code;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">catch</span>(ExceptionType e)&#123;</span><br><span class="line">    handler <span class="keyword">for</span> <span class="built_in">this</span> type</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果try语句中出现了catch中的异常，那么会跳过try语句中剩余代码，直接执行catch中代码；<br>如果没有出现异常，会跳过catch子句。<br>Java也支持捕获多个异常，只需要增加catch子句就行。<br>Java支持一个新的关键词，finally，允许不管是否有异常被捕获，finally子句中的代码都会执行。  </p>
+<blockquote>
+<p>在Java中，没有catch(…)这样的代码存在，因为所有异常派生于Throwable这个类。  </p>
+</blockquote>
+<p><strong>捕获和抛出异常的原则</strong>是尽量捕获你知道如何处理的异常；继续传递那些不知道如何处理的异常，同时添加到throws列表里。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/03/09/%E6%AF%8F%E6%97%A51%E9%A2%98-%E6%AF%8F%E4%B8%80%E4%B8%AA%E6%9F%A5%E8%AF%A2%E7%9A%84%E6%9C%80%E5%A4%A7%E7%BE%8E%E4%B8%BD%E5%80%BC/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="时光不会倒流y">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Always Blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Always Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2025/03/09/%E6%AF%8F%E6%97%A51%E9%A2%98-%E6%AF%8F%E4%B8%80%E4%B8%AA%E6%9F%A5%E8%AF%A2%E7%9A%84%E6%9C%80%E5%A4%A7%E7%BE%8E%E4%B8%BD%E5%80%BC/" class="post-title-link" itemprop="url">每日1题-每一个查询的最大美丽值</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2025-03-09 15:14:45 / 修改时间：15:38:51" itemprop="dateCreated datePublished" datetime="2025-03-09T15:14:45+08:00">2025-03-09</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>给你一个二维整数数组 items ，其中 items[i] &#x3D; [pricei, beautyi] 分别表示每一个物品的价格和美丽值 。<br>同时给你一个下标从 0 开始的整数数组 queries 。对于每个查询 queries[j] ，你想求出价格小于等于 queries[j] 的物品中，最大的美丽值是多少。如果不存在符合条件的物品，那么查询的结果为 0 。<br>请你返回一个长度与 queries 相同的数组 answer，其中 answer[j]是第 j 个查询的答案。  </p>
+<h3 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h3><p>最简单直观的做法就是对于每次查询，遍历得到最大美丽值。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">maximumBeauty</span><span class="params">(vector&lt;vector&lt;<span class="type">int</span>&gt;&gt;&amp; items, vector&lt;<span class="type">int</span>&gt;&amp; queries)</span> </span>&#123;</span><br><span class="line">        vector&lt;<span class="type">int</span>&gt; ans;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;queries.<span class="built_in">size</span>();i++)&#123;</span><br><span class="line">            <span class="type">int</span> temp=<span class="number">0</span>;</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">0</span>;j&lt;items.<span class="built_in">size</span>();j++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(items[j][<span class="number">0</span>]&lt;=queries[i])&#123;</span><br><span class="line">                    <span class="keyword">if</span>(items[j][<span class="number">1</span>]&gt;temp)&#123;</span><br><span class="line">                        temp=items[j][<span class="number">1</span>];</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            ans.<span class="built_in">push_back</span>(temp);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>这种做法会超时。所以需要优化时间复杂度。<br>对二维数组的价格进行排序，对查询进行排序。对于每个查询，定义一个指针i指向物品数组，每次移动指针都更新当前的最大美丽值。<br>每次移动指针直到当前价格小于查询值。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">maximumBeauty</span><span class="params">(vector&lt;vector&lt;<span class="type">int</span>&gt;&gt;&amp; items, vector&lt;<span class="type">int</span>&gt;&amp; queries)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">sort</span>(items.<span class="built_in">begin</span>(),items.<span class="built_in">end</span>());</span><br><span class="line">        <span class="type">int</span> n=items.<span class="built_in">size</span>();</span><br><span class="line">        <span class="type">int</span> m=queries.<span class="built_in">size</span>();</span><br><span class="line">        <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">index</span><span class="params">(m)</span></span>;</span><br><span class="line">        <span class="built_in">iota</span>(index.<span class="built_in">begin</span>(),index.<span class="built_in">end</span>(),<span class="number">0</span>);<span class="comment">//iota函数会给index数组从0升序赋值</span></span><br><span class="line">        <span class="built_in">sort</span>(index.<span class="built_in">begin</span>(),index.<span class="built_in">end</span>(),[&amp;](<span class="type">int</span> i,<span class="type">int</span> j)&#123;<span class="comment">//使用Lambda表达式自定义排序函数</span></span><br><span class="line">            <span class="keyword">return</span> queries[i]&lt;queries[j];</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="type">int</span> mx=<span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> i=<span class="number">0</span>;</span><br><span class="line">        <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">ans</span><span class="params">(m)</span></span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j:index)&#123;</span><br><span class="line">            <span class="keyword">while</span>(i&lt;n&amp;&amp;items[i][<span class="number">0</span>]&lt;=queries[j])&#123;</span><br><span class="line">                mx=<span class="built_in">max</span>(mx,items[i][<span class="number">1</span>]);</span><br><span class="line">                i++;</span><br><span class="line">            &#125;</span><br><span class="line">            ans[j]=mx;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -711,7 +984,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2025/03/05/%E7%AE%80%E5%8D%95shell%E8%84%9A%E6%9C%AC/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/03/05/%E7%AE%80%E5%8D%95Shell%E8%84%9A%E6%9C%AC%E6%A1%88%E4%BE%8B/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -729,7 +1002,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2025/03/05/%E7%AE%80%E5%8D%95shell%E8%84%9A%E6%9C%AC/" class="post-title-link" itemprop="url">简单shell脚本</a>
+          <a href="/2025/03/05/%E7%AE%80%E5%8D%95Shell%E8%84%9A%E6%9C%AC%E6%A1%88%E4%BE%8B/" class="post-title-link" itemprop="url">简单Shell脚本案例</a>
         </h2>
 
         <div class="post-meta-container">
@@ -739,9 +1012,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2025-03-05 12:49:03 / 修改时间：13:46:50" itemprop="dateCreated datePublished" datetime="2025-03-05T12:49:03+08:00">2025-03-05</time>
+      <time title="创建时间：2025-03-05 12:49:03" itemprop="dateCreated datePublished" datetime="2025-03-05T12:49:03+08:00">2025-03-05</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-03-14 16:43:45" itemprop="dateModified" datetime="2025-03-14T16:43:45+08:00">2025-03-14</time>
     </span>
 
   
@@ -768,299 +1047,6 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bash start.sh</span><br></pre></td></tr></table></figure>
 <h3 id="条件判断"><a href="#条件判断" class="headerlink" title="条件判断"></a>条件判断</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">while true</span><br><span class="line">do</span><br><span class="line">echo “请输入一个1-10之间的数字”</span><br><span class="line">read guess</span><br><span class="line">if [[ $guess -eq $number ]];then</span><br><span class="line">    echo &quot;猜对了!是否继续？（y/n）：&quot;</span><br><span class="line">    read chioce</span><br><span class="line">    if[[ $chioce == &quot;y&quot; ]] ||[[ $chioce == &quot;Y&quot; ]];then</span><br><span class="line">        continue</span><br><span class="line">    else</span><br><span class="line">        break</span><br><span class="line">    fi</span><br><span class="line">elif [[ $guess -lt $number ]];then</span><br><span class="line">    echo &quot;小了&quot;</span><br><span class="line">else</span><br><span class="line">    echo &quot;大了&quot;</span><br><span class="line">fi</span><br><span class="line">done</span><br></pre></td></tr></table></figure>
 <p>shell是弱类型语言，需要使用不同运算符比较数字和字符串。<br>[[]]中间的语句两边必须加空格，否则视为语法错误。  </p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2025/03/04/%E3%80%8AJava%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E3%80%8B%E7%AC%94%E8%AE%B04/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="时光不会倒流y">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Always Blog">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Always Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2025/03/04/%E3%80%8AJava%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E3%80%8B%E7%AC%94%E8%AE%B04/" class="post-title-link" itemprop="url">《Java核心技术》笔记4-接口</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2025-03-04 20:10:27" itemprop="dateCreated datePublished" datetime="2025-03-04T20:10:27+08:00">2025-03-04</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-03-10 14:28:55" itemprop="dateModified" datetime="2025-03-10T14:28:55+08:00">2025-03-10</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h2><h3 id="接口的概念"><a href="#接口的概念" class="headerlink" title="接口的概念"></a>接口的概念</h3><p>接口不是类，而是对希望符合这个接口的类的一组需求。<br>例如，Arrays的sort方法可以对对象数组进行排序，但是对象所属的类必须实现Comparable接口：  </p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">Comparable</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> <span class="title function_">compareTo</span><span class="params">(Object other)</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>任何实现Comparable接口的类都需要包含compareTo方法，接口中的方法默认是public abstract的。  </p>
-<h3 id="接口的实现"><a href="#接口的实现" class="headerlink" title="接口的实现"></a>接口的实现</h3><ol>
-<li>将类声明为实现给定的接口</li>
-</ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Employee</span> <span class="keyword">implements</span> <span class="title class_">Comparable</span></span><br></pre></td></tr></table></figure>
-<ol start="2">
-<li>对接口中的所有方法提供定义</li>
-</ol>
-<h3 id="接口的使用"><a href="#接口的使用" class="headerlink" title="接口的使用"></a>接口的使用</h3><p>无法实例接口，但是可以定义接口变量，接口变量必须引用实现了这个接口的对象。<br>可以使用instanceof检查一个对象是否实现了某个接口。<br>接口也可以扩展，从通用性较高的接口扩展到专用性较高的接口，Java的标准库对此有应用。<br>通过接口调用方法，实现多态。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Comparable first=<span class="keyword">new</span> <span class="title class_">Employee</span>();</span><br><span class="line">Comparable second=<span class="keyword">new</span> <span class="title class_">Boss</span>();</span><br></pre></td></tr></table></figure>
-<h3 id="接口和抽象类"><a href="#接口和抽象类" class="headerlink" title="接口和抽象类"></a>接口和抽象类</h3><p>C++允许一个类有多个超类，称为多重继承。<br>但是Java为了避免多重继承的复杂性，规定每个类只能扩展一个类，不能实现多重继承。<br>但是每个类可以实现多个接口。  </p>
-<h3 id="接口的应用"><a href="#接口的应用" class="headerlink" title="接口的应用"></a>接口的应用</h3><p>JDBC中的 Connection、Statement 就是接口，定义了数据库操作的规范。<br>接口与<strong>回调设计模式</strong>，在这种模式中，你可以指定某个事件发生时应该采取的动作：<br>比如要实现定时器功能。java.swing包中的timer类就很有用，timer类要知道调用哪个方法，并且要求传递的对象所属的类实现了一下接口。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">ActionListener</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">actionPerformed</span><span class="params">(ActionEvent event)</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>构造以下类并实现接口。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">TimePrinter</span> <span class="keyword">implements</span> <span class="title class_">ActionListener</span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">actionPerformed</span><span class="params">(ActionEvent event)</span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;At the tone,the time is &quot;</span>+Instant.ofEpochMilli(event.getWhen()));</span><br><span class="line">        Toolkit.getDefaultToolkit().beep();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>创建类实例并将时间间隔和类实例传给Timer对象。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">var</span> <span class="variable">listener</span> <span class="operator">=</span><span class="keyword">new</span> <span class="title class_">TimePrinter</span>();</span><br><span class="line">Timer t=<span class="keyword">new</span> <span class="title class_">Timer</span>(<span class="number">1000</span>,listener);</span><br><span class="line"></span><br><span class="line"><span class="comment">//最后启动定时器</span></span><br><span class="line">t.start();</span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2025/03/04/%E6%AF%8F%E6%97%A51%E9%A2%98-%E5%88%86%E5%89%B2%E5%9B%9E%E6%96%87%E4%B8%B23/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="时光不会倒流y">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Always Blog">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Always Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2025/03/04/%E6%AF%8F%E6%97%A51%E9%A2%98-%E5%88%86%E5%89%B2%E5%9B%9E%E6%96%87%E4%B8%B23/" class="post-title-link" itemprop="url">每日1题-分割回文串3</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2025-03-04 19:24:18" itemprop="dateCreated datePublished" datetime="2025-03-04T19:24:18+08:00">2025-03-04</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-03-07 17:47:02" itemprop="dateModified" datetime="2025-03-07T17:47:02+08:00">2025-03-07</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>给你一个由小写字母组成的字符串 s，和一个整数 k。<br>请你按下面的要求分割字符串：  </p>
-<ul>
-<li>首先，你可以将 s 中的部分字符修改为其他的小写英文字母。  </li>
-<li>接着，你需要把 s 分割成 k 个非空且不相交的子串，并且每个子串都是回文串。<br>请返回以这种方式分割字符串所需修改的最少字符数。</li>
-</ul>
-<h3 id="题解-Java"><a href="#题解-Java" class="headerlink" title="题解(Java)"></a>题解(Java)</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">palindromePartition</span><span class="params">(String s, <span class="type">int</span> k)</span> &#123;</span><br><span class="line">        <span class="type">int</span> length=s.length();</span><br><span class="line">        <span class="type">int</span>[][] dp=<span class="keyword">new</span> <span class="title class_">int</span>[length+<span class="number">1</span>][k+<span class="number">1</span>];<span class="comment">//只有这样创建才能有dp[length][k]</span></span><br><span class="line">        <span class="comment">//dp[i][j]表示前i个字符切割成j个回文字符串所需最小修改次数</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=length;i++)&#123;<span class="comment">//从前1个字符开始循环</span></span><br><span class="line">            <span class="type">int</span> len=Math.min(i,k);<span class="comment">//前i个字符可以切割成的字符串个数不会超过i和k</span></span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">1</span>;j&lt;=len;j++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(j==<span class="number">1</span>)&#123;<span class="comment">//切割成1个回文字符修改的次数可以直接计算</span></span><br><span class="line">                    dp[i][j]=change(s,<span class="number">0</span>,i-<span class="number">1</span>);</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span>&#123;</span><br><span class="line">                    <span class="comment">//比如我们要求dp[5][3],可以先求dp[m][2]+剩余字符修改的次数</span></span><br><span class="line">                    <span class="comment">//所以m必须大于j-1，且小于i</span></span><br><span class="line">                    <span class="keyword">for</span>(<span class="type">int</span> m=j-<span class="number">1</span>;m&lt;i;m++)&#123;</span><br><span class="line">                        dp[i][j]=Math.min(dp[i][j],dp[m][j-<span class="number">1</span>]+change(s,m,i-<span class="number">1</span>));</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> dp[length][k];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> <span class="title function_">change</span><span class="params">(String s,<span class="type">int</span> left,<span class="type">int</span> right)</span>&#123;</span><br><span class="line">        <span class="comment">//[left,right]区间的字符串需要修改的最小次数</span></span><br><span class="line">        <span class="type">int</span> count=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(left&lt;right)&#123;</span><br><span class="line">            <span class="keyword">if</span>(s.charAt(left++)!=s.charAt(right--))&#123;</span><br><span class="line">                count++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> count;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="注"><a href="#注" class="headerlink" title="注"></a>注</h3><p>由于java的String没有重载运算符，所以需要使用charAt函数获取字符。<br>而且Java的数组都是分配在堆中的，无论是通过new还是使用{}.  </p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2025/03/03/%E3%80%8AJava%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E3%80%8B%E7%AC%94%E8%AE%B03/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="时光不会倒流y">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Always Blog">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Always Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2025/03/03/%E3%80%8AJava%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E3%80%8B%E7%AC%94%E8%AE%B03/" class="post-title-link" itemprop="url">《Java核心技术》笔记3-继承</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2025-03-03 19:37:47" itemprop="dateCreated datePublished" datetime="2025-03-03T19:37:47+08:00">2025-03-03</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-03-09 22:38:40" itemprop="dateModified" datetime="2025-03-09T22:38:40+08:00">2025-03-09</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h2><h3 id="子类"><a href="#子类" class="headerlink" title="子类"></a>子类</h3><p>Java使用extends代替了C++中的冒号（：），在Java中，所有继承都是公共继承。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Employee</span> <span class="keyword">extends</span> <span class="title class_">Comparable</span></span><br></pre></td></tr></table></figure>
-<h3 id="覆盖方法"><a href="#覆盖方法" class="headerlink" title="覆盖方法"></a>覆盖方法</h3><p>需要使用super关键字来调用父类的方法访问父类的私有字段</p>
-<h3 id="子类构造器"><a href="#子类构造器" class="headerlink" title="子类构造器"></a>子类构造器</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="title function_">Manager</span><span class="params">(String name,<span class="type">double</span> salary,<span class="type">int</span> year)</span>&#123;</span><br><span class="line">    <span class="built_in">super</span>(name,salary,year);</span><br><span class="line">    bonus=<span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>由于子类无法访问父类的私有字段，所以通过super关键字访问父类构造方法，如果子类的构造器没有显式调用父类的构造器，会默认调用父类的无参数构造器<br>在C++中，会使用初始化列表来调用父类的构造器</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Manager::<span class="built_in">Manager</span>(String name,<span class="type">double</span> salary,<span class="type">int</span> year):<span class="built_in">Employee</span>(name,salary,year)&#123;</span><br><span class="line">    bonus=<span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="多态和动态绑定"><a href="#多态和动态绑定" class="headerlink" title="多态和动态绑定"></a>多态和动态绑定</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(Employee e:staff)&#123;</span><br><span class="line">    System.out.println(e.getSalary());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>一个对象变量可以指示多种实际类型的的现象称为多态，在运行时能够自动选择适当的方法称为动态绑定。<br>在C++中实现多态需要需要将成员函数声明为virtual，而Java中多态是默认的，如果不希望让一个方法是虚拟的，可以将它标记为final</p>
-<h3 id="强制类型转换"><a href="#强制类型转换" class="headerlink" title="强制类型转换"></a>强制类型转换</h3><p>尽量不使用，如果使用，只能在继承层次内使用，且将父类变为子类时要使用instanceof检查</p>
-<h3 id="抽象类"><a href="#抽象类" class="headerlink" title="抽象类"></a>抽象类</h3><p>在C++中，有一种抽象方法称为纯虚函数，要在末尾用&#x3D;0标记，如果至少有一个纯虚函数，这个C++类就是抽象类，在C++中没有提供用于表示抽象类的关键词。<br>在Java中即使不含抽象方法也可以将类声明为抽象类，只需要使用abstract关键词。<br>注意，抽象类不能实例化，可以定义一个抽象类的对象变量，但只能引用非抽象子类的对象。</p>
-<h3 id="受保护访问"><a href="#受保护访问" class="headerlink" title="受保护访问"></a>受保护访问</h3><p>4种修饰符</p>
-<ol>
-<li>private-仅对本类可见</li>
-<li>默认-对本包可见</li>
-<li>protected-对本包和所有子类可见</li>
-<li>public-对外部完全可见</li>
-</ol>
-<h3 id="Object：所有类的超类"><a href="#Object：所有类的超类" class="headerlink" title="Object：所有类的超类"></a>Object：所有类的超类</h3><p>Object类中equals方法用于检测一个对象是否等于另一个对象，比较两个对象的引用是否相同  </p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">equals</span><span class="params">(Object obj)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> (<span class="built_in">this</span> == obj);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>如果x.object(y);中有一个null引用，会报错。<br>Java提供了Object.equals（a，b）静态方法可以防备比较对象为null。<br>如果需要按内容比较，经常需要重写equals方法，例如String类和基础类型包装类都重写了equals方法。<br>Object类还有一个toString方法，默认返回对象的类名和哈希码，建议重写该方法来返回更有意义的字符串。  </p>
-<h3 id="泛型数组列表"><a href="#泛型数组列表" class="headerlink" title="泛型数组列表"></a>泛型数组列表</h3><p>ArrayList是一个有类型参数的泛型类。<br>声明数组列表甚至可以有三种写法：</p>
-<ol>
-<li><code>ArrayList&lt;Employee&gt; staff=new ArrayList&lt;Employee&gt;();</code></li>
-<li><code>var staff=new ArrayList&lt;Employee&gt;();</code></li>
-<li><code>ArrayList&lt;Employee&gt; staff=new ArrayList&lt;&gt;();</code></li>
-</ol>
-<p>最后一种方法，编译器会检查并自动填写。<br>ArratList类似于C++的vecter模板，都是泛型类型，只是vector重载了[]运算符从而便于访问，还有a&#x3D;b在vector是按值拷贝，在Java中是让a跟b引用同一个数组列表。<br>由于没有重载运算符，我们需要通过get和set方法来访问元素，使用size来统计元素个数。  </p>
-<h3 id="包装器类"><a href="#包装器类" class="headerlink" title="包装器类"></a>包装器类</h3><p>如果想要定义一个整型数组列表，必须使用ArrayList<Integer>,因为尖括号内不允许使用基本类型。<br>包装器有一种编译器负责的<strong>自动装箱</strong>特性：<br><code>list.add(3);</code>会自动变换成<code>list.add(Integer.valueOf(3));</code><br><code>int n=list.get(i);</code>会自动转换成<code>int n=list.get(i).intValue();</code><br>基本类型与对象包装器有一点要注意，&#x3D;&#x3D;运算符应用于包装器对象检测的是是否有相同内存位置，采用equals方法可以解决这个问题。  </p>
-<h3 id="参数数量可变的方法"><a href="#参数数量可变的方法" class="headerlink" title="参数数量可变的方法"></a>参数数量可变的方法</h3><p>printf方法的实现</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">PrintStream</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> PrintStream <span class="title function_">printf</span><span class="params">(String fmt,Object... args)</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> format(fmt,args);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>对于printf的实现者来说，Object…参数类型与Object[]完全一样。例如你可以自己实现一个方法：  </p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="type">double</span> <span class="title function_">max</span><span class="params">(<span class="type">double</span>... values)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">double</span> largest=Double.NEGATIVE_INFINITY;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">double</span> v:values) <span class="keyword">if</span>(v&gt;largest) largest=v;</span><br><span class="line">    <span class="keyword">return</span> largest;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="枚举类"><a href="#枚举类" class="headerlink" title="枚举类"></a>枚举类</h3><p>枚举声明定义的类型是一个类，它刚好有固定个实例，不可构造新对象，可以用&#x3D;&#x3D;比较。<br>每个枚举类都有一个静态的values方法，返回一个包含全部值的数组。</p>
-<h3 id="反射"><a href="#反射" class="headerlink" title="反射"></a>反射</h3><p>不需要为其他Java程序员构建工具，暂时跳过。</p>
-<h3 id="继承的设计技巧"><a href="#继承的设计技巧" class="headerlink" title="继承的设计技巧"></a>继承的设计技巧</h3><ol>
-<li>将公共操作和字段放在父类中</li>
-<li>不要使用受保护的字段</li>
-<li>使用继承实现is-a关系</li>
-<li>使用多态，而不要使用类型信息</li>
-<li>除非所有使用继承的方法都有意义，否则不要使用继承</li>
-</ol>
 
       
     </div>

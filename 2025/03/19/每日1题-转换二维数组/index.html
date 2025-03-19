@@ -19,26 +19,27 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.22.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="半导体纯硅：电的不良导体。N型硅：添加第五组元素（例如磷）到硅中，得到一种许多未被束缚在共价键中的自由电子的晶体。P型硅：添加第三组元素（例如铝）到硅中，而是产生的晶体在存在大量电子空额，我们称之为空穴。   二极管如果用一个电池使二极管的P区相对于N区为正，正向偏置，电流通过。如果二极管的N区相对于P区为正，反向偏置，几乎没有电流。二极管的伏安特性：电流在电压达到0.6V左右时迅速上升，因此在毫">
+    <meta name="description" content="题目描述给你一个整数数组 nums 。请你创建一个满足以下条件的二维数组：    二维数组应该只包含数组 nums 中的元素。 二维数组中的每一行都包含不同的整数。 二维数组的行数应尽可能少 。返回结果数组。如果存在多种答案，则返回其中任何一种。请注意，二维数组的每一行上可以存在不同数量的元素。  题解通过哈希表先统计所有元素出现次数，然后遍历哈希表的同时将元素出现次数减1，如果次数减到了0，就擦">
 <meta property="og:type" content="article">
-<meta property="og:title" content="电子电路的基本器件">
-<meta property="og:url" content="http://example.com/2025/03/13/%E7%94%B5%E5%AD%90%E7%94%B5%E8%B7%AF%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%99%A8%E4%BB%B6/index.html">
+<meta property="og:title" content="每日1题-转换二维数组">
+<meta property="og:url" content="http://example.com/2025/03/19/%E6%AF%8F%E6%97%A51%E9%A2%98-%E8%BD%AC%E6%8D%A2%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84/index.html">
 <meta property="og:site_name" content="Always Blog">
-<meta property="og:description" content="半导体纯硅：电的不良导体。N型硅：添加第五组元素（例如磷）到硅中，得到一种许多未被束缚在共价键中的自由电子的晶体。P型硅：添加第三组元素（例如铝）到硅中，而是产生的晶体在存在大量电子空额，我们称之为空穴。   二极管如果用一个电池使二极管的P区相对于N区为正，正向偏置，电流通过。如果二极管的N区相对于P区为正，反向偏置，几乎没有电流。二极管的伏安特性：电流在电压达到0.6V左右时迅速上升，因此在毫">
+<meta property="og:description" content="题目描述给你一个整数数组 nums 。请你创建一个满足以下条件的二维数组：    二维数组应该只包含数组 nums 中的元素。 二维数组中的每一行都包含不同的整数。 二维数组的行数应尽可能少 。返回结果数组。如果存在多种答案，则返回其中任何一种。请注意，二维数组的每一行上可以存在不同数量的元素。  题解通过哈希表先统计所有元素出现次数，然后遍历哈希表的同时将元素出现次数减1，如果次数减到了0，就擦">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2025-03-13T08:20:46.000Z">
-<meta property="article:modified_time" content="2025-03-15T05:13:39.168Z">
+<meta property="article:published_time" content="2025-03-19T15:46:28.000Z">
+<meta property="article:modified_time" content="2025-03-19T16:09:07.552Z">
 <meta property="article:author" content="时光不会倒流y">
+<meta property="article:tag" content="算法">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="http://example.com/2025/03/13/%E7%94%B5%E5%AD%90%E7%94%B5%E8%B7%AF%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%99%A8%E4%BB%B6/">
+<link rel="canonical" href="http://example.com/2025/03/19/%E6%AF%8F%E6%97%A51%E9%A2%98-%E8%BD%AC%E6%8D%A2%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84/">
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2025/03/13/%E7%94%B5%E5%AD%90%E7%94%B5%E8%B7%AF%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%99%A8%E4%BB%B6/","path":"2025/03/13/电子电路的基本器件/","title":"电子电路的基本器件"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2025/03/19/%E6%AF%8F%E6%97%A51%E9%A2%98-%E8%BD%AC%E6%8D%A2%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84/","path":"2025/03/19/每日1题-转换二维数组/","title":"每日1题-转换二维数组"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>电子电路的基本器件 | Always Blog</title>
+<title>每日1题-转换二维数组 | Always Blog</title>
   
 
 
@@ -110,7 +111,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%8A%E5%AF%BC%E4%BD%93"><span class="nav-number">1.</span> <span class="nav-text">半导体</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E6%9E%81%E7%AE%A1"><span class="nav-number">2.</span> <span class="nav-text">二极管</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E6%9E%81%E7%AE%A1-BJT"><span class="nav-number">3.</span> <span class="nav-text">三极管(BJT)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MOS%E7%AE%A1"><span class="nav-number">4.</span> <span class="nav-text">MOS管</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CMOS%E7%AE%A1"><span class="nav-number">5.</span> <span class="nav-text">CMOS管</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE%E6%8F%8F%E8%BF%B0"><span class="nav-number">1.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%98%E8%A7%A3"><span class="nav-number">2.</span> <span class="nav-text">题解</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -156,7 +157,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2025/03/13/%E7%94%B5%E5%AD%90%E7%94%B5%E8%B7%AF%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%99%A8%E4%BB%B6/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/03/19/%E6%AF%8F%E6%97%A51%E9%A2%98-%E8%BD%AC%E6%8D%A2%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -169,12 +170,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="电子电路的基本器件 | Always Blog">
+      <meta itemprop="name" content="每日1题-转换二维数组 | Always Blog">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          电子电路的基本器件
+          每日1题-转换二维数组
         </h1>
 
         <div class="post-meta-container">
@@ -185,14 +186,14 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2025-03-13 16:20:46" itemprop="dateCreated datePublished" datetime="2025-03-13T16:20:46+08:00">2025-03-13</time>
+      <time title="创建时间：2025-03-19 23:46:28" itemprop="dateCreated datePublished" datetime="2025-03-19T23:46:28+08:00">2025-03-19</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-03-15 13:13:39" itemprop="dateModified" datetime="2025-03-15T13:13:39+08:00">2025-03-15</time>
+      <time title="修改时间：2025-03-20 00:09:07" itemprop="dateModified" datetime="2025-03-20T00:09:07+08:00">2025-03-20</time>
     </span>
 
   
@@ -204,12 +205,14 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><h3 id="半导体"><a href="#半导体" class="headerlink" title="半导体"></a>半导体</h3><p>纯硅：电的不良导体。<br>N型硅：添加第五组元素（例如磷）到硅中，得到一种许多未被束缚在共价键中的自由电子的晶体。<br>P型硅：添加第三组元素（例如铝）到硅中，而是产生的晶体在存在大量电子空额，我们称之为空穴。  </p>
-<h3 id="二极管"><a href="#二极管" class="headerlink" title="二极管"></a>二极管</h3><p>如果用一个电池使二极管的P区相对于N区为正，正向偏置，电流通过。<br>如果二极管的N区相对于P区为正，反向偏置，几乎没有电流。<br>二极管的伏安特性：电流在电压达到0.6V左右时迅速上升，因此在毫安尺度下硅二极管有一个0.6V-0.7V的阈值。  </p>
-<h3 id="三极管-BJT"><a href="#三极管-BJT" class="headerlink" title="三极管(BJT)"></a>三极管(BJT)</h3><p>NPN型；箭头B指向E<br>PNP型：箭头E指向B<br>原理：基极(B)小电流控制集电极(C)和发射极(E)大电流。</p>
-<h3 id="MOS管"><a href="#MOS管" class="headerlink" title="MOS管"></a>MOS管</h3><p>原理：漏源极进出。MOSFET的工作类似源极和漏极之间的一个开关，当栅极(G)电压超过阙值时导电沟道形成，开关开通。<br>金属层：金属层被氧化物层（厚度不成比例）分割开来，这样就确保了金属层不会与该元件的其他部分接触。<br>SR模型：MOSFET 形成的导电 N 沟道并非理想导体，具有一定的电阻R。同时注意到该电阻与沟道的几何尺寸有关。设沟道长度（栅极长度）为 L，沟道宽度为 W。则电阻正比于L&#x2F;W。  </p>
-<h3 id="CMOS管"><a href="#CMOS管" class="headerlink" title="CMOS管"></a>CMOS管</h3><p>概述：反相器，将输入电平取反，通过NMOS管和PMOS管组合形成互补MOS。<br>结构：栅极连接在一起作为输入，漏极连接在一起作为输出。NMOS管接地，PMOS管接电源。<br>工作：输入高电平，NMOS管导通，输出低电平；输入低电平，PMOS管导通，输出高电平。<br>静态特性：输入信号不变化时，功耗低。</p>
-
+    <div class="post-body" itemprop="articleBody"><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>给你一个整数数组 nums 。请你创建一个满足以下条件的二维数组：  </p>
+<ul>
+<li>二维数组应该只包含数组 nums 中的元素。</li>
+<li>二维数组中的每一行都包含不同的整数。</li>
+<li>二维数组的行数应尽可能少 。<br>返回结果数组。如果存在多种答案，则返回其中任何一种。<br>请注意，二维数组的每一行上可以存在不同数量的元素。</li>
+</ul>
+<h3 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h3><p>通过哈希表先统计所有元素出现次数，然后遍历哈希表的同时将元素出现次数减1，如果次数减到了0，就擦除元素。<br>注意C++的迭代器擦除元素函数的使用规则。  </p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; <span class="built_in">findMatrix</span>(vector&lt;<span class="type">int</span>&gt;&amp; nums) &#123;</span><br><span class="line">        <span class="comment">// 统计每个元素的出现次数</span></span><br><span class="line">        unordered_map&lt;<span class="type">int</span>, <span class="type">int</span>&gt; cnt;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> x : nums) &#123;</span><br><span class="line">            cnt[x]++;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; ans;</span><br><span class="line">        <span class="keyword">while</span> (!cnt.<span class="built_in">empty</span>()) &#123;</span><br><span class="line">            vector&lt;<span class="type">int</span>&gt; row;</span><br><span class="line">            <span class="comment">// cnt 中的每个元素的出现次数都减一</span></span><br><span class="line">            <span class="comment">// 一边遍历哈希表，一边删除元素</span></span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">auto</span> it = cnt.<span class="built_in">begin</span>(); it != cnt.<span class="built_in">end</span>();) &#123;</span><br><span class="line">                row.<span class="built_in">push_back</span>(it-&gt;first);</span><br><span class="line">                it-&gt;second--;</span><br><span class="line">                <span class="keyword">if</span> (--it-&gt;second == <span class="number">0</span>) &#123;</span><br><span class="line">                    it = cnt.<span class="built_in">erase</span>(it);<span class="comment">//迭代器擦除元素会使迭代器指向下一个元素，不需要++；</span></span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    it++;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            ans.<span class="built_in">push_back</span>(row);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
     </div>
 
     
@@ -217,19 +220,19 @@
     
 
     <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E7%AE%97%E6%B3%95/" rel="tag"># 算法</a>
+          </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2025/03/12/%E6%AF%8F%E6%97%A51%E9%A2%98-%E7%BB%9F%E8%AE%A1%E6%9C%80%E5%A4%A7%E5%85%83%E7%B4%A0%E5%87%BA%E7%8E%B0%E8%87%B3%E5%B0%91K%E6%AC%A1%E7%9A%84%E5%AD%90%E6%95%B0%E7%BB%84/" rel="prev" title="每日1题-统计最大元素出现至少K次的子数组">
-                  <i class="fa fa-angle-left"></i> 每日1题-统计最大元素出现至少K次的子数组
+                <a href="/2025/03/15/%E6%9C%BA%E8%80%83%E9%A2%98%E7%9B%AE-%E8%A7%A3%E5%AF%86%E7%8A%AF%E7%BD%AA%E6%97%B6%E9%97%B4/" rel="prev" title="机考题目-解密犯罪时间">
+                  <i class="fa fa-angle-left"></i> 机考题目-解密犯罪时间
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2025/03/13/%E3%80%8A%E4%BA%BA%E6%9C%88%E7%A5%9E%E8%AF%9D%E3%80%8B%E7%AC%94%E8%AE%B01/" rel="next" title="《人月神话》笔记1">
-                  《人月神话》笔记1 <i class="fa fa-angle-right"></i>
-                </a>
             </div>
           </div>
     </footer>
@@ -301,7 +304,7 @@
 
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/quicklink/2.3.0/quicklink.umd.js" integrity="sha256-yvJQOINiH9fWemHn0vCA5lsHWJaHs6/ZmO+1Ft04SvM=" crossorigin="anonymous"></script>
-  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":true,"archive":true,"delay":true,"timeout":3000,"priority":true,"url":"http://example.com/2025/03/13/%E7%94%B5%E5%AD%90%E7%94%B5%E8%B7%AF%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%99%A8%E4%BB%B6/"}</script>
+  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":true,"archive":true,"delay":true,"timeout":3000,"priority":true,"url":"http://example.com/2025/03/19/%E6%AF%8F%E6%97%A51%E9%A2%98-%E8%BD%AC%E6%8D%A2%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84/"}</script>
   <script src="/js/third-party/quicklink.js"></script>
 
 </body>

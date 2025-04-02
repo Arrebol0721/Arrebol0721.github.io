@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.22.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="Servlet 的作用 Java Servlet 是运行在 Web 服务器或应用服务器上的程序，它是作为来自 Web 浏览器或其他 HTTP 客户端的请求和 HTTP 服务器上的数据库或应用程序之间的中间层。  Servlet 基本使用 需要继承 HttpServlet 的父类才能具备接受前台请求功能  重写 doGet 和 doPost 方法 这两个方法分别对应前台表单的 method 属性 在">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Servlet基础">
+<meta property="og:url" content="http://example.com/2025/04/02/Servlet%E5%9F%BA%E7%A1%80/index.html">
+<meta property="og:site_name" content="Always Blog">
+<meta property="og:description" content="Servlet 的作用 Java Servlet 是运行在 Web 服务器或应用服务器上的程序，它是作为来自 Web 浏览器或其他 HTTP 客户端的请求和 HTTP 服务器上的数据库或应用程序之间的中间层。  Servlet 基本使用 需要继承 HttpServlet 的父类才能具备接受前台请求功能  重写 doGet 和 doPost 方法 这两个方法分别对应前台表单的 method 属性 在">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-04-02T08:12:52.000Z">
+<meta property="article:modified_time" content="2025-04-02T08:13:28.928Z">
+<meta property="article:author" content="时光不会倒流y">
+<meta property="article:tag" content="Java">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2025/04/02/Servlet%E5%9F%BA%E7%A1%80/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2025/04/02/Servlet%E5%9F%BA%E7%A1%80/","path":"2025/04/02/Servlet基础/","title":"Servlet基础"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Servlet基础 | Always Blog</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Always Blog</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Servlet-%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="nav-number">1.</span> <span class="nav-text">Servlet 的作用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Servlet-%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8"><span class="nav-number">2.</span> <span class="nav-text">Servlet 基本使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Servlet-%E4%B8%AD%E7%9A%84%E5%93%8D%E5%BA%94%E6%93%8D%E4%BD%9C"><span class="nav-number">3.</span> <span class="nav-text">Servlet 中的响应操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Servlet-%E7%9A%84%E5%88%9B%E5%BB%BA"><span class="nav-number">4.</span> <span class="nav-text">Servlet 的创建</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Servlet-Config-%E5%AF%B9%E8%B1%A1"><span class="nav-number">5.</span> <span class="nav-text">Servlet Config 对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%87%8D%E5%AE%9A%E5%90%91%E5%92%8C%E8%AF%B7%E6%B1%82%E8%BD%AC%E5%8F%91"><span class="nav-number">6.</span> <span class="nav-text">重定向和请求转发</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ServletContext-%E5%AF%B9%E8%B1%A1"><span class="nav-number">7.</span> <span class="nav-text">ServletContext 对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Cookie"><span class="nav-number">8.</span> <span class="nav-text">Cookie</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Request-%E5%AF%B9%E8%B1%A1%E5%92%8C-Response-%E5%AF%B9%E8%B1%A1"><span class="nav-number">9.</span> <span class="nav-text">Request 对象和 Response 对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BC%96%E7%A0%81%E5%AD%97%E7%AC%A6%E9%9B%86"><span class="nav-number">10.</span> <span class="nav-text">编码字符集</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">时光不会倒流y</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">39</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/04/02/Servlet%E5%9F%BA%E7%A1%80/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="时光不会倒流y">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Always Blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Servlet基础 | Always Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Servlet基础
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2025-04-02 16:12:52 / 修改时间：16:13:28" itemprop="dateCreated datePublished" datetime="2025-04-02T16:12:52+08:00">2025-04-02</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="Servlet-的作用"><a href="#Servlet-的作用" class="headerlink" title="Servlet 的作用"></a>Servlet 的作用</h2><ul>
+<li>Java Servlet 是运行在 Web 服务器或应用服务器上的程序，它是作为来自 Web 浏览器或其他 HTTP 客户端的请求和 HTTP 服务器上的数据库或应用程序之间的中间层。</li>
+</ul>
+<h2 id="Servlet-基本使用"><a href="#Servlet-基本使用" class="headerlink" title="Servlet 基本使用"></a>Servlet 基本使用</h2><ul>
+<li><p>需要继承 HttpServlet 的父类才能具备接受前台请求功能</p>
+<ul>
+<li>重写 doGet 和 doPost 方法</li>
+<li>这两个方法分别对应前台表单的 method 属性</li>
+<li>在方法中通过 getParameter 方法和 name 属性来获取前台数据</li>
+</ul>
+</li>
+<li><p>Servlet 类必须注册后才能使用</p>
+<ul>
+<li><p>注册信息中的<code>&lt;url-pattern&gt;</code>对应前台 action 属性</p>
+</li>
+<li><p><servlet-mapping>做映射对应前端，<servlet-class>对应后端地址</p>
+</li>
+</ul>
+</li>
+<li><p>Servlet 3.0+ 支持通过注解（如 @WebServlet）配置，无需 web.xml:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@WebServlet(&quot;/myservlet&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MyServlet</span> <span class="keyword">extends</span> <span class="title class_">HttpServlet</span> &#123; ... &#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>Spring Boot</strong> 等框架通常完全省略 <code>web.xml</code>，改用 Java 配置或自动装配.</p>
+</li>
+</ul>
+<h2 id="Servlet-中的响应操作"><a href="#Servlet-中的响应操作" class="headerlink" title="Servlet 中的响应操作"></a>Servlet 中的响应操作</h2><ul>
+<li><p>通过 resp 响应对象获取输出流 PrintWriter 对象</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">resp.setContentType(<span class="string">&quot;text/html;charcter&quot;</span>)</span><br><span class="line">PrintWriter out=resp.getWriter()</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="Servlet-的创建"><a href="#Servlet-的创建" class="headerlink" title="Servlet 的创建"></a>Servlet 的创建</h2><ul>
+<li>继承 HttpServlet</li>
+<li>继承 HttpServlet 的父类 GenericServlet</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@WebServlet(&quot;/test01&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">TestServlet01</span> <span class="keyword">extends</span> <span class="title class_">GenericServlet</span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">service</span><span class="params">(ServletRequest servletRequest, ServletResponse servletResponse)</span><span class="keyword">throws</span> IOException &#123;</span><br><span class="line">        String name=servletRequest.getParameter(<span class="string">&quot;nameEmail&quot;</span>);</span><br><span class="line">        servletResponse.setContentType(<span class="string">&quot;text/html;charset=UTF-8&quot;</span>);</span><br><span class="line">        PrintWriter pw=servletResponse.getWriter();</span><br><span class="line">        pw.write(name);</span><br><span class="line">        pw.flush();</span><br><span class="line">        pw.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>GenericServlet 类重写了 service 方法，根据请求方法的不同，将请求分发给 doGet 和 doPost 方法</li>
+<li>继承自 Servlet 方法需要重写<code>init()，service()，getServletConfig()，getServletInfo()，destroy()</code>5 个方法，展现了 servlet 对象的生命周期。第一次访问时创建对象，初始化对象，请求一次就会执行一次<code>service()</code>方法，在 Tomcat 关闭时会执行<code>destroy()</code>，</li>
+<li>多个 HTTP 请求到达 Servlet 容器产生一个实例，多线程交给<code>service()</code>处理，单例多线程</li>
+</ul>
+<h2 id="Servlet-Config-对象"><a href="#Servlet-Config-对象" class="headerlink" title="Servlet Config 对象"></a>Servlet Config 对象</h2><ul>
+<li>ServletConfig 对象，获取属于 Servlet 对象的配置项。通过 web.xml 中添加<init-param>标签，在<code>doGet()</code>或者<code>doPost()</code>方法中都可以创建 ServletConfig 对象来获取<init-param>中的配置信息</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">servlet</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>login<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">servlet-class</span>&gt;</span>com.jxd.stu.login<span class="tag">&lt;/<span class="name">servlet-class</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">init-param</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">param-name</span>&gt;</span>name<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">param-value</span>&gt;</span>UTF-8<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">init-param</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">servlet</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>login<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/login<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">servlet-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ServletConfig config=<span class="built_in">this</span>.getServletConfig();</span><br><span class="line">String temp=config.getInitParameter(<span class="string">&quot;&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<h2 id="重定向和请求转发"><a href="#重定向和请求转发" class="headerlink" title="重定向和请求转发"></a>重定向和请求转发</h2><p>请求转发是一种<strong>服务器内部的跳转机制</strong>，我们知道，重定向会使得浏览器去重新请求一个页面，而请求转发则是服务器内部进行跳转，它的目的是，直接将本次请求转发给其他 Servlet 进行处理，并由其他 Servlet 来返回结果，因此它是在进行内部的转发。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">resp.sendRedirect(<span class="string">&quot;time&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">req.getRequestDispatcher(<span class="string">&quot;/time&quot;</span>).forward(req, resp);</span><br></pre></td></tr></table></figure>
+
+<p>请求转发可以携带数据。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">req.setAttribute(<span class="string">&quot;test&quot;</span>, <span class="string">&quot;我是请求转发前的数据&quot;</span>);</span><br><span class="line">req.getRequestDispatcher(<span class="string">&quot;/time&quot;</span>).forward(req, resp);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>重定向是两次请求，请求转发是一次请求</li>
+<li>请求转发地址栏不会发生改变， 重定向地址栏会发生改变</li>
+<li>请求转发可以共享请求参数 ，重定向之后，就获取不了共享参数了</li>
+<li>请求转发只能转发给内部的 Servlet</li>
+</ul>
+<h2 id="ServletContext-对象"><a href="#ServletContext-对象" class="headerlink" title="ServletContext 对象"></a>ServletContext 对象</h2><p>ServletContext 全局唯一，它是属于整个 Web 应用程序的，我们可以通过<code>getServletContext()</code>来获取到此对象。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">ServletContext</span> <span class="variable">context</span> <span class="operator">=</span> getServletContext();</span><br><span class="line">context.setAttribute(<span class="string">&quot;test&quot;</span>, <span class="string">&quot;我是重定向之前的数据&quot;</span>);</span><br><span class="line">resp.sendRedirect(<span class="string">&quot;time&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>ServletContext 对象，可以用来获取 web.xml 中的全局配置项，使用方法和 ServletConfig 对象一样。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">context-param</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">param-name</span>&gt;</span><span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">param-value</span>&gt;</span><span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">context-param</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ServletContext context=<span class="built_in">this</span>.getServletContext();</span><br><span class="line">String temp=context.getInitParameter(<span class="string">&quot;&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<h2 id="Cookie"><a href="#Cookie" class="headerlink" title="Cookie"></a>Cookie</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Cookie</span> <span class="variable">cookie</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Cookie</span>(<span class="string">&quot;test&quot;</span>, <span class="string">&quot;yyds&quot;</span>);</span><br><span class="line">resp.addCookie(cookie);</span><br><span class="line">resp.sendRedirect(<span class="string">&quot;time&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<h2 id="Request-对象和-Response-对象"><a href="#Request-对象和-Response-对象" class="headerlink" title="Request 对象和 Response 对象"></a>Request 对象和 Response 对象</h2><ul>
+<li><p>设置编码字符集，放在数据获取之前。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//设置编码格式</span></span><br><span class="line">request.setCharacterEncoding(<span class="string">&quot;UTF-8&quot;</span>);</span><br><span class="line">response.setContentType(<span class="string">&quot;text/html;charset=UTF-8&quot;</span>);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>数据获取，返回的是字符串，转换成数字需要使用 Integer 类来处理</p>
+</li>
+<li><p>获取请求方式，getMethod</p>
+</li>
+<li><p>添加属性，setAttribute（name，value）</p>
+</li>
+<li><p>getAttribute（name），返回的是对象，需要强制转换。</p>
+</li>
+<li><p>获取响应流对象<code>PrintWriter pw=response.getWriter()</code></p>
+<ul>
+<li>pw.write()</li>
+<li>pw.flush()</li>
+<li>pw.close()</li>
+</ul>
+</li>
+</ul>
+<h2 id="编码字符集"><a href="#编码字符集" class="headerlink" title="编码字符集"></a>编码字符集</h2><p>服务端客户端的字符集要一致，常用 UTF-8</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Java/" rel="tag"># Java</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/03/24/Javascript%E8%AF%BE%E7%A8%8B/" rel="prev" title="Javascript课程">
+                  <i class="fa fa-angle-left"></i> Javascript课程
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">时光不会倒流y</span>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script size="300" alpha="0.6" zIndex="-1" src="https://cdnjs.cloudflare.com/ajax/libs/ribbon.js/1.0.2/ribbon.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.6.0/pjax.min.js" integrity="sha256-vxLn1tSKWD4dqbMRyv940UYw4sXgMtYcK6reefzZrao=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script><script src="/js/pjax.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/quicklink/2.3.0/quicklink.umd.js" integrity="sha256-yvJQOINiH9fWemHn0vCA5lsHWJaHs6/ZmO+1Ft04SvM=" crossorigin="anonymous"></script>
+  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":true,"archive":true,"delay":true,"timeout":3000,"priority":true,"url":"http://example.com/2025/04/02/Servlet%E5%9F%BA%E7%A1%80/"}</script>
+  <script src="/js/third-party/quicklink.js"></script>
+
+</body>
+</html>

@@ -118,13 +118,13 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">37</span>
+          <span class="site-state-item-count">39</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-count">18</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -141,6 +141,297 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/04/02/Servlet%E5%9F%BA%E7%A1%80/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="时光不会倒流y">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Always Blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Always Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2025/04/02/Servlet%E5%9F%BA%E7%A1%80/" class="post-title-link" itemprop="url">Servlet基础</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2025-04-02 16:12:52 / 修改时间：16:13:28" itemprop="dateCreated datePublished" datetime="2025-04-02T16:12:52+08:00">2025-04-02</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="Servlet-的作用"><a href="#Servlet-的作用" class="headerlink" title="Servlet 的作用"></a>Servlet 的作用</h2><ul>
+<li>Java Servlet 是运行在 Web 服务器或应用服务器上的程序，它是作为来自 Web 浏览器或其他 HTTP 客户端的请求和 HTTP 服务器上的数据库或应用程序之间的中间层。</li>
+</ul>
+<h2 id="Servlet-基本使用"><a href="#Servlet-基本使用" class="headerlink" title="Servlet 基本使用"></a>Servlet 基本使用</h2><ul>
+<li><p>需要继承 HttpServlet 的父类才能具备接受前台请求功能</p>
+<ul>
+<li>重写 doGet 和 doPost 方法</li>
+<li>这两个方法分别对应前台表单的 method 属性</li>
+<li>在方法中通过 getParameter 方法和 name 属性来获取前台数据</li>
+</ul>
+</li>
+<li><p>Servlet 类必须注册后才能使用</p>
+<ul>
+<li><p>注册信息中的<code>&lt;url-pattern&gt;</code>对应前台 action 属性</p>
+</li>
+<li><p><servlet-mapping>做映射对应前端，<servlet-class>对应后端地址</p>
+</li>
+</ul>
+</li>
+<li><p>Servlet 3.0+ 支持通过注解（如 @WebServlet）配置，无需 web.xml:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@WebServlet(&quot;/myservlet&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MyServlet</span> <span class="keyword">extends</span> <span class="title class_">HttpServlet</span> &#123; ... &#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>Spring Boot</strong> 等框架通常完全省略 <code>web.xml</code>，改用 Java 配置或自动装配.</p>
+</li>
+</ul>
+<h2 id="Servlet-中的响应操作"><a href="#Servlet-中的响应操作" class="headerlink" title="Servlet 中的响应操作"></a>Servlet 中的响应操作</h2><ul>
+<li><p>通过 resp 响应对象获取输出流 PrintWriter 对象</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">resp.setContentType(<span class="string">&quot;text/html;charcter&quot;</span>)</span><br><span class="line">PrintWriter out=resp.getWriter()</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="Servlet-的创建"><a href="#Servlet-的创建" class="headerlink" title="Servlet 的创建"></a>Servlet 的创建</h2><ul>
+<li>继承 HttpServlet</li>
+<li>继承 HttpServlet 的父类 GenericServlet</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@WebServlet(&quot;/test01&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">TestServlet01</span> <span class="keyword">extends</span> <span class="title class_">GenericServlet</span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">service</span><span class="params">(ServletRequest servletRequest, ServletResponse servletResponse)</span><span class="keyword">throws</span> IOException &#123;</span><br><span class="line">        String name=servletRequest.getParameter(<span class="string">&quot;nameEmail&quot;</span>);</span><br><span class="line">        servletResponse.setContentType(<span class="string">&quot;text/html;charset=UTF-8&quot;</span>);</span><br><span class="line">        PrintWriter pw=servletResponse.getWriter();</span><br><span class="line">        pw.write(name);</span><br><span class="line">        pw.flush();</span><br><span class="line">        pw.close();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>GenericServlet 类重写了 service 方法，根据请求方法的不同，将请求分发给 doGet 和 doPost 方法</li>
+<li>继承自 Servlet 方法需要重写<code>init()，service()，getServletConfig()，getServletInfo()，destroy()</code>5 个方法，展现了 servlet 对象的生命周期。第一次访问时创建对象，初始化对象，请求一次就会执行一次<code>service()</code>方法，在 Tomcat 关闭时会执行<code>destroy()</code>，</li>
+<li>多个 HTTP 请求到达 Servlet 容器产生一个实例，多线程交给<code>service()</code>处理，单例多线程</li>
+</ul>
+<h2 id="Servlet-Config-对象"><a href="#Servlet-Config-对象" class="headerlink" title="Servlet Config 对象"></a>Servlet Config 对象</h2><ul>
+<li>ServletConfig 对象，获取属于 Servlet 对象的配置项。通过 web.xml 中添加<init-param>标签，在<code>doGet()</code>或者<code>doPost()</code>方法中都可以创建 ServletConfig 对象来获取<init-param>中的配置信息</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">servlet</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>login<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">servlet-class</span>&gt;</span>com.jxd.stu.login<span class="tag">&lt;/<span class="name">servlet-class</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">init-param</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">param-name</span>&gt;</span>name<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">param-value</span>&gt;</span>UTF-8<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">init-param</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">servlet</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>login<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/login<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">servlet-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ServletConfig config=<span class="built_in">this</span>.getServletConfig();</span><br><span class="line">String temp=config.getInitParameter(<span class="string">&quot;&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<h2 id="重定向和请求转发"><a href="#重定向和请求转发" class="headerlink" title="重定向和请求转发"></a>重定向和请求转发</h2><p>请求转发是一种<strong>服务器内部的跳转机制</strong>，我们知道，重定向会使得浏览器去重新请求一个页面，而请求转发则是服务器内部进行跳转，它的目的是，直接将本次请求转发给其他 Servlet 进行处理，并由其他 Servlet 来返回结果，因此它是在进行内部的转发。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">resp.sendRedirect(<span class="string">&quot;time&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">req.getRequestDispatcher(<span class="string">&quot;/time&quot;</span>).forward(req, resp);</span><br></pre></td></tr></table></figure>
+
+<p>请求转发可以携带数据。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">req.setAttribute(<span class="string">&quot;test&quot;</span>, <span class="string">&quot;我是请求转发前的数据&quot;</span>);</span><br><span class="line">req.getRequestDispatcher(<span class="string">&quot;/time&quot;</span>).forward(req, resp);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>重定向是两次请求，请求转发是一次请求</li>
+<li>请求转发地址栏不会发生改变， 重定向地址栏会发生改变</li>
+<li>请求转发可以共享请求参数 ，重定向之后，就获取不了共享参数了</li>
+<li>请求转发只能转发给内部的 Servlet</li>
+</ul>
+<h2 id="ServletContext-对象"><a href="#ServletContext-对象" class="headerlink" title="ServletContext 对象"></a>ServletContext 对象</h2><p>ServletContext 全局唯一，它是属于整个 Web 应用程序的，我们可以通过<code>getServletContext()</code>来获取到此对象。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">ServletContext</span> <span class="variable">context</span> <span class="operator">=</span> getServletContext();</span><br><span class="line">context.setAttribute(<span class="string">&quot;test&quot;</span>, <span class="string">&quot;我是重定向之前的数据&quot;</span>);</span><br><span class="line">resp.sendRedirect(<span class="string">&quot;time&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>ServletContext 对象，可以用来获取 web.xml 中的全局配置项，使用方法和 ServletConfig 对象一样。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">context-param</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">param-name</span>&gt;</span><span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">param-value</span>&gt;</span><span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">context-param</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ServletContext context=<span class="built_in">this</span>.getServletContext();</span><br><span class="line">String temp=context.getInitParameter(<span class="string">&quot;&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<h2 id="Cookie"><a href="#Cookie" class="headerlink" title="Cookie"></a>Cookie</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Cookie</span> <span class="variable">cookie</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Cookie</span>(<span class="string">&quot;test&quot;</span>, <span class="string">&quot;yyds&quot;</span>);</span><br><span class="line">resp.addCookie(cookie);</span><br><span class="line">resp.sendRedirect(<span class="string">&quot;time&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<h2 id="Request-对象和-Response-对象"><a href="#Request-对象和-Response-对象" class="headerlink" title="Request 对象和 Response 对象"></a>Request 对象和 Response 对象</h2><ul>
+<li><p>设置编码字符集，放在数据获取之前。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//设置编码格式</span></span><br><span class="line">request.setCharacterEncoding(<span class="string">&quot;UTF-8&quot;</span>);</span><br><span class="line">response.setContentType(<span class="string">&quot;text/html;charset=UTF-8&quot;</span>);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>数据获取，返回的是字符串，转换成数字需要使用 Integer 类来处理</p>
+</li>
+<li><p>获取请求方式，getMethod</p>
+</li>
+<li><p>添加属性，setAttribute（name，value）</p>
+</li>
+<li><p>getAttribute（name），返回的是对象，需要强制转换。</p>
+</li>
+<li><p>获取响应流对象<code>PrintWriter pw=response.getWriter()</code></p>
+<ul>
+<li>pw.write()</li>
+<li>pw.flush()</li>
+<li>pw.close()</li>
+</ul>
+</li>
+</ul>
+<h2 id="编码字符集"><a href="#编码字符集" class="headerlink" title="编码字符集"></a>编码字符集</h2><p>服务端客户端的字符集要一致，常用 UTF-8</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/03/24/Javascript%E8%AF%BE%E7%A8%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="时光不会倒流y">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Always Blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Always Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2025/03/24/Javascript%E8%AF%BE%E7%A8%8B/" class="post-title-link" itemprop="url">Javascript课程</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-03-24 09:52:29" itemprop="dateCreated datePublished" datetime="2025-03-24T09:52:29+08:00">2025-03-24</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-03-28 08:38:52" itemprop="dateModified" datetime="2025-03-28T08:38:52+08:00">2025-03-28</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>找到工作了，然后培训，学了点 js，做账号注册界面的前端校验和事件监听委托。<br>以后可能更新少了。</p>
+<h3 id="JavaScript-常用系统函数"><a href="#JavaScript-常用系统函数" class="headerlink" title="JavaScript 常用系统函数"></a>JavaScript 常用系统函数</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">parseInt</span>(<span class="string">&quot;123&quot;</span>);</span><br><span class="line"><span class="built_in">parseInt</span>(<span class="string">&quot;199.23&quot;</span>); <span class="comment">//199</span></span><br><span class="line"><span class="built_in">parseInt</span>(<span class="string">&quot;abc123&quot;</span>); <span class="comment">//nan</span></span><br><span class="line"><span class="built_in">parseFloat</span>(<span class="string">&quot;199.05&quot;</span>); <span class="comment">//199.05</span></span><br><span class="line"><span class="title function_">isNan</span>(<span class="number">123</span>); <span class="comment">//false</span></span><br><span class="line"><span class="title function_">isNan</span>(<span class="string">&quot;123&quot;</span>); <span class="comment">//false</span></span><br><span class="line"><span class="title function_">isNan</span>(<span class="string">&quot;132sad&quot;</span>); <span class="comment">//true</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="自定义函数"><a href="#自定义函数" class="headerlink" title="自定义函数"></a>自定义函数</h3><p>带返回值函数一般用于其他函数调用</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript"><span class="variable language_">window</span>.<span class="property">onload</span>=<span class="keyword">function</span>(<span class="params"></span>)&#123;<span class="comment">//页面加载时候的调用</span></span></span><br><span class="line"><span class="language-javascript">    <span class="title function_">show</span>()</span></span><br><span class="line"><span class="language-javascript">&#125;</span></span><br><span class="line"><span class="language-javascript"><span class="keyword">function</span> <span class="title function_">show</span>(<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">let</span> num=<span class="number">20</span></span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">if</span>(num&gt;<span class="number">10</span>)&#123;</span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">return</span></span></span><br><span class="line"><span class="language-javascript">    &#125;</span></span><br><span class="line"><span class="language-javascript">    <span class="title function_">alert</span>(<span class="string">&quot;hello&quot;</span>)</span></span><br><span class="line"><span class="language-javascript">&#125;</span></span><br><span class="line"><span class="language-javascript">&lt;script/&gt;</span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"><span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">&quot;button&quot;</span> <span class="attr">onclick</span>=<span class="string">&quot;show()&quot;</span>  <span class="attr">ondbclick</span>=<span class="string">&quot;&quot;</span> <span class="attr">onchange</span>=<span class="string">&quot;&quot;</span> <span class="attr">onfocus</span>=<span class="string">&quot;&quot;</span> <span class="attr">onblur</span>=<span class="string">&quot;&quot;</span>&gt;</span>   <span class="tag">&lt;<span class="name">button</span>/&gt;</span></span></span></span><br></pre></td></tr></table></figure>
+
+<h3 id="匿名函数和箭头函数"><a href="#匿名函数和箭头函数" class="headerlink" title="匿名函数和箭头函数"></a>匿名函数和箭头函数</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> showHello = <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">  <span class="title function_">alert</span>(<span class="string">&quot;hello&quot;</span>);</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">var</span> <span class="title function_">show</span> = (<span class="params">a</span>) =&gt; <span class="title function_">alert</span>(<span class="string">&quot;hello&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<h3 id="全局变量和局部变量"><a href="#全局变量和局部变量" class="headerlink" title="全局变量和局部变量"></a>全局变量和局部变量</h3><h3 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h3><p>数组也是一种对象，没有类型限制。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//创建</span></span><br><span class="line"><span class="keyword">var</span> arr01 = <span class="keyword">new</span> <span class="title class_">Array</span>();</span><br><span class="line"><span class="keyword">var</span> arr02 = [];</span><br><span class="line"></span><br><span class="line">arr[<span class="number">0</span>] = <span class="number">10</span>;</span><br><span class="line"><span class="comment">//数组对象的常用函数</span></span><br><span class="line">arr02.<span class="title function_">push</span>(<span class="string">&quot;hello&quot;</span>); <span class="comment">//尾插</span></span><br><span class="line">arr02.<span class="title function_">pop</span>();</span><br><span class="line">arr02.<span class="title function_">unshift</span>(<span class="string">&quot;hello&quot;</span>); <span class="comment">//头插</span></span><br><span class="line">arr02.<span class="title function_">shift</span>();</span><br><span class="line">arr02.<span class="title function_">reverse</span>();</span><br><span class="line">arr02.<span class="title function_">sort</span>();</span><br><span class="line"><span class="keyword">let</span> str = arr.<span class="title function_">join</span>(<span class="string">&quot;,&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<h3 id="日期对象"><a href="#日期对象" class="headerlink" title="日期对象"></a>日期对象</h3><p>常用方法，包括获取年月日，小时，分钟，秒，星期几（0-6）</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">window</span>.<span class="property">onload</span> = <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">var</span> date = <span class="keyword">new</span> <span class="title class_">Date</span>();</span><br><span class="line">  <span class="keyword">var</span> year = date.<span class="title function_">getFullYear</span>();</span><br><span class="line">  <span class="keyword">var</span> month = date.<span class="title function_">getMonth</span>() + <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">var</span> d = date.<span class="title function_">getDate</span>();</span><br><span class="line">  <span class="keyword">var</span> day = date.<span class="title function_">getDay</span>();</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="js-对象"><a href="#js-对象" class="headerlink" title="js 对象"></a>js 对象</h3><p>js 对象可以直接给成员赋值，不用定义，可以有构造函数。<br>可以创建对象数组。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//创建对象</span></span><br><span class="line"><span class="keyword">var</span> obj = <span class="keyword">new</span> <span class="title class_">Object</span>();</span><br><span class="line"><span class="keyword">var</span> obj = &#123;&#125;;</span><br><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&quot;cyf&quot;</span>,</span><br><span class="line">  <span class="attr">age</span>: <span class="number">20</span>,</span><br><span class="line">  <span class="attr">show</span>: <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="title function_">alert</span>(<span class="variable language_">this</span>.<span class="property">name</span>, <span class="variable language_">this</span>.<span class="property">age</span>);</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">//成员定义</span></span><br><span class="line">obj.<span class="property">name</span> = <span class="string">&quot;cyf&quot;</span>;</span><br><span class="line">obj.<span class="property">age</span> = <span class="number">23</span>;</span><br><span class="line">obj.<span class="property">f</span> = <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">  <span class="title function_">alert</span>(<span class="variable language_">this</span>.<span class="property">name</span> + <span class="variable language_">this</span>.<span class="property">age</span>);</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">//构造函数</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">obj</span>(<span class="params">name, sex, age</span>) &#123;</span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">name</span> = name;</span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">sex</span> = sex;</span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">age</span> = age;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//对象数组</span></span><br><span class="line"><span class="keyword">var</span> stus = [</span><br><span class="line">  &#123; <span class="attr">name</span>: <span class="string">&quot;ctg&quot;</span>, <span class="attr">age</span>: <span class="number">23</span> &#125;,</span><br><span class="line">  &#123; <span class="attr">name</span>: <span class="string">&quot;ct2&quot;</span>, <span class="attr">age</span>: <span class="number">21</span> &#125;,</span><br><span class="line">  &#123; <span class="attr">name</span>: <span class="string">&quot;c4g&quot;</span>, <span class="attr">age</span>: <span class="number">24</span> &#125;,</span><br><span class="line">];</span><br><span class="line"><span class="title function_">alert</span>(alert[<span class="number">1</span>].<span class="property">name</span>);</span><br></pre></td></tr></table></figure>
+
+<h3 id="window-对象"><a href="#window-对象" class="headerlink" title="window 对象"></a>window 对象</h3><p>使用控制台控制浏览器,貌似会读取缓存,而不会像普通打开页面一样重新加载.<br>它有很多属性,包括 history,history 又有很多方法。<br>alert，confirm，prompt 都属于 window 对象，只不过平常省略了 window。<br>open，close 方法。<br>延时执行方法 setTimeout(“函数名字”,延时时间)<br>循环执行方法 setInterval(“function”,间隔时间)</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">window</span>.<span class="property">history</span>.<span class="title function_">forward</span>();</span><br><span class="line"><span class="variable language_">window</span>.<span class="property">history</span>.<span class="title function_">back</span>();</span><br><span class="line"><span class="variable language_">window</span>.<span class="property">location</span>.<span class="property">href</span> = <span class="string">&quot;www.bilibili.com&quot;</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Document-对象"><a href="#Document-对象" class="headerlink" title="Document 对象"></a>Document 对象</h3><p>document 对象是 JavaScript 中操作网页内容的核心接口，它是 DOM（文档对象模型） 的入口点，代表了整个 HTML 页面。</p>
+<ul>
+<li>document 获取对象的方法</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> root = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&quot;root&quot;</span>);</span><br><span class="line"><span class="variable language_">document</span>.<span class="title function_">getElementsByTagName</span>();</span><br><span class="line"><span class="variable language_">document</span>.<span class="title function_">getElementsByClassName</span>();</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>document 元素的可见</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">root.<span class="property">style</span>.<span class="property">display</span> = <span class="string">&quot;none&quot;</span>;</span><br><span class="line">root.<span class="property">visibility</span> = <span class="string">&quot;hidden&quot;</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h3><p>js 中正则表达式语法规则：</p>
+<ul>
+<li>&#x2F; &#x2F;正则的定义语法</li>
+<li>^匹配开始，以后面内容为开始</li>
+<li>$匹配末尾，以前面内容为末尾</li>
+<li>可以通过^()$</li>
+<li>[0-9][a-z][0-9a-z]指定取值范围</li>
+<li>[0-9]简写为\d</li>
+<li>[0-9a-zA-Z_]简写为\w</li>
+<li>{n}前面内容出现 n 次;{n,}至少出现 n 次;{,m}最多出现 m 次;{n,m}出现 n 到 m 次</li>
+<li>{0,1}简写为?,表示出现或者不出现</li>
+<li>{1,}简写为+号</li>
+<li>{0,}简写为*</li>
+</ul>
+<p>校验方式调用 RegExp 对象的方法或者 String 对象的方法：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> phone = <span class="string">&quot;19838265015&quot;</span>;</span><br><span class="line"><span class="keyword">let</span> regl = <span class="regexp">/^(1[0-9]&#123;10&#125;)$/</span>;</span><br><span class="line"><span class="keyword">let</span> reg2 = <span class="regexp">/^(1(3|5|7|8|9)[0-9]&#123;9&#125;)$/</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> email = <span class="string">&quot;1070010161@qq.com&quot;</span>;</span><br><span class="line"><span class="keyword">let</span> regEmail = <span class="regexp">/^(\w+@\w+(\.[a-zA-Z]+)&#123;1,2&#125;)$/</span>;</span><br><span class="line"><span class="comment">//RegExp 对象的 test() 方法，返回布尔值</span></span><br><span class="line"><span class="comment">//判断是否包含</span></span><br><span class="line">reg1.<span class="title function_">test</span>(phone);</span><br><span class="line"><span class="keyword">let</span> reg6 = <span class="regexp">/@/</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(reg6.<span class="title function_">test</span>(email));</span><br><span class="line"><span class="comment">//RegExp 对象的 exec() 方法，返回数组</span></span><br><span class="line">reg1.<span class="title function_">exec</span>(phone);</span><br><span class="line"><span class="comment">//String 的 match() 方法，返回数组</span></span><br><span class="line"><span class="keyword">const</span> result1 = <span class="string">&quot;Hello123&quot;</span>.<span class="title function_">match</span>(<span class="regexp">/\d/</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(result1[<span class="number">0</span>]); <span class="comment">// &quot;1&quot;</span></span><br><span class="line"><span class="comment">// 全局匹配</span></span><br><span class="line"><span class="keyword">const</span> result2 = <span class="string">&quot;Hello123&quot;</span>.<span class="title function_">match</span>(<span class="regexp">/\d/g</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(result2); <span class="comment">// [&quot;1&quot;, &quot;2&quot;, &quot;3&quot;]</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="下拉框"><a href="#下拉框" class="headerlink" title="下拉框"></a>下拉框</h3><p>一般从数据库获取，所以需要动态加载。</p>
+<ul>
+<li>每个选项对象有 text 和 value 两个属性。value 会提交到服务器。</li>
+<li>el.value 获取当前选中项的 value 值</li>
+<li>el.add(new Option(text,value))</li>
+<li>el.options 存储了所有对象</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -763,180 +1054,6 @@
           <h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>给你一个整数数组 nums 和一个正整数 k 。<br>请你统计有多少满足「 nums 中的最大元素」至少出现 k 次的子数组，并返回满足这一条件的子数组的数目。<br>子数组是数组中的一个连续元素序列。</p>
 <h3 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h3><p>此题是典型的滑动窗口。<br>首先找到nums中的最大元素，然后滑动窗口保证nums中最大元素超过k个。<br>例如[1,3,2,3,3],遍历到第二个3的时候，cnt_mx等于k了，移动左端点直到区间内最大元素个数不超过k，此时，左端点位于第一个2处，left&#x3D;2，此时[1,3,2,3][3,2,3]都满足条件，把答案增加left。当右端点移动到末尾元素时，左端点也移动到末尾元素，此时[1,3,2,3,3][3,2,3,3][2,3,3][3,3]都满足条件，答案增加left&#x3D;4。</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>&#123;</span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">long</span> <span class="type">long</span> <span class="title">countSubarrays</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp;nums,<span class="type">int</span> k)</span></span>&#123;</span><br><span class="line">        <span class="type">int</span> mx=ranges::<span class="built_in">max</span>(nums);</span><br><span class="line">        <span class="type">long</span> <span class="type">long</span> ans=<span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> cnt_mx=<span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> left=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> x:nums)&#123;</span><br><span class="line">            <span class="keyword">if</span>(mx==x)&#123;</span><br><span class="line">                cnt_mx++;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">while</span>(cnt_mx==k)&#123;</span><br><span class="line">                <span class="keyword">if</span>(nums[left]==mx)&#123;</span><br><span class="line">                    cnt_mx--;</span><br><span class="line">                &#125;</span><br><span class="line">                left++;</span><br><span class="line">            &#125;</span><br><span class="line">            ans+=left;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2025/03/12/%E6%AF%8F%E6%97%A51%E9%A2%98-%E5%85%83%E9%9F%B3%E8%BE%85%E9%9F%B3%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%AE%A1%E6%95%B01/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="时光不会倒流y">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Always Blog">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Always Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2025/03/12/%E6%AF%8F%E6%97%A51%E9%A2%98-%E5%85%83%E9%9F%B3%E8%BE%85%E9%9F%B3%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%AE%A1%E6%95%B01/" class="post-title-link" itemprop="url">每日1题-元音辅音字符串计数1</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2025-03-12 13:12:10 / 修改时间：18:53:17" itemprop="dateCreated datePublished" datetime="2025-03-12T13:12:10+08:00">2025-03-12</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>给你一个字符串 word 和一个 非负 整数 k。<br>返回 word 的 子字符串 中，每个元音字母（’a’、’e’、’i’、’o’、’u’）至少 出现一次，并且 恰好 包含 k 个辅音字母的子字符串的总数。  </p>
-<h3 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h3><p>每一个子串要保证元音字母都出现至少一次，辅音字母为k。  </p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span>&#123;</span><br><span class="line">    <span class="type">const</span> string VOWEL=<span class="string">&quot;aeiou&quot;</span>;</span><br><span class="line">    <span class="function"><span class="type">long</span> <span class="type">long</span> <span class="title">f</span><span class="params">(string&amp;word,<span class="type">int</span> k)</span></span>&#123;</span><br><span class="line">        <span class="type">long</span> <span class="type">long</span> ans=<span class="number">0</span>;</span><br><span class="line">        unordered_map&lt;<span class="type">char</span>,<span class="type">int</span>&gt;cnt1;</span><br><span class="line">        <span class="type">int</span> cnt2=<span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> left=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">char</span> b:word)&#123;</span><br><span class="line">            <span class="keyword">if</span>(VOWEL.<span class="built_in">find</span>(b)!=string::npos)&#123;</span><br><span class="line">                cnt1[b]++;</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                cnt2++;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">while</span>(cnt<span class="number">1.</span><span class="built_in">size</span>()==<span class="number">5</span>&amp;&amp;cnt2&gt;=k)&#123;</span><br><span class="line">                <span class="type">char</span> out=word[left];</span><br><span class="line">                <span class="keyword">if</span>(VOWEL.<span class="built_in">find</span>(out)!=string::npos)&#123;</span><br><span class="line">                    <span class="keyword">if</span>(--cnt1[out]==<span class="number">0</span>)&#123;</span><br><span class="line">                        cnt<span class="number">1.</span><span class="built_in">erase</span>(out);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                    cnt2--;</span><br><span class="line">                &#125;</span><br><span class="line">                left++;</span><br><span class="line">            &#125;</span><br><span class="line">            ans+=left</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">long</span> <span class="type">long</span> <span class="title">countOfSubstrings</span><span class="params">(string word, <span class="type">int</span> k)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">f</span>(word, k) - <span class="built_in">f</span>(word, k + <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2025/03/12/C%E8%AF%AD%E8%A8%80%E7%9A%84%E6%95%B0%E7%BB%84%E4%B8%8E%E6%8C%87%E9%92%88/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="时光不会倒流y">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Always Blog">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Always Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2025/03/12/C%E8%AF%AD%E8%A8%80%E7%9A%84%E6%95%B0%E7%BB%84%E4%B8%8E%E6%8C%87%E9%92%88/" class="post-title-link" itemprop="url">C语言的数组与指针</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2025-03-12 12:10:18" itemprop="dateCreated datePublished" datetime="2025-03-12T12:10:18+08:00">2025-03-12</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-03-15 20:14:30" itemprop="dateModified" datetime="2025-03-15T20:14:30+08:00">2025-03-15</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="通过指针引用数组元素"><a href="#通过指针引用数组元素" class="headerlink" title="通过指针引用数组元素"></a>通过指针引用数组元素</h3><p>C语言中，引用一个数组元素有三种方法：  </p>
-<ol>
-<li>下标引用</li>
-</ol>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span>&#123;</span><br><span class="line">    <span class="type">int</span> a[<span class="number">10</span>];</span><br><span class="line">    <span class="type">int</span> i;</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;<span class="number">10</span>;i++)&#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;a[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;<span class="number">10</span>;i++)&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d&quot;</span>,a[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ol start="2">
-<li>通过数组名计算数组元素地址，实际上，a[i]在编译时就是按照*(a+i)处理的</li>
-</ol>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span>&#123;</span><br><span class="line">    <span class="type">int</span> a[<span class="number">10</span>];</span><br><span class="line">    <span class="type">int</span> i;</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;<span class="number">10</span>;i++)&#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;a[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;<span class="number">10</span>;i++)&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d&quot;</span>,*(a+i));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ol start="3">
-<li>通过指针变量指向数组元素</li>
-</ol>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span>&#123;</span><br><span class="line">    <span class="type">int</span> a[<span class="number">10</span>];</span><br><span class="line">    <span class="type">int</span> *p,i;</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;<span class="number">10</span>;i++)&#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,p);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(p=a;i&lt;a+<span class="number">10</span>;p++)&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d&quot;</span>,*p);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>但是不能通过改变数组名a的方式引用元素。例如：  </p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(p=a;a&lt;(p+<span class="number">10</span>);a++)&#123;</span><br><span class="line">    prinf(<span class="string">&quot;%d&quot;</span>,*a);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>因为数组名a代表数组首元素的地址，是一个指针型常量，它的值在运行期间是不变的。</p>
-<h3 id="包含指针的数组"><a href="#包含指针的数组" class="headerlink" title="包含指针的数组"></a>包含指针的数组</h3><p>C语言中定义一个元素为指针的数组通过这样的形式：  </p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span>* ptr_array[<span class="number">5</span>];</span><br></pre></td></tr></table></figure>
-<ul>
-<li>但是指针数组的每个元素只能指向相同类型的变量。</li>
-</ul>
-<h3 id="指向数组的指针"><a href="#指向数组的指针" class="headerlink" title="指向数组的指针"></a>指向数组的指针</h3><p>定义一个指向数组的指针是这样的形式：  </p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> arr[<span class="number">5</span>]=&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>&#125;;</span><br><span class="line"><span class="type">int</span> (*ptr)[<span class="number">5</span>];</span><br><span class="line">ptr=&amp;arr;</span><br><span class="line"><span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">5</span>; i++) &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;arr[%d] = %d\n&quot;</span>, i, (*ptr)[i]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>指向数组的指针的类型必须和数组的类型和大小完全匹配；  </li>
-<li>指针的算术运算（如 ptr++）会以整个数组为单位进行移动。</li>
-</ul>
-
       
     </div>
 

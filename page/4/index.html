@@ -118,13 +118,13 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">37</span>
+          <span class="site-state-item-count">39</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-count">18</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -141,6 +141,241 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/02/27/%E3%80%8AJava%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E3%80%8B%E7%AC%94%E8%AE%B01/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="时光不会倒流y">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Always Blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Always Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2025/02/27/%E3%80%8AJava%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E3%80%8B%E7%AC%94%E8%AE%B01/" class="post-title-link" itemprop="url">《Java核心技术》笔记1-概述</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-02-27 23:15:23" itemprop="dateCreated datePublished" datetime="2025-02-27T23:15:23+08:00">2025-02-27</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-03-09 22:38:23" itemprop="dateModified" datetime="2025-03-09T22:38:23+08:00">2025-03-09</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <style>
+  .card{
+    display: flex;
+    align-items:center;
+    border: 1px solid #ddd;
+    padding:5px 5px 5px 5px;
+    border-radius: 10px;
+  }
+  .book{
+    width:110px;
+    margin:20px 10px 20px 10px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .book:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+</style>
+<div class="card">
+  <img src="/images/java.jpg" alt="Java核心技术" class="book">
+  <span>由于我已经提前接触了C++，所以笔记重点在Java和C++的异同点上。<br>笔记1概述Java语言的特色；<br>笔记2记录面向对象——封装；<br>笔记3记录面向对象的另一个重要概念——继承；<br>笔记4总结Java的接口</span>
+</div>
+
+<h2 id="Java核心"><a href="#Java核心" class="headerlink" title="Java核心"></a>Java核心</h2><ul>
+<li>简单性：改进C++，剔除部分包括，头文件，指针，操作符重载，虚基类，结构？联合？</li>
+<li>面向对象：与C++主要不同在于多重继承，取而代之是接口</li>
+<li>分布式：Java有一个例程库，处理HTTP和FTP之类的TCP&#x2F;IP协议</li>
+<li>健壮性：强调早期问题检测，后期动态运行检测代码问题</li>
+<li>安全性：防范运行时堆栈溢出，破坏进程空间之外的内存，未经授权读写文件</li>
+<li>体系结构中立：生成一个体系结构中立的目标文件格式，只要有Java运行时系统，实现跨平台运行</li>
+<li>可移植性：基本数据类型的大小以及有关运算都有明确说明，例如int固定32位，不像C++</li>
+<li>解释型：Java解释器可以在任何移植了解释器的机器上直接运行Java字节码</li>
+<li>高性能：字节码可以在运行时动态转换成对应运行这应用的特定CPU的机器码。</li>
+<li>多线程：处理器发展带来并发性。</li>
+<li>动态性：为运行的程序增加代码，库中可以自由添加新方法和实例变量，而对客户端没有影响</li>
+</ul>
+<p>后续阅读可以多结合这11点</p>
+<h2 id="Java程序设计环境"><a href="#Java程序设计环境" class="headerlink" title="Java程序设计环境"></a>Java程序设计环境</h2><h3 id="Java开发工具包术语"><a href="#Java开发工具包术语" class="headerlink" title="Java开发工具包术语"></a>Java开发工具包术语</h3><ul>
+<li>JDK(Java Development Kit)编写Java程序使用的软件</li>
+<li>JRE(Java Runtime Environment)运行Java程序的用户使用的软件</li>
+<li>SE 标准版</li>
+<li>EE 企业版</li>
+<li>ME 微型版</li>
+</ul>
+<h2 id="Java基本程序设计结构"><a href="#Java基本程序设计结构" class="headerlink" title="Java基本程序设计结构"></a>Java基本程序设计结构</h2><h3 id="基本应用程序"><a href="#基本应用程序" class="headerlink" title="基本应用程序"></a>基本应用程序</h3><p>从一个基本的代码开始分析</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">FirstSample</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span></span><br><span class="line">    &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Hello World&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol>
+<li>首先Java区分大小写</li>
+<li>规范，类名首字母大写，文件名与类名同名，并以.java作为扩展</li>
+<li>main方法必须为public</li>
+<li>Java中所有函数都是某个类的方法，main必须是静态的</li>
+</ol>
+<h3 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h3><p>与C++一致</p>
+<h3 id="基本数据类型"><a href="#基本数据类型" class="headerlink" title="基本数据类型"></a>基本数据类型</h3><p>8中基本类型，4种整数，2种浮点数，1种字符类型char和一种boolean类型  </p>
+<ul>
+<li>整数包括int（4字节），short（2字节），long（8字节），byte（1字节），没有无符号类型</li>
+<li>浮点数有float（4字节）和double（8字节）类型</li>
+<li>char类型（16位），单引号，Unicode历史问题。</li>
+<li>boolean类型，区分C++，0不能代替false，非零不能代替true。</li>
+</ul>
+<h3 id="变量与常量"><a href="#变量与常量" class="headerlink" title="变量与常量"></a>变量与常量</h3><ul>
+<li>声明变量后必须初始化才能使用</li>
+<li>常量使用final关键字，只能被赋值一次，不能再更改；类常量使用static final；如果使用public，其他类也可以使用</li>
+</ul>
+<h3 id="Java的字符串不可变"><a href="#Java的字符串不可变" class="headerlink" title="Java的字符串不可变"></a>Java的字符串不可变</h3><p>不过可以修改字符串变量，让它指向另一个字符串，例如：  </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">greeting=greeting.substring(<span class="number">0</span>,<span class="number">3</span>)+<span class="string">&quot;p!&quot;</span>;</span><br></pre></td></tr></table></figure>
+<p>substring的第一个参数是选中的第一个字符位置，第二个参数是未选中的第一个字符位置；<br>不可变字符串有一个优点：编译器让字符串共享，将字符串存放在公共的存储池中，字符串变量指向存储池中相应的位置；</p>
+<h3 id="检测字符串是否相等"><a href="#检测字符串是否相等" class="headerlink" title="检测字符串是否相等"></a>检测字符串是否相等</h3><p>要用equals方法检测两个字符串是否相等  </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">s.equals(t);</span><br></pre></td></tr></table></figure>
+<p>&#x3D;&#x3D;运算符检测两个字符串相等只能确定两个字符串是否在同一位置上，完全有可能将内容相同的字符串放在不同位置上；<br>C++的string类重载了&#x3D;&#x3D;运算符以便检测字符串相等；</p>
+<h3 id="空串和null串"><a href="#空串和null串" class="headerlink" title="空串和null串"></a>空串和null串</h3><p>空串是长度为0的字符串，如果用代码检查</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(str.length()==<span class="number">0</span>)<span class="comment">//或者</span></span><br><span class="line"><span class="keyword">if</span>(str.equals(<span class="string">&quot;&quot;</span>))</span><br></pre></td></tr></table></figure>
+<p>要检查字符串既不是空串也不是null串</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(str!=<span class="literal">null</span>&amp;&amp;str.length()==<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+<p>注意检查null值一定在前，如果在null值上调用方法会出现错误。</p>
+<h3 id="构建字符串"><a href="#构建字符串" class="headerlink" title="构建字符串"></a>构建字符串</h3><p>如果使用String对象，效率较低，可以使用StringBuilder类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">StringBuilder builder=<span class="keyword">new</span> <span class="title class_">StringNuilder</span>();</span><br><span class="line">builder.append(ch);</span><br><span class="line">builder.append(str);</span><br><span class="line">String competedString=builder.toString();</span><br></pre></td></tr></table></figure>
+<h3 id="读取输入"><a href="#读取输入" class="headerlink" title="读取输入"></a>读取输入</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.*;</span><br><span class="line">Scanner in=<span class="keyword">new</span> <span class="title class_">Scanner</span>(System.in);</span><br><span class="line">String name=in.nextLine();</span><br><span class="line">String firstName=in.next();</span><br><span class="line"><span class="type">int</span> age=in.nextInt();</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2025/02/27/STL%E5%B8%B8%E7%94%A8%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="时光不会倒流y">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Always Blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Always Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2025/02/27/STL%E5%B8%B8%E7%94%A8%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" class="post-title-link" itemprop="url">STL常用数据结构</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-02-27 20:08:21" itemprop="dateCreated datePublished" datetime="2025-02-27T20:08:21+08:00">2025-02-27</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-03-15 20:14:49" itemprop="dateModified" datetime="2025-03-15T20:14:49+08:00">2025-03-15</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="vector"><a href="#vector" class="headerlink" title="vector"></a>vector</h3><p><img src="/images/vector.png" alt="vector"></p>
+<h3 id="string"><a href="#string" class="headerlink" title="string"></a>string</h3><p><img src="/images/string.png" alt="string"></p>
+<h3 id="unordered-map"><a href="#unordered-map" class="headerlink" title="unordered_map"></a>unordered_map</h3><p><img src="/images/unordered_map.png" alt="hash"></p>
+<h3 id="map"><a href="#map" class="headerlink" title="map"></a>map</h3><p><img src="/images/map.png" alt="map"></p>
+<h3 id="set"><a href="#set" class="headerlink" title="set"></a>set</h3><p><img src="/images/set.png" alt="set"></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
